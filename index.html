@@ -90,13 +90,6 @@
             color: #ff6347;
             font-weight: bold;
             display: inline-block;
-            opacity: 0;
-            animation: flash 1.5s step-start infinite;
-        }
-        @keyframes flash {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
         }
     </style>
 </head>
@@ -134,7 +127,7 @@
 
     <!-- Display Image Section -->
     <div id="imageContainer" style="margin-top: 20px;">
-        <img id="/images/butterfly1.webp" class="image" src="" alt="Animated Image">
+        <img id="displayImage" class="/images/star.gif" src="" alt="Animated Image">
     </div>
 
     <!-- Celebration and Reward Section -->
@@ -142,30 +135,36 @@
     <div id="rewardSection">
         <div id="rewardText" class="rewardText"></div>
         <div class="reward">
-            <img id="/images/star.gif" src="" alt="Reward Image">
+            <img id="rewardImage" src="" alt="Reward Image">
         </div>
     </div>
 
     <script>
-        // Function to play sound
+        // Function to play sound (ensure audio plays only after it's loaded)
         function playSound(fileName) {
             const audio = new Audio(fileName);
+            audio.load();  // Load the audio to ensure it plays correctly
             audio.play();
         }
 
         // Function to play month sound and flash the name one letter at a time
         function playMonthSound(month, soundFile) {
             const audio = new Audio(soundFile);
+            audio.load();  // Load the audio to ensure it plays correctly
             audio.play();
             flashMonthName(month);
         }
 
         // Function to flash the month name one letter at a time
         function flashMonthName(month) {
+            const flashContainer = document.createElement('div');
             const monthElement = document.createElement('span');
             monthElement.classList.add('flashing-text');
             const monthName = month.charAt(0).toUpperCase() + month.slice(1); // Capitalize first letter
             let letterIndex = 0;
+            flashContainer.appendChild(monthElement);
+            document.body.appendChild(flashContainer);
+
             const interval = setInterval(() => {
                 if (letterIndex < monthName.length) {
                     monthElement.textContent += monthName.charAt(letterIndex);
@@ -175,14 +174,10 @@
                 }
             }, 300); // Flash one letter every 300ms
 
-            const container = document.createElement('div');
-            container.appendChild(monthElement);
-            document.body.appendChild(container);
-            
-            // Remove the text after it finishes flashing
+            // Remove the flashing text after all letters have flashed
             setTimeout(() => {
-                document.body.removeChild(container);
-            }, monthName.length * 300 + 1000); // Allow time for all letters to show
+                document.body.removeChild(flashContainer);
+            }, monthName.length * 300 + 1000); // Keep text visible a bit after finishing
         }
 
         // Function to trigger celebration effect
@@ -211,4 +206,3 @@
     </script>
 </body>
 </html>
-
