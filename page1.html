@@ -64,32 +64,35 @@
             align-items: center;
             font-size: 24px;
             font-weight: bold;
-            color: #fff;
+            color: white;
             cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
             position: relative;
             overflow: hidden;
             font-size: 20px;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
             animation: bounceIn 1s ease-out;
+            background-size: cover; /* Ensures the image covers the button fully */
+            background-position: center; /* Centers the image */
         }
-        /* Different Background Color for Each Month */
-        .month:nth-child(1) { background-color: #f4a261; }
-        .month:nth-child(2) { background-color: #2a9d8f; }
-        .month:nth-child(3) { background-color: #e9c46a; }
-        .month:nth-child(4) { background-color: #264653; }
-        .month:nth-child(5) { background-color: #e76f51; }
-        .month:nth-child(6) { background-color: #6c757d; }
-        .month:nth-child(7) { background-color: #ffb3b3; }
-        .month:nth-child(8) { background-color: #d4a5a5; }
-        .month:nth-child(9) { background-color: #ffcc99; }
-        .month:nth-child(10) { background-color: #f1f2f6; }
-        .month:nth-child(11) { background-color: #99b3b3; }
-        .month:nth-child(12) { background-color: #ff6666; }
+
+        /* Different Background Image for Each Month */
+        .month:nth-child(1) { background-image: url('images/january.jpg'); }
+        .month:nth-child(2) { background-image: url('images/february.jpg'); }
+        .month:nth-child(3) { background-image: url('images/march.jpg'); }
+        .month:nth-child(4) { background-image: url('images/april.jpg'); }
+        .month:nth-child(5) { background-image: url('images/may.jpg'); }
+        .month:nth-child(6) { background-image: url('images/june.jpg'); }
+        .month:nth-child(7) { background-image: url('images/july.jpg'); }
+        .month:nth-child(8) { background-image: url('images/august.jpg'); }
+        .month:nth-child(9) { background-image: url('images/september.jpg'); }
+        .month:nth-child(10) { background-image: url('images/october.jpg'); }
+        .month:nth-child(11) { background-image: url('images/november.jpg'); }
+        .month:nth-child(12) { background-image: url('images/december.jpg'); }
 
         /* Hover and Animation Effects */
         .month:hover {
             transform: scale(1.2);
-            background-color: #ffe4b5;
+            background-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
