@@ -69,10 +69,11 @@
             position: relative;
             overflow: hidden;
             font-size: 20px;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s, filter 0.3s;
             animation: bounceIn 1s ease-out;
             background-size: cover; /* Ensures the image covers the button fully */
             background-position: center; /* Centers the image */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         /* Different Background Image for Each Month */
@@ -89,16 +90,32 @@
         .month:nth-child(11) { background-image: url('images/november.jpg'); }
         .month:nth-child(12) { background-image: url('images/december.jpg'); }
 
-        /* Hover and Animation Effects */
+        /* Hover Effects: Glow and Scale */
         .month:hover {
             transform: scale(1.2);
             background-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+            filter: brightness(1.2);
+            animation: pulse 1s infinite;
         }
 
+        /* Active/Click Effects: Pop and Rotate */
         .month:active {
-            transform: scale(0.95);
-            animation: zoomOut 0.3s ease-in-out;
+            transform: scale(0.95) rotate(10deg);
+            animation: pop 0.3s ease-in-out;
+        }
+
+        /* Hover Animation: Pulsing Glow */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
+            50% { box-shadow: 0 0 40px rgba(255, 255, 255, 1); }
+            100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
+        }
+
+        /* Pop Animation for Button Click */
+        @keyframes pop {
+            0% { transform: scale(1) rotate(0deg); }
+            100% { transform: scale(1.1) rotate(10deg); }
         }
 
         /* Zoom In & Zoom Out Animation */
