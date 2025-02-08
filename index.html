@@ -3,243 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Months of the Year</title>
+    <title>Learn the Months of the Year</title>
     <style>
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
-            background-color: #f0f8ff;
+            background-color: #f1f1f1;
+            color: #333;
             text-align: center;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            overflow: hidden;
+            justify-content: center;
         }
         h1 {
-            color: #ff6347;
             font-size: 3rem;
-            margin-top: 20px;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            color: #ff6347;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
         }
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 0 20px;
         }
         .month {
-            width: 100px;
-            height: 100px;
             background-color: #ffebcd;
             border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            font-weight: bold;
-            color: #4B0082;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease-in-out, background-color 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
+            animation: bounce 1s infinite alternate;
         }
         .month:hover {
             transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
             background-color: #ffec8b;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .month img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+            border-radius: 10px;
         }
         .month-text {
-            font-size: 14px;
+            font-size: 18px;
+            font-weight: bold;
             color: #008080;
-            text-align: center;
-            text-transform: uppercase;
-        }
-        .image {
-            max-width: 80px;
-            max-height: 80px;
-            animation: bounce 1s infinite alternate;
         }
         @keyframes bounce {
-            from { transform: translateY(0); }
-            to { transform: translateY(-10px); }
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
+        }
+        .reward {
+            width: 150px;
+            height: 150px;
+            margin-top: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: none;
+            transition: opacity 0.5s ease;
+        }
+        .reward img {
+            width: 100%;
+            height: 100%;
+        }
+        .flashing-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #32CD32;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .flashing-text.show {
+            opacity: 1;
         }
         .celebration {
             font-size: 50px;
-            color: #32CD32;
+            color: #ff6347;
             display: none;
+            margin-top: 20px;
             animation: bounceCelebration 1s infinite alternate;
         }
         @keyframes bounceCelebration {
             from { transform: scale(1); }
             to { transform: scale(1.2); }
         }
-        .reward {
-            width: 150px;
-            height: 150px;
-            margin-top: 20px;
-            display: none;
+        .container img {
+            animation: float 1s infinite alternate;
         }
-        .reward img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-        }
-        .rewardText {
-            font-size: 24px;
-            color: #ff6347;
-            font-weight: bold;
-        }
-        .section-title {
-            font-size: 2rem;
-            color: #008080;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        .flashing-text {
-            font-size: 24px;
-            font-weight: bold;
-            display: inline-block;
-            opacity: 0;
-            animation: flash 0.3s step-start infinite;
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-        }
-        @keyframes flash {
-            50% {
-                opacity: 1;
+        @keyframes float {
+            0% {
+                transform: translateY(0);
             }
-        }
-        .flash-color-1 {
-            color: #ff6347;
-        }
-        .flash-color-2 {
-            color: #32CD32;
-        }
-        .flash-color-3 {
-            color: #1e90ff;
-        }
-        .flash-color-4 {
-            color: #ffa500;
-        }
-        .flash-color-5 {
-            color: #8a2be2;
-        }
-        .rewardContainer {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            display: none;
+            100% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
 <body>
     <h1>Learn the Months of the Year</h1>
 
-    <!-- Reward Container (Hidden by default) -->
-    <div class="rewardContainer" id="rewardContainer">
-        <div class="rewardText">Great Job!</div>
-        <div class="reward"><img src="https://via.placeholder.com/150?text=Prize" alt="Prize"></div>
+    <!-- Reward Image (Hidden by default) -->
+    <div class="reward" id="rewardContainer">
+        <img src="https://via.placeholder.com/150?text=Prize" alt="Prize">
     </div>
 
+    <div class="flashing-text" id="flashingText"></div>
+
     <!-- Months Section -->
-    <div class="section-title">Click on the months below!</div>
     <div class="container">
         <div class="month" onclick="flashText('January', 'sound/january.mp3')">
-            <img src="https://via.placeholder.com/80?text=Jan" alt="January" class="image">
+            <img src="https://via.placeholder.com/80?text=Jan" alt="January">
             <div class="month-text">January</div>
         </div>
         <div class="month" onclick="flashText('February', 'sound/february.mp3')">
-            <img src="https://via.placeholder.com/80?text=Feb" alt="February" class="image">
+            <img src="https://via.placeholder.com/80?text=Feb" alt="February">
             <div class="month-text">February</div>
         </div>
         <div class="month" onclick="flashText('March', 'sound/march.mp3')">
-            <img src="https://via.placeholder.com/80?text=Mar" alt="March" class="image">
+            <img src="https://via.placeholder.com/80?text=Mar" alt="March">
             <div class="month-text">March</div>
         </div>
         <div class="month" onclick="flashText('April', 'sound/april.mp3')">
-            <img src="https://via.placeholder.com/80?text=Apr" alt="April" class="image">
+            <img src="https://via.placeholder.com/80?text=Apr" alt="April">
             <div class="month-text">April</div>
         </div>
         <div class="month" onclick="flashText('May', 'sound/may.mp3')">
-            <img src="https://via.placeholder.com/80?text=May" alt="May" class="image">
+            <img src="https://via.placeholder.com/80?text=May" alt="May">
             <div class="month-text">May</div>
         </div>
         <div class="month" onclick="flashText('June', 'sound/june.mp3')">
-            <img src="https://via.placeholder.com/80?text=Jun" alt="June" class="image">
+            <img src="https://via.placeholder.com/80?text=Jun" alt="June">
             <div class="month-text">June</div>
         </div>
         <div class="month" onclick="flashText('July', 'sound/july.mp3')">
-            <img src="https://via.placeholder.com/80?text=Jul" alt="July" class="image">
+            <img src="https://via.placeholder.com/80?text=Jul" alt="July">
             <div class="month-text">July</div>
         </div>
         <div class="month" onclick="flashText('August', 'sound/august.mp3')">
-            <img src="https://via.placeholder.com/80?text=Aug" alt="August" class="image">
+            <img src="https://via.placeholder.com/80?text=Aug" alt="August">
             <div class="month-text">August</div>
         </div>
         <div class="month" onclick="flashText('September', 'sound/september.mp3')">
-            <img src="https://via.placeholder.com/80?text=Sep" alt="September" class="image">
+            <img src="https://via.placeholder.com/80?text=Sep" alt="September">
             <div class="month-text">September</div>
         </div>
         <div class="month" onclick="flashText('October', 'sound/october.mp3')">
-            <img src="https://via.placeholder.com/80?text=Oct" alt="October" class="image">
+            <img src="https://via.placeholder.com/80?text=Oct" alt="October">
             <div class="month-text">October</div>
         </div>
         <div class="month" onclick="flashText('November', 'sound/november.mp3')">
-            <img src="https://via.placeholder.com/80?text=Nov" alt="November" class="image">
+            <img src="https://via.placeholder.com/80?text=Nov" alt="November">
             <div class="month-text">November</div>
         </div>
         <div class="month" onclick="flashText('December', 'sound/december.mp3')">
-            <img src="https://via.placeholder.com/80?text=Dec" alt="December" class="image">
+            <img src="https://via.placeholder.com/80?text=Dec" alt="December">
             <div class="month-text">December</div>
         </div>
     </div>
 
-    <!-- Flashing Text at the Bottom -->
-    <div id="flashingTextContainer" class="flashing-text"></div>
-
     <script>
-        // Function to play the sound and make the text flash
+        // Function to play sound and flash text
         function flashText(month, soundFile) {
             // Play sound when clicked
             const audio = new Audio(soundFile);
             audio.play();
-            
-            // Flash the text of the month
-            const flashContainer = document.getElementById('flashingTextContainer');
-            flashContainer.innerHTML = ''; // Clear previous text
 
-            const colorClasses = ['flash-color-1', 'flash-color-2', 'flash-color-3', 'flash-color-4', 'flash-color-5'];
+            // Flash text of the selected month
+            const flashingText = document.getElementById("flashingText");
+            flashingText.innerHTML = month;
+            flashingText.classList.add("show");
 
-            // Create a span to hold the text
-            const textSpan = document.createElement('span');
-            textSpan.textContent = month;
+            // Show reward image
+            const rewardContainer = document.getElementById("rewardContainer");
+            rewardContainer.style.display = "block";
 
-            // Add a random color class to the text
-            const randomColorClass = colorClasses[Math.floor(Math.random() * colorClasses.length)];
-            textSpan.classList.add(randomColorClass);
-
-            flashContainer.appendChild(textSpan);
-
-            // Trigger blinking effect
-            textSpan.style.animation = "flash 0.3s step-start infinite";
-
-            // Show celebration reward
-            showReward();
-        }
-
-        // Function to show the reward animation
-        function showReward() {
-            const rewardContainer = document.getElementById('rewardContainer');
-            rewardContainer.style.display = 'block';
+            // Hide reward image after 3 seconds
             setTimeout(() => {
-                rewardContainer.style.display = 'none';
-            }, 2000); // Hide after 2 seconds
+                rewardContainer.style.display = "none";
+            }, 3000);
         }
     </script>
 </body>
