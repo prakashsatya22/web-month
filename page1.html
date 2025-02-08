@@ -137,8 +137,6 @@
         <div class="month" onclick="playMonthSound('December', 'sound/december.mp3'); applyZoomEffect(this); makeTextBlink(this);">December</div>
     </div>
 
-    <div id="flashingText" class="flashing-text"></div>
-
     <div id="celebrationText" class="celebration">Yay!</div>
 
     <script>
@@ -200,7 +198,7 @@
             element.classList.add('blinking-text');
             setTimeout(() => {
                 element.classList.remove('blinking-text');
-            }, 3000); // Remove blinking effect after 3 seconds
+            }, 4000); // Remove blinking effect after 3 seconds
         }
     </script>
 </body>
