@@ -36,7 +36,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
         }
         h1 {
             color: #ff6347;
@@ -71,41 +71,29 @@
             font-size: 20px;
             transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s, filter 0.3s;
             animation: bounceIn 1s ease-out;
-            background-size: cover; /* Ensures the image covers the button fully */
-            background-position: center; /* Centers the image */
+            background-size: cover;
+            background-position: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Different Background Image for Each Month */
-        .month:nth-child(1) { background-image: url('images/january.jpg'); }
-        .month:nth-child(2) { background-image: url('images/february.jpg'); }
-        .month:nth-child(3) { background-image: url('images/march.jpg'); }
-        .month:nth-child(4) { background-image: url('images/april.jpg'); }
-        .month:nth-child(5) { background-image: url('images/may.jpg'); }
-        .month:nth-child(6) { background-image: url('images/june.jpg'); }
-        .month:nth-child(7) { background-image: url('images/july.jpg'); }
-        .month:nth-child(8) { background-image: url('images/august.jpg'); }
-        .month:nth-child(9) { background-image: url('images/september.jpg'); }
-        .month:nth-child(10) { background-image: url('images/october.jpg'); }
-        .month:nth-child(11) { background-image: url('images/november.jpg'); }
-        .month:nth-child(12) { background-image: url('images/december.jpg'); }
-
-        /* Hover Effects: Glow and Scale */
+        /* Hover Effects: Glow, Scale, and Text Color Change */
         .month:hover {
             transform: scale(1.2);
             background-color: rgba(255, 255, 255, 0.5);
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
             filter: brightness(1.2);
             animation: pulse 1s infinite;
+            color: #ff6347; /* Change color to red on hover */
         }
 
         /* Active/Click Effects: Pop and Rotate */
         .month:active {
             transform: scale(0.95) rotate(10deg);
             animation: pop 0.3s ease-in-out;
+            color: #32CD32; /* Change color to green when clicked */
         }
 
-        /* Hover Animation: Pulsing Glow */
+        /* Pulse Animation for Hover */
         @keyframes pulse {
             0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
             50% { box-shadow: 0 0 40px rgba(255, 255, 255, 1); }
@@ -135,12 +123,6 @@
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(-100%); }
             to { opacity: 1; transform: translateX(0); }
-        }
-
-        /* Flipping Animation for Text */
-        @keyframes flipText {
-            0% { transform: rotateX(0deg); }
-            100% { transform: rotateX(360deg); }
         }
 
         /* Flashing Text Effect */
@@ -248,3 +230,4 @@
 
 </body>
 </html>
+
