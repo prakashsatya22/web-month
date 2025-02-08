@@ -90,6 +90,13 @@
             color: #ff6347;
             font-weight: bold;
             display: inline-block;
+            opacity: 0;
+            animation: flash 0.3s step-start infinite;
+        }
+        @keyframes flash {
+            50% {
+                opacity: 1;
+            }
         }
     </style>
 </head>
@@ -127,7 +134,7 @@
 
     <!-- Display Image Section -->
     <div id="imageContainer" style="margin-top: 20px;">
-        <img id="displayImage" class="/images/star.gif" src="" alt="Animated Image">
+        <img id="displayImage" class="image" src="" alt="Animated Image">
     </div>
 
     <!-- Celebration and Reward Section -->
@@ -165,6 +172,7 @@
             flashContainer.appendChild(monthElement);
             document.body.appendChild(flashContainer);
 
+            // Display one letter at a time with a delay of 300ms
             const interval = setInterval(() => {
                 if (letterIndex < monthName.length) {
                     monthElement.textContent += monthName.charAt(letterIndex);
