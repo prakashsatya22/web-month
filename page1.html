@@ -64,23 +64,41 @@
             cursor: pointer;
             transition: transform 0.3s ease-in-out, background-color 0.3s, box-shadow 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 24px;
+            position: relative;
         }
-        /* Hover Effects */
+        /* Different Background Color for Each Month */
+        .month:nth-child(1) { background-color: #f4a261; }
+        .month:nth-child(2) { background-color: #2a9d8f; }
+        .month:nth-child(3) { background-color: #e9c46a; }
+        .month:nth-child(4) { background-color: #264653; }
+        .month:nth-child(5) { background-color: #e76f51; }
+        .month:nth-child(6) { background-color: #6c757d; }
+        .month:nth-child(7) { background-color: #ffb3b3; }
+        .month:nth-child(8) { background-color: #d4a5a5; }
+        .month:nth-child(9) { background-color: #ffcc99; }
+        .month:nth-child(10) { background-color: #f1f2f6; }
+        .month:nth-child(11) { background-color: #99b3b3; }
+        .month:nth-child(12) { background-color: #ff6666; }
+
+        /* Hover and Click Effects */
         .month:hover {
             transform: scale(1.1);
             background-color: #ffe4b5;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
-        /* Zoom-in and Out on Click */
-        @keyframes zoomInOut {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+
+        /* Bounce Animation for Button */
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
-        .zoom {
-            animation: zoomInOut 1.2s ease-in-out;
+        .month:active {
+            animation: bounce 0.3s;
         }
-        /* Blinking Text */
+
+        /* Blinking Effect for Text */
         @keyframes blinkText {
             0% { color: #ff6347; }
             50% { color: #32CD32; }
@@ -88,7 +106,10 @@
         }
         .blinking-text {
             animation: blinkText 1s infinite;
+            font-weight: bold;
+            font-size: 30px;
         }
+
     </style>
 </head>
 <body>
@@ -96,18 +117,18 @@
 
     <!-- Months Section -->
     <div class="container">
-        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3'); applyZoomEffect(this);">January</div>
-        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3'); applyZoomEffect(this);">February</div>
-        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3'); applyZoomEffect(this);">March</div>
-        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3'); applyZoomEffect(this);">April</div>
-        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3'); applyZoomEffect(this);">May</div>
-        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3'); applyZoomEffect(this);">June</div>
-        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3'); applyZoomEffect(this);">July</div>
-        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3'); applyZoomEffect(this);">August</div>
-        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3'); applyZoomEffect(this);">September</div>
-        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3'); applyZoomEffect(this);">October</div>
-        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3'); applyZoomEffect(this);">November</div>
-        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3'); applyZoomEffect(this);">December</div>
+        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3'); showBlinkingText('January');">January</div>
+        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3'); showBlinkingText('February');">February</div>
+        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3'); showBlinkingText('March');">March</div>
+        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3'); showBlinkingText('April');">April</div>
+        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3'); showBlinkingText('May');">May</div>
+        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3'); showBlinkingText('June');">June</div>
+        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3'); showBlinkingText('July');">July</div>
+        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3'); showBlinkingText('August');">August</div>
+        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3'); showBlinkingText('September');">September</div>
+        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3'); showBlinkingText('October');">October</div>
+        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3'); showBlinkingText('November');">November</div>
+        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3'); showBlinkingText('December');">December</div>
     </div>
 
     <script>
@@ -115,31 +136,23 @@
         function playMonthSound(month, soundFile) {
             const audio = new Audio(soundFile);
             audio.play();
-            showMonthFlash(month);
         }
 
-        // Flash the month name when clicked
-        function showMonthFlash(month) {
-            const flashingTextContainer = document.createElement('div');
-            flashingTextContainer.classList.add('blinking-text');
-            flashingTextContainer.innerText = month;
-            document.body.appendChild(flashingTextContainer);
+        // Function to show blinking text when clicked
+        function showBlinkingText(month) {
+            const blinkingTextContainer = document.createElement('div');
+            blinkingTextContainer.classList.add('blinking-text');
+            blinkingTextContainer.innerText = month;
+            document.body.appendChild(blinkingTextContainer);
 
             setTimeout(() => {
-                document.body.removeChild(flashingTextContainer);
+                document.body.removeChild(blinkingTextContainer);
             }, 2000); // Show for 2 seconds
-        }
-
-        // Apply zoom-in and zoom-out effect when clicked
-        function applyZoomEffect(element) {
-            element.classList.add('zoom');
-            setTimeout(() => {
-                element.classList.remove('zoom');
-            }, 1200); // Remove zoom effect after 1.2 seconds
         }
     </script>
 </body>
 </html>
+
 
 
 
