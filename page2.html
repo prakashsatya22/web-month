@@ -135,7 +135,7 @@
 
     <!-- Display Image Section -->
     <div id="imageContainer" style="margin-top: 20px;">
-        <img id="displayImage" class="image" src="" alt="Animated Image">
+        <img id="displayImage" class="image" src="/images/star.gif" alt="Animated Image">
     </div>
 
     <!-- Celebration and Reward Section -->
@@ -197,17 +197,6 @@
                 celebrationText.style.display = "none";
             }, 1000);
 
-            // Display a reward for specific months or days
-            if (monthOrDay === 'January' || monthOrDay === 'Monday') {
-                rewardText.innerText = "Great Job!";
-                rewardImage.src = "star.png"; // Add a fun star image for reward
-                document.querySelector('.reward').style.display = "inline-block";
-                setTimeout(() => {
-                    document.querySelector('.reward').style.display = "none";
-                }, 2000);
-            } else {
-                document.querySelector('.reward').style.display = "none";
-            }
         }
     </script>
 </body>
