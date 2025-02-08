@@ -64,7 +64,6 @@
             align-items: center;
             font-size: 24px;
             font-weight: bold;
-            color: white;
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -76,6 +75,22 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
+        /* Rainbow text animation */
+        .month {
+            animation: rainbowText 3s linear infinite;
+        }
+
+        @keyframes rainbowText {
+            0% { color: #ff0000; } /* Red */
+            14% { color: #ff7f00; } /* Orange */
+            28% { color: #ffff00; } /* Yellow */
+            42% { color: #00ff00; } /* Green */
+            57% { color: #0000ff; } /* Blue */
+            71% { color: #4b0082; } /* Indigo */
+            85% { color: #9400d3; } /* Violet */
+            100% { color: #ff0000; } /* Red */
+        }
+
         /* Hover Effects: Glow, Scale, and Text Color Change */
         .month:hover {
             transform: scale(1.2);
@@ -83,14 +98,12 @@
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
             filter: brightness(1.2);
             animation: pulse 1s infinite;
-            color: #ff6347; /* Change color to red on hover */
         }
 
         /* Active/Click Effects: Pop and Rotate */
         .month:active {
             transform: scale(0.95) rotate(10deg);
-            animation: pop 2s ease-in-out;
-            color: #32CD32; /* Change color to green when clicked */
+            animation: pop 0.3s ease-in-out;
         }
 
         /* Pulse Animation for Hover */
@@ -106,12 +119,6 @@
             100% { transform: scale(1.1) rotate(10deg); }
         }
 
-        /* Zoom In & Zoom Out Animation */
-        @keyframes zoomOut {
-            0% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
         /* Bounce In Animation */
         @keyframes bounceIn {
             0% { transform: translateY(30px); opacity: 0; }
@@ -124,49 +131,6 @@
             from { opacity: 0; transform: translateX(-100%); }
             to { opacity: 1; transform: translateX(0); }
         }
-
-        /* Flashing Text Effect */
-        @keyframes flashText {
-            0% { color: #ff6347; }
-            50% { color: #32CD32; }
-            100% { color: #ff6347; }
-        }
-        .flashing-text {
-            animation: flashText 1s infinite;
-            font-size: 30px;
-            font-weight: bold;
-        }
-
-        /* Confetti Effect */
-        @keyframes confetti {
-            0% { transform: translateY(0); opacity: 1; }
-            50% { transform: translateY(20px); opacity: 0.7; }
-            100% { transform: translateY(40px); opacity: 0; }
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: #ff6347;
-            animation: confetti 0.8s infinite;
-            animation-delay: 0.1s;
-        }
-
-        .confetti:nth-child(2) {
-            background-color: #ffcc00;
-            animation-delay: 0.8s;
-        }
-
-        .confetti:nth-child(3) {
-            background-color: #32CD32;
-            animation-delay: 0.8s;
-        }
-
-        .confetti:nth-child(4) {
-            background-color: #00bfff;
-            animation-delay: 0.8s;
-        }
     </style>
 </head>
 <body>
@@ -175,18 +139,18 @@
 
     <!-- Months Section -->
     <div class="container">
-        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3'); showBlinkingText('January'); showConfetti();">January</div>
-        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3'); showBlinkingText('February'); showConfetti();">February</div>
-        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3'); showBlinkingText('March'); showConfetti();">March</div>
-        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3'); showBlinkingText('April'); showConfetti();">April</div>
-        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3'); showBlinkingText('May'); showConfetti();">May</div>
-        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3'); showBlinkingText('June'); showConfetti();">June</div>
-        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3'); showBlinkingText('July'); showConfetti();">July</div>
-        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3'); showBlinkingText('August'); showConfetti();">August</div>
-        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3'); showBlinkingText('September'); showConfetti();">September</div>
-        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3'); showBlinkingText('October'); showConfetti();">October</div>
-        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3'); showBlinkingText('November'); showConfetti();">November</div>
-        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3'); showBlinkingText('December'); showConfetti();">December</div>
+        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3');">January</div>
+        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3');">February</div>
+        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3');">March</div>
+        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3');">April</div>
+        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3');">May</div>
+        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3');">June</div>
+        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3');">July</div>
+        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3');">August</div>
+        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3');">September</div>
+        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3');">October</div>
+        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3');">November</div>
+        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3');">December</div>
     </div>
 
     <script>
@@ -194,37 +158,6 @@
         function playMonthSound(month, soundFile) {
             const audio = new Audio(soundFile);
             audio.play();
-        }
-
-        // Function to show blinking text with flipping animation
-        function showBlinkingText(month) {
-            const blinkingTextContainer = document.createElement('div');
-            blinkingTextContainer.classList.add('flashing-text');
-            blinkingTextContainer.innerText = month;
-            document.body.appendChild(blinkingTextContainer);
-            blinkingTextContainer.style.animation = "flipText 1s ease-in-out";
-
-            // Remove the text after 2 seconds
-            setTimeout(() => {
-                document.body.removeChild(blinkingTextContainer);
-            }, 2000);
-        }
-
-        // Function to show confetti effect
-        function showConfetti() {
-            for (let i = 0; i < 10; i++) {
-                const confetti = document.createElement('div');
-                confetti.classList.add('confetti');
-                document.body.appendChild(confetti);
-
-                // Randomize confetti positions
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.animationDelay = Math.random() * 0.5 + 's';
-
-                setTimeout(() => {
-                    document.body.removeChild(confetti);
-                }, 1500); // Remove confetti after animation ends
-            }
         }
     </script>
 
