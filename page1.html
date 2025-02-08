@@ -140,7 +140,7 @@
 
        <!-- Display Image Section -->
     <div id="imageContainer" style="margin-top: 20px;">
-        <img id="displayImage" class="image" src="" alt="Animated Image">
+        <img id="displayImage" class="image" src="/images/january.jpg" alt="Animated Image">
     </div>
 
     <!-- Celebration and Reward Section -->
@@ -148,7 +148,7 @@
     <div id="rewardSection">
         <div id="rewardText" class="rewardText"></div>
         <div class="reward">
-            <img id="rewardImage" src="" alt="Reward Image">
+            <img id="/images/star.gif" src="" alt="Reward Image">
         </div>
     </div>
 
@@ -205,7 +205,7 @@
             // Display a reward for specific months or days
             if (monthOrDay === 'January' || monthOrDay === 'Monday') {
                 rewardText.innerText = "Great Job!";
-                rewardImage.src = "star.png"; // Add a fun star image for reward
+                rewardImage.src = "/images/star.gif"; // Add a fun star image for reward
                 document.querySelector('.reward').style.display = "inline-block";
                 setTimeout(() => {
                     document.querySelector('.reward').style.display = "none";
