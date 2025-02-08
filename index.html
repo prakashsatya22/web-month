@@ -90,7 +90,6 @@
         }
         .flashing-text {
             font-size: 24px;
-            color: #ff6347;
             font-weight: bold;
             display: inline-block;
             opacity: 0;
@@ -105,6 +104,21 @@
                 opacity: 1;
             }
         }
+        .flash-color-1 {
+            color: #ff6347;
+        }
+        .flash-color-2 {
+            color: #32CD32;
+        }
+        .flash-color-3 {
+            color: #1e90ff;
+        }
+        .flash-color-4 {
+            color: #ffa500;
+        }
+        .flash-color-5 {
+            color: #8a2be2;
+        }
     </style>
 </head>
 <body>
@@ -113,44 +127,35 @@
     <!-- Months Section -->
     <div class="section-title">Months</div>
     <div class="container">
-        <div class="month" onclick="playMonthSound('january', 'january.mp3');">January</div>
-        <div class="month" onclick="playMonthSound('february', 'february.mp3');">February</div>
-        <div class="month" onclick="playMonthSound('march', 'march.mp3');">March</div>
-        <div class="month" onclick="playMonthSound('april', 'april.mp3');">April</div>
-        <div class="month" onclick="playMonthSound('may', 'may.mp3');">May</div>
-        <div class="month" onclick="playMonthSound('june', 'june.mp3');">June</div>
-        <div class="month" onclick="playMonthSound('july', 'july.mp3');">July</div>
-        <div class="month" onclick="playMonthSound('august', 'august.mp3');">August</div>
-        <div class="month" onclick="playMonthSound('september', 'september.mp3');">September</div>
-        <div class="month" onclick="playMonthSound('october', 'october.mp3');">October</div>
-        <div class="month" onclick="playMonthSound('november', 'november.mp3');">November</div>
-        <div class="month" onclick="playMonthSound('december', 'december.mp3');">December</div>
+        <div class="month" onclick="playMonthSound('january', 'january.mp3'); flashText('January');">January</div>
+        <div class="month" onclick="playMonthSound('february', 'february.mp3'); flashText('February');">February</div>
+        <div class="month" onclick="playMonthSound('march', 'march.mp3'); flashText('March');">March</div>
+        <div class="month" onclick="playMonthSound('april', 'april.mp3'); flashText('April');">April</div>
+        <div class="month" onclick="playMonthSound('may', 'may.mp3'); flashText('May');">May</div>
+        <div class="month" onclick="playMonthSound('june', 'june.mp3'); flashText('June');">June</div>
+        <div class="month" onclick="playMonthSound('july', 'july.mp3'); flashText('July');">July</div>
+        <div class="month" onclick="playMonthSound('august', 'august.mp3'); flashText('August');">August</div>
+        <div class="month" onclick="playMonthSound('september', 'september.mp3'); flashText('September');">September</div>
+        <div class="month" onclick="playMonthSound('october', 'october.mp3'); flashText('October');">October</div>
+        <div class="month" onclick="playMonthSound('november', 'november.mp3'); flashText('November');">November</div>
+        <div class="month" onclick="playMonthSound('december', 'december.mp3'); flashText('December');">December</div>
     </div>
 
     <!-- Weekdays Section -->
     <div class="section-title">Weekdays</div>
     <div class="container">
-        <div class="weekday" onclick="playSound('monday.mp3');">Monday</div>
-        <div class="weekday" onclick="playSound('tuesday.mp3');">Tuesday</div>
-        <div class="weekday" onclick="playSound('wednesday.mp3');">Wednesday</div>
-        <div class="weekday" onclick="playSound('thursday.mp3');">Thursday</div>
-        <div class="weekday" onclick="playSound('friday.mp3');">Friday</div>
-        <div class="weekday" onclick="playSound('saturday.mp3');">Saturday</div>
-        <div class="weekday" onclick="playSound('sunday.mp3');">Sunday</div>
+        <div class="weekday" onclick="playSound('monday.mp3'); flashText('Monday');">Monday</div>
+        <div class="weekday" onclick="playSound('tuesday.mp3'); flashText('Tuesday');">Tuesday</div>
+        <div class="weekday" onclick="playSound('wednesday.mp3'); flashText('Wednesday');">Wednesday</div>
+        <div class="weekday" onclick="playSound('thursday.mp3'); flashText('Thursday');">Thursday</div>
+        <div class="weekday" onclick="playSound('friday.mp3'); flashText('Friday');">Friday</div>
+        <div class="weekday" onclick="playSound('saturday.mp3'); flashText('Saturday');">Saturday</div>
+        <div class="weekday" onclick="playSound('sunday.mp3'); flashText('Sunday');">Sunday</div>
     </div>
 
     <!-- Display Image Section -->
     <div id="imageContainer" style="margin-top: 20px;">
         <img id="displayImage" class="image" src="" alt="Animated Image">
-    </div>
-
-    <!-- Celebration and Reward Section -->
-    <div id="celebrationText" class="celebration">Yay!</div>
-    <div id="rewardSection">
-        <div id="rewardText" class="rewardText"></div>
-        <div class="reward">
-            <img id="rewardImage" src="" alt="Reward Image">
-        </div>
     </div>
 
     <!-- Flashing Text at the Bottom -->
@@ -169,48 +174,27 @@
             const audio = new Audio(soundFile);
             audio.load();  // Load the audio to ensure it plays correctly
             audio.play();
-            flashMonthName(month);
         }
 
-        // Function to flash the month name one letter at a time
-        function flashMonthName(month) {
+        // Function to make the text flash with different colors
+        function flashText(text) {
             const flashContainer = document.getElementById('flashingTextContainer');
             flashContainer.innerHTML = ''; // Clear any previous text
-            const monthName = month.charAt(0).toUpperCase() + month.slice(1); // Capitalize first letter
-            let letterIndex = 0;
 
-            // Display one letter at a time with a delay of 300ms
-            const interval = setInterval(() => {
-                flashContainer.textContent += monthName.charAt(letterIndex);
-                letterIndex++;
-                if (letterIndex >= monthName.length) {
-                    clearInterval(interval);
-                }
-            }, 300); // Flash one letter every 300ms
-        }
+            const colorClasses = ['flash-color-1', 'flash-color-2', 'flash-color-3', 'flash-color-4', 'flash-color-5'];
 
-        // Function to trigger celebration effect
-        function celebrate(monthOrDay) {
-            const celebrationText = document.getElementById('celebrationText');
-            const rewardText = document.getElementById('rewardText');
-            const rewardImage = document.getElementById('rewardImage');
+            // Create a span to hold the text
+            const textSpan = document.createElement('span');
+            textSpan.textContent = text;
 
-            celebrationText.style.display = "inline-block";
-            setTimeout(() => {
-                celebrationText.style.display = "none";
-            }, 1000);
+            // Add a random color class to the text
+            const randomColorClass = colorClasses[Math.floor(Math.random() * colorClasses.length)];
+            textSpan.classList.add(randomColorClass);
 
-            // Display a reward for specific months or days
-            if (monthOrDay === 'January' || monthOrDay === 'Monday') {
-                rewardText.innerText = "Great Job!";
-                rewardImage.src = "star.png"; // Add a fun star image for reward
-                document.querySelector('.reward').style.display = "inline-block";
-                setTimeout(() => {
-                    document.querySelector('.reward').style.display = "none";
-                }, 2000);
-            } else {
-                document.querySelector('.reward').style.display = "none";
-            }
+            flashContainer.appendChild(textSpan);
+
+            // Make the text blink
+            textSpan.style.animation = "flash 0.3s step-start infinite"; // Trigger blinking animation
         }
     </script>
 </body>
