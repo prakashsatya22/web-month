@@ -22,9 +22,8 @@
     <a href="page2.html">Week Days</a>
     <a href="page3.html">Table</a>
 </nav>
-        <style>
-        /* General Styles */
-        body {
+    <style>
+            body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
             text-align: center;
@@ -122,26 +121,21 @@
 <body>
     <h1>Learn Months and Weekdays</h1>
 
-    <!-- Months Section -->
-    <div class="section-title">Months</div>
+    <!-- Weekdays Section -->
+    <div class="section-title">Weekdays</div>
     <div class="container">
-        <div class="month" onclick="playMonthSound('sound/january.mp3');">January</div>
-        <div class="month" onclick="playMonthSound('sound/february.mp3');">February</div>
-        <div class="month" onclick="playMonthSound(sound/mar.mp3');">March</div>
-        <div class="month" onclick="playMonthSound('sound/apr.mp3');">April</div>
-        <div class="month" onclick="playMonthSound('sound/m.mp3');">May</div>
-        <div class="month" onclick="playMonthSound('sound/jun.mp3');">June</div>
-        <div class="month" onclick="playMonthSound('sound/july.mp3');">July</div>
-        <div class="month" onclick="playMonthSound('sound/aug.mp3');">August</div>
-        <div class="month" onclick="playMonthSound('sound/september.mp3');">September</div>
-        <div class="month" onclick="playMonthSound('sound/oct.mp3');">October</div>
-        <div class="month" onclick="playMonthSound('sound/nov.mp3');">November</div>
-        <div class="month" onclick="playMonthSound('sound/dec.mp3');">December</div>
+        <div class="weekday" onclick="playSound('/sound/january.mp3');">January</div>
+        <div class="weekday" onclick="playSound('/sound/tue.mp3');">Tuesday</div>
+        <div class="weekday" onclick="playSound('/sound/wednesday.mp3');">Wednesday</div>
+        <div class="weekday" onclick="playSound('/sound/thu.mp3');">Thursday</div>
+        <div class="weekday" onclick="playSound('/sound/friday.mp3');">Friday</div>
+        <div class="weekday" onclick="playSound('/sound/saturday.mp3');">Saturday</div>
+        <div class="weekday" onclick="playSound('/sound/sunday.mp3');">Sunday</div>
     </div>
 
     <!-- Display Image Section -->
     <div id="imageContainer" style="margin-top: 20px;">
-        <img id="displayImage" class="image" src="/images/ball.gif" alt="Animated Image">
+        <img id="displayImage" class="image" src="/images/star.gif" alt="Animated Image">
     </div>
 
     <!-- Celebration and Reward Section -->
@@ -149,20 +143,48 @@
     <div id="rewardSection">
         <div id="rewardText" class="rewardText"></div>
         <div class="reward">
-            <img id="rewardImage" src="/images/star.gif" alt="Reward Image">
+            <img id="rewardImage" src="" alt="Reward Image">
         </div>
     </div>
 
     <script>
+        // Function to play sound
+        function playSound(fileName) {
+            const audio = new Audio(fileName);
+            audio.play();
+        }
+
         // Function to play month sound and flash the name one letter at a time
         function playMonthSound(month, soundFile) {
             const audio = new Audio(soundFile);
             audio.play();
             flashMonthName(month);
-            celebrate(month); // Trigger celebration for certain months
         }
 
-       
+        // Function to flash the month name one letter at a time
+        function flashMonthName(month) {
+            const monthElement = document.createElement('span');
+            monthElement.classList.add('flashing-text');
+            const monthName = month.charAt(0).toUpperCase() + month.slice(1); // Capitalize first letter
+            let letterIndex = 0;
+            const interval = setInterval(() => {
+                if (letterIndex < monthName.length) {
+                    monthElement.textContent += monthName.charAt(letterIndex);
+                    letterIndex++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 300); // Flash one letter every 300ms
+
+            const container = document.createElement('div');
+            container.appendChild(monthElement);
+            document.body.appendChild(container);
+            
+            // Remove the text after it finishes flashing
+            setTimeout(() => {
+                document.body.removeChild(container);
+            }, monthName.length * 300 + 1000); // Allow time for all letters to show
+        }
 
         // Function to trigger celebration effect
         function celebrate(monthOrDay) {
@@ -174,7 +196,7 @@
             setTimeout(() => {
                 celebrationText.style.display = "none";
             }, 1000);
-            
+
         }
     </script>
 </body>
