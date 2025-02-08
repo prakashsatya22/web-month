@@ -125,18 +125,18 @@
     <!-- Months Section -->
     <div class="section-title">Months</div>
     <div class="container">
-        <div class="month" onclick="playMonthSound('january', 'sound/january.mp3');">January</div>
-        <div class="month" onclick="playMonthSound('february', 'sound/february.mp3');">February</div>
-        <div class="month" onclick="playMonthSound('march', 'sound/mar.mp3');">March</div>
-        <div class="month" onclick="playMonthSound('april', 'sound/apr.mp3');">April</div>
-        <div class="month" onclick="playMonthSound('may', 'sound/m.mp3');">May</div>
-        <div class="month" onclick="playMonthSound('june', 'sound/jun.mp3');">June</div>
-        <div class="month" onclick="playMonthSound('july', 'sound/july.mp3');">July</div>
-        <div class="month" onclick="playMonthSound('august', 'sound/aug.mp3');">August</div>
-        <div class="month" onclick="playMonthSound('september', 'sound/september.mp3');">September</div>
-        <div class="month" onclick="playMonthSound('october', 'sound/oct.mp3');">October</div>
-        <div class="month" onclick="playMonthSound('november', 'sound/nov.mp3');">November</div>
-        <div class="month" onclick="playMonthSound('december', 'sound/dec.mp3');">December</div>
+        <div class="month" onclick="playMonthSound('sound/january.mp3');">January</div>
+        <div class="month" onclick="playMonthSound('sound/february.mp3');">February</div>
+        <div class="month" onclick="playMonthSound(sound/mar.mp3');">March</div>
+        <div class="month" onclick="playMonthSound('sound/apr.mp3');">April</div>
+        <div class="month" onclick="playMonthSound('sound/m.mp3');">May</div>
+        <div class="month" onclick="playMonthSound('sound/jun.mp3');">June</div>
+        <div class="month" onclick="playMonthSound('sound/july.mp3');">July</div>
+        <div class="month" onclick="playMonthSound('sound/aug.mp3');">August</div>
+        <div class="month" onclick="playMonthSound('sound/september.mp3');">September</div>
+        <div class="month" onclick="playMonthSound('sound/oct.mp3');">October</div>
+        <div class="month" onclick="playMonthSound('sound/nov.mp3');">November</div>
+        <div class="month" onclick="playMonthSound('sound/dec.mp3');">December</div>
     </div>
 
     <!-- Display Image Section -->
@@ -162,32 +162,7 @@
             celebrate(month); // Trigger celebration for certain months
         }
 
-        // Function to flash the month name one letter at a time
-        function flashMonthName(month) {
-            const flashingTextContainer = document.getElementById('celebrationText');
-            flashingTextContainer.innerHTML = ''; // Clear previous text
-
-            const monthElement = document.createElement('span');
-            monthElement.classList.add('flashing-text');
-            const monthName = month.charAt(0).toUpperCase() + month.slice(1); // Capitalize first letter
-
-            let letterIndex = 0;
-            const interval = setInterval(() => {
-                if (letterIndex < monthName.length) {
-                    monthElement.textContent += monthName.charAt(letterIndex);
-                    letterIndex++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 300); // Flash one letter every 300ms
-
-            flashingTextContainer.appendChild(monthElement);
-
-            // Remove the text after it finishes flashing
-            setTimeout(() => {
-                flashingTextContainer.innerHTML = ''; // Clear the text after flashing
-            }, monthName.length * 300 + 1000); // Allow time for all letters to show
-        }
+       
 
         // Function to trigger celebration effect
         function celebrate(monthOrDay) {
@@ -199,18 +174,7 @@
             setTimeout(() => {
                 celebrationText.style.display = "none";
             }, 1000);
-
-            // Display a reward for specific months or days
-            if (monthOrDay === 'January') {
-                rewardText.innerText = "Great Job!";
-                rewardImage.src = "/images/star.gif"; // Add a fun star image for reward
-                document.querySelector('.reward').style.display = "inline-block";
-                setTimeout(() => {
-                    document.querySelector('.reward').style.display = "none";
-                }, 2000);
-            } else {
-                document.querySelector('.reward').style.display = "none";
-            }
+            
         }
     </script>
 </body>
