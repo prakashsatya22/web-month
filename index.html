@@ -14,6 +14,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow: hidden;
         }
         h1 {
             color: #ff6347;
@@ -42,6 +43,7 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease-in-out, background-color 0.3s;
+            position: relative;
         }
         .month:hover {
             transform: scale(1.2);
@@ -55,8 +57,8 @@
             text-transform: uppercase;
         }
         .image {
-            max-width: 120px;
-            max-height: 120px;
+            max-width: 100px;
+            max-height: 100px;
             animation: bounce 1s infinite alternate;
         }
         @keyframes bounce {
@@ -126,59 +128,73 @@
         .flash-color-5 {
             color: #8a2be2;
         }
+        .rewardContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <h1>Learn the Months of the Year</h1>
 
+    <!-- Reward Container (Hidden by default) -->
+    <div class="rewardContainer" id="rewardContainer">
+        <div class="rewardText">Great Job!</div>
+        <div class="reward"><img src="https://via.placeholder.com/150?text=Prize" alt="Prize"></div>
+    </div>
+
     <!-- Months Section -->
     <div class="section-title">Click on the months below!</div>
     <div class="container">
-        <div class="month" onclick="flashText('January')">
+        <div class="month" onclick="flashText('January', 'sound/january.mp3')">
             <img src="https://via.placeholder.com/100?text=Jan" alt="January" class="image">
             <div class="month-text">January</div>
         </div>
-        <div class="month" onclick="flashText('February')">
+        <div class="month" onclick="flashText('February', 'sound/february.mp3')">
             <img src="https://via.placeholder.com/100?text=Feb" alt="February" class="image">
             <div class="month-text">February</div>
         </div>
-        <div class="month" onclick="flashText('March')">
+        <div class="month" onclick="flashText('March', 'sound/march.mp3')">
             <img src="https://via.placeholder.com/100?text=Mar" alt="March" class="image">
             <div class="month-text">March</div>
         </div>
-        <div class="month" onclick="flashText('April')">
+        <div class="month" onclick="flashText('April', 'sound/april.mp3')">
             <img src="https://via.placeholder.com/100?text=Apr" alt="April" class="image">
             <div class="month-text">April</div>
         </div>
-        <div class="month" onclick="flashText('May')">
+        <div class="month" onclick="flashText('May', 'sound/may.mp3')">
             <img src="https://via.placeholder.com/100?text=May" alt="May" class="image">
             <div class="month-text">May</div>
         </div>
-        <div class="month" onclick="flashText('June')">
+        <div class="month" onclick="flashText('June', 'sound/june.mp3')">
             <img src="https://via.placeholder.com/100?text=Jun" alt="June" class="image">
             <div class="month-text">June</div>
         </div>
-        <div class="month" onclick="flashText('July')">
+        <div class="month" onclick="flashText('July', 'sound/july.mp3')">
             <img src="https://via.placeholder.com/100?text=Jul" alt="July" class="image">
             <div class="month-text">July</div>
         </div>
-        <div class="month" onclick="flashText('August')">
+        <div class="month" onclick="flashText('August', 'sound/august.mp3')">
             <img src="https://via.placeholder.com/100?text=Aug" alt="August" class="image">
             <div class="month-text">August</div>
         </div>
-        <div class="month" onclick="flashText('September')">
+        <div class="month" onclick="flashText('September', 'sound/september.mp3')">
             <img src="https://via.placeholder.com/100?text=Sep" alt="September" class="image">
             <div class="month-text">September</div>
         </div>
-        <div class="month" onclick="flashText('October')">
+        <div class="month" onclick="flashText('October', 'sound/october.mp3')">
             <img src="https://via.placeholder.com/100?text=Oct" alt="October" class="image">
             <div class="month-text">October</div>
         </div>
-        <div class="month" onclick="flashText('November')">
+        <div class="month" onclick="flashText('November', 'sound/november.mp3')">
             <img src="https://via.placeholder.com/100?text=Nov" alt="November" class="image">
             <div class="month-text">November</div>
         </div>
-        <div class="month" onclick="flashText('December')">
+        <div class="month" onclick="flashText('December', 'sound/december.mp3')">
             <img src="https://via.placeholder.com/100?text=Dec" alt="December" class="image">
             <div class="month-text">December</div>
         </div>
@@ -188,10 +204,15 @@
     <div id="flashingTextContainer" class="flashing-text"></div>
 
     <script>
-        // Function to flash text with different colors
-        function flashText(month) {
+        // Function to play the sound and make the text flash
+        function flashText(month, soundFile) {
+            // Play sound when clicked
+            const audio = new Audio(soundFile);
+            audio.play();
+            
+            // Flash the text of the month
             const flashContainer = document.getElementById('flashingTextContainer');
-            flashContainer.innerHTML = ''; // Clear any previous text
+            flashContainer.innerHTML = ''; // Clear previous text
 
             const colorClasses = ['flash-color-1', 'flash-color-2', 'flash-color-3', 'flash-color-4', 'flash-color-5'];
 
@@ -205,8 +226,20 @@
 
             flashContainer.appendChild(textSpan);
 
-            // Make the text blink
-            textSpan.style.animation = "flash 0.3s step-start infinite"; // Trigger blinking animation
+            // Trigger blinking effect
+            textSpan.style.animation = "flash 0.3s step-start infinite";
+
+            // Show celebration reward
+            showReward();
+        }
+
+        // Function to show the reward animation
+        function showReward() {
+            const rewardContainer = document.getElementById('rewardContainer');
+            rewardContainer.style.display = 'block';
+            setTimeout(() => {
+                rewardContainer.style.display = 'none';
+            }, 2000); // Hide after 2 seconds
         }
     </script>
 </body>
