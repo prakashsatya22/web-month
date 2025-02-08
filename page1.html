@@ -69,6 +69,28 @@
             background-color: #ffe4b5;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
+
+        /* Blinking Text Animation */
+        @keyframes blinkText {
+            0% { color: #ff6347; }
+            50% { color: #32CD32; }
+            100% { color: #ff6347; }
+        }
+        .blinking-text {
+            animation: blinkText 1s infinite;
+        }
+
+        /* Zoom-In Zoom-Out Effect */
+        @keyframes zoomInOut {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.5); }
+            100% { transform: scale(1); }
+        }
+        .zoom {
+            animation: zoomInOut 1.5s ease-in-out;
+        }
+
+        /* Flashing Text for Display */
         .flashing-text {
             font-size: 30px;
             color: #ff6347;
@@ -82,6 +104,8 @@
             50% { opacity: 1; }
             100% { opacity: 0; }
         }
+
+        /* Celebration Text */
         .celebration {
             font-size: 50px;
             color: #32CD32;
@@ -92,16 +116,6 @@
             from { transform: scale(1); }
             to { transform: scale(1.2); }
         }
-
-        /* Zoom-In Zoom-Out Effect */
-        @keyframes zoomInOut {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.5); }
-            100% { transform: scale(1); }
-        }
-        .zoom {
-            animation: zoomInOut 1.5s ease-in-out;
-        }
     </style>
 </head>
 <body>
@@ -109,18 +123,18 @@
 
     <!-- Months Section -->
     <div class="container">
-        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3'); applyZoomEffect(this);">January</div>
-        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3'); applyZoomEffect(this);">February</div>
-        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3'); applyZoomEffect(this);">March</div>
-        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3'); applyZoomEffect(this);">April</div>
-        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3'); applyZoomEffect(this);">May</div>
-        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3'); applyZoomEffect(this);">June</div>
-        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3'); applyZoomEffect(this);">July</div>
-        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3'); applyZoomEffect(this);">August</div>
-        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3'); applyZoomEffect(this);">September</div>
-        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3'); applyZoomEffect(this);">October</div>
-        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3'); applyZoomEffect(this);">November</div>
-        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3'); applyZoomEffect(this);">December</div>
+        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3'); applyZoomEffect(this); makeTextBlink(this);">January</div>
+        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3'); applyZoomEffect(this); makeTextBlink(this);">February</div>
+        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3'); applyZoomEffect(this); makeTextBlink(this);">March</div>
+        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3'); applyZoomEffect(this); makeTextBlink(this);">April</div>
+        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3'); applyZoomEffect(this); makeTextBlink(this);">May</div>
+        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3'); applyZoomEffect(this); makeTextBlink(this);">June</div>
+        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3'); applyZoomEffect(this); makeTextBlink(this);">July</div>
+        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3'); applyZoomEffect(this); makeTextBlink(this);">August</div>
+        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3'); applyZoomEffect(this); makeTextBlink(this);">September</div>
+        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3'); applyZoomEffect(this); makeTextBlink(this);">October</div>
+        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3'); applyZoomEffect(this); makeTextBlink(this);">November</div>
+        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3'); applyZoomEffect(this); makeTextBlink(this);">December</div>
     </div>
 
     <div id="flashingText" class="flashing-text"></div>
@@ -180,7 +194,16 @@
                 element.classList.remove('zoom');
             }, 1500); // Remove zoom effect after 1.5 seconds
         }
+
+        // Make the text blink with color change when clicked
+        function makeTextBlink(element) {
+            element.classList.add('blinking-text');
+            setTimeout(() => {
+                element.classList.remove('blinking-text');
+            }, 3000); // Remove blinking effect after 3 seconds
+        }
     </script>
 </body>
 </html>
+
 
