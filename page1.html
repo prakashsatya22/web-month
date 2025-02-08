@@ -71,10 +71,10 @@
             background-color: #ffe4b5;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
-        /* Animated Zoom-in and Out */
+        /* Zoom-in and Out on Click */
         @keyframes zoomInOut {
             0% { transform: scale(1); }
-            50% { transform: scale(1.5); }
+            50% { transform: scale(1.2); }
             100% { transform: scale(1); }
         }
         .zoom {
@@ -89,39 +89,6 @@
         .blinking-text {
             animation: blinkText 1s infinite;
         }
-        /* Flashing Month Name Animation */
-        @keyframes flashMonth {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-        .flashing-text {
-            font-size: 30px;
-            color: #ff6347;
-            font-weight: bold;
-            display: inline-block;
-            animation: flashMonth 1s infinite;
-        }
-
-        /* Celebration Animation */
-        .celebration {
-            font-size: 50px;
-            color: #32CD32;
-            display: none;
-            animation: bounceCelebration 1s infinite alternate;
-        }
-        @keyframes bounceCelebration {
-            from { transform: scale(1); }
-            to { transform: scale(1.2); }
-        }
-
-        /* Background Color for Months */
-        .month:nth-child(odd) {
-            background-color: #ffa07a; /* Light Salmon */
-        }
-        .month:nth-child(even) {
-            background-color: #20b2aa; /* Light Sea Green */
-        }
     </style>
 </head>
 <body>
@@ -129,84 +96,46 @@
 
     <!-- Months Section -->
     <div class="container">
-        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3'); applyZoomEffect(this); makeTextBlink(this);">January</div>
-        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3'); applyZoomEffect(this); makeTextBlink(this);">February</div>
-        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3'); applyZoomEffect(this); makeTextBlink(this);">March</div>
-        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3'); applyZoomEffect(this); makeTextBlink(this);">April</div>
-        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3'); applyZoomEffect(this); makeTextBlink(this);">May</div>
-        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3'); applyZoomEffect(this); makeTextBlink(this);">June</div>
-        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3'); applyZoomEffect(this); makeTextBlink(this);">July</div>
-        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3'); applyZoomEffect(this); makeTextBlink(this);">August</div>
-        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3'); applyZoomEffect(this); makeTextBlink(this);">September</div>
-        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3'); applyZoomEffect(this); makeTextBlink(this);">October</div>
-        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3'); applyZoomEffect(this); makeTextBlink(this);">November</div>
-        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3'); applyZoomEffect(this); makeTextBlink(this);">December</div>
+        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3'); applyZoomEffect(this);">January</div>
+        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3'); applyZoomEffect(this);">February</div>
+        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3'); applyZoomEffect(this);">March</div>
+        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3'); applyZoomEffect(this);">April</div>
+        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3'); applyZoomEffect(this);">May</div>
+        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3'); applyZoomEffect(this);">June</div>
+        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3'); applyZoomEffect(this);">July</div>
+        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3'); applyZoomEffect(this);">August</div>
+        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3'); applyZoomEffect(this);">September</div>
+        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3'); applyZoomEffect(this);">October</div>
+        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3'); applyZoomEffect(this);">November</div>
+        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3'); applyZoomEffect(this);">December</div>
     </div>
 
-    <div id="flashingText" class="flashing-text"></div>
-
-    <div id="celebrationText" class="celebration">Yay!</div>
-
     <script>
-        // Function to play the month sound and show the animated month name
+        // Function to play the month sound
         function playMonthSound(month, soundFile) {
             const audio = new Audio(soundFile);
             audio.play();
-            flashMonthName(month);
-            showCelebration(month);
+            showMonthFlash(month);
         }
 
-        // Function to flash the month name one letter at a time
-        function flashMonthName(month) {
-            const flashingTextContainer = document.getElementById('flashingText');
-            flashingTextContainer.innerHTML = ''; // Clear previous text
+        // Flash the month name when clicked
+        function showMonthFlash(month) {
+            const flashingTextContainer = document.createElement('div');
+            flashingTextContainer.classList.add('blinking-text');
+            flashingTextContainer.innerText = month;
+            document.body.appendChild(flashingTextContainer);
 
-            const monthElement = document.createElement('span');
-            monthElement.classList.add('flashing-text');
-            const monthName = month.charAt(0).toUpperCase() + month.slice(1); // Capitalize first letter
-
-            let letterIndex = 0;
-            const interval = setInterval(() => {
-                if (letterIndex < monthName.length) {
-                    monthElement.textContent += monthName.charAt(letterIndex);
-                    letterIndex++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 300); // Flash one letter every 300ms
-
-            flashingTextContainer.appendChild(monthElement);
-
-            // Remove the text after it finishes flashing
             setTimeout(() => {
-                flashingTextContainer.innerHTML = ''; // Clear the text after flashing
-            }, monthName.length * 300 + 1000); // Allow time for all letters to show
+                document.body.removeChild(flashingTextContainer);
+            }, 2000); // Show for 2 seconds
         }
 
-        // Function to trigger celebration effect for the clicked month
-        function showCelebration(month) {
-            const celebrationText = document.getElementById('celebrationText');
-
-            celebrationText.style.display = "inline-block";
-            setTimeout(() => {
-                celebrationText.style.display = "none";
-            }, 1000); // Display celebration for 1 second
-        }
-
-        // Apply zoom-in and zoom-out effect when a month is clicked
+        // Apply zoom-in and zoom-out effect when clicked
         function applyZoomEffect(element) {
             element.classList.add('zoom');
             setTimeout(() => {
                 element.classList.remove('zoom');
             }, 1200); // Remove zoom effect after 1.2 seconds
-        }
-
-        // Make the text blink with color change when clicked
-        function makeTextBlink(element) {
-            element.classList.add('blinking-text');
-            setTimeout(() => {
-                element.classList.remove('blinking-text');
-            }, 3000); // Remove blinking effect after 3 seconds
         }
     </script>
 </body>
