@@ -40,7 +40,7 @@
         }
 
         .flash-text {
-            font-size: 2em;
+            font-size: 4em;
             font-weight: bold;
             color: #32cd32;
             margin-top: 20px;
@@ -55,25 +55,25 @@
         }
 
         .flash-animation {
-            animation: flash 1.5s infinite;
+            animation: flash 2s infinite;
         }
     </style>
 </head>
 <body>
     <h1>Learn the Months of the Year</h1>
     <div class="months">
-        <div class="month" onclick="playSound('January', 'sounds/january.mp3')">January</div>
-        <div class="month" onclick="playSound('February', 'sounds/february.mp3')">February</div>
-        <div class="month" onclick="playSound('March', 'sounds/march.mp3')">March</div>
-        <div class="month" onclick="playSound('April', 'sounds/april.mp3')">April</div>
-        <div class="month" onclick="playSound('May', 'sounds/may.mp3')">May</div>
-        <div class="month" onclick="playSound('June', 'sounds/june.mp3')">June</div>
-        <div class="month" onclick="playSound('July', 'sounds/july.mp3')">July</div>
-        <div class="month" onclick="playSound('August', 'sounds/august.mp3')">August</div>
-        <div class="month" onclick="playSound('September', 'sounds/september.mp3')">September</div>
-        <div class="month" onclick="playSound('October', 'sounds/october.mp3')">October</div>
-        <div class="month" onclick="playSound('November', 'sounds/november.mp3')">November</div>
-        <div class="month" onclick="playSound('December', 'sounds/december.mp3')">December</div>
+        <div class="month" onclick="playSound('January', '/images/january.mp3')">January</div>
+        <div class="month" onclick="playSound('February', '/images/february.mp3')">February</div>
+        <div class="month" onclick="playSound('March', '/images/march.mp3')">March</div>
+        <div class="month" onclick="playSound('April', '/images/april.mp3')">April</div>
+        <div class="month" onclick="playSound('May', '/images/may.mp3')">May</div>
+        <div class="month" onclick="playSound('June', '/images/june.mp3')">June</div>
+        <div class="month" onclick="playSound('July', '/images/july.mp3')">July</div>
+        <div class="month" onclick="playSound('August', '/images/august.mp3')">August</div>
+        <div class="month" onclick="playSound('September', '/images/september.mp3')">September</div>
+        <div class="month" onclick="playSound('October', '/images/october.mp3')">October</div>
+        <div class="month" onclick="playSound('November', '/images/november.mp3')">November</div>
+        <div class="month" onclick="playSound('December', '/images/december.mp3')">December</div>
     </div>
     <div id="flashText" class="flash-text"></div>
 
@@ -85,7 +85,7 @@
 
             // Show the month name with animation
             const flashText = document.getElementById("flashText");
-            flashText.textContent = `It's ${month}!`;
+            flashText.textContent = ${month}!`;
             flashText.classList.add('flash-animation');
 
             // Remove the animation after it's done
