@@ -14,15 +14,13 @@
 </head>
 <body>
 
-<header>
-    <h1>Welcome to Page 2</h1>
 </header>
 
 <nav>
     <a href="index.html">Home</a>
-    <a href="page1.html">Page 1</a>
-    <a href="page2.html">Page 2</a>
-    <a href="page3.html">Page 3</a>
+    <a href="page1.html">Month Name</a>
+    <a href="page2.html">Week Days</a>
+    <a href="page3.html">Table</a>
 </nav>
     <style>
             body {
@@ -126,7 +124,7 @@
     <!-- Months Section -->
     <div class="section-title">Months</div>
     <div class="container">
-        <div class="month" onclick="playMonthSound('january', 'january.mp3');">January</div>
+        <div class="month" onclick="playMonthSound('january', '/images/january.mp3');">January</div>
         <div class="month" onclick="playMonthSound('february', 'february.mp3');">February</div>
         <div class="month" onclick="playMonthSound('march', 'march.mp3');">March</div>
         <div class="month" onclick="playMonthSound('april', 'april.mp3');">April</div>
@@ -140,19 +138,7 @@
         <div class="month" onclick="playMonthSound('december', 'december.mp3');">December</div>
     </div>
 
-    <!-- Weekdays Section -->
-    <div class="section-title">Weekdays</div>
-    <div class="container">
-        <div class="weekday" onclick="playSound('monday.mp3');">Monday</div>
-        <div class="weekday" onclick="playSound('tuesday.mp3');">Tuesday</div>
-        <div class="weekday" onclick="playSound('wednesday.mp3');">Wednesday</div>
-        <div class="weekday" onclick="playSound('thursday.mp3');">Thursday</div>
-        <div class="weekday" onclick="playSound('friday.mp3');">Friday</div>
-        <div class="weekday" onclick="playSound('saturday.mp3');">Saturday</div>
-        <div class="weekday" onclick="playSound('sunday.mp3');">Sunday</div>
-    </div>
-
-    <!-- Display Image Section -->
+       <!-- Display Image Section -->
     <div id="imageContainer" style="margin-top: 20px;">
         <img id="displayImage" class="image" src="" alt="Animated Image">
     </div>
