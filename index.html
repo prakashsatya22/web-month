@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Months and Weekdays</title>
+    <title>Learn Months of the Year</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
             background-color: #f0f8ff;
             text-align: center;
             margin: 0;
@@ -19,19 +19,20 @@
             color: #ff6347;
             font-size: 3rem;
             margin-top: 20px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
         .container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
-        .month, .weekday {
+        .month {
             width: 120px;
             height: 120px;
             background-color: #ffebcd;
-            border-radius: 10px;
+            border-radius: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,13 +40,19 @@
             font-weight: bold;
             color: #4B0082;
             cursor: pointer;
-            transition: transform 0.3s ease-in-out, background-color 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, background-color 0.3s;
         }
-        .month:hover, .weekday:hover {
-            transform: scale(1.1);
-            background-color: #ffe4b5;
+        .month:hover {
+            transform: scale(1.2);
+            background-color: #ffec8b;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        .month-text {
+            font-size: 18px;
+            color: #008080;
+            text-align: center;
+            text-transform: uppercase;
         }
         .image {
             max-width: 120px;
@@ -88,7 +95,17 @@
             margin-top: 40px;
             margin-bottom: 20px;
         }
-        
+        .flashing-text {
+            font-size: 24px;
+            font-weight: bold;
+            display: inline-block;
+            opacity: 0;
+            animation: flash 0.3s step-start infinite;
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
         @keyframes flash {
             50% {
                 opacity: 1;
@@ -112,62 +129,67 @@
     </style>
 </head>
 <body>
-    <h1>Learn Months and Weekdays</h1>
+    <h1>Learn the Months of the Year</h1>
 
     <!-- Months Section -->
-    <div class="section-title">Months</div>
+    <div class="section-title">Click on the months below!</div>
     <div class="container">
-        <div class="month" onclick="playMonthSound('january', 'january.mp3'); flashText('January');">January</div>
-        <div class="month" onclick="playMonthSound('february', 'february.mp3'); flashText('February');">February</div>
-        <div class="month" onclick="playMonthSound('march', 'march.mp3'); flashText('March');">March</div>
-        <div class="month" onclick="playMonthSound('april', 'april.mp3'); flashText('April');">April</div>
-        <div class="month" onclick="playMonthSound('may', 'may.mp3'); flashText('May');">May</div>
-        <div class="month" onclick="playMonthSound('june', 'june.mp3'); flashText('June');">June</div>
-        <div class="month" onclick="playMonthSound('july', 'july.mp3'); flashText('July');">July</div>
-        <div class="month" onclick="playMonthSound('august', 'august.mp3'); flashText('August');">August</div>
-        <div class="month" onclick="playMonthSound('september', 'september.mp3'); flashText('September');">September</div>
-        <div class="month" onclick="playMonthSound('october', 'october.mp3'); flashText('October');">October</div>
-        <div class="month" onclick="playMonthSound('november', 'november.mp3'); flashText('November');">November</div>
-        <div class="month" onclick="playMonthSound('december', 'december.mp3'); flashText('December');">December</div>
-    </div>
-
-    <!-- Weekdays Section -->
-    <div class="section-title">Weekdays</div>
-    <div class="container">
-        <div class="weekday" onclick="playSound('monday.mp3'); flashText('Monday');">Monday</div>
-        <div class="weekday" onclick="playSound('tuesday.mp3'); flashText('Tuesday');">Tuesday</div>
-        <div class="weekday" onclick="playSound('wednesday.mp3'); flashText('Wednesday');">Wednesday</div>
-        <div class="weekday" onclick="playSound('thursday.mp3'); flashText('Thursday');">Thursday</div>
-        <div class="weekday" onclick="playSound('friday.mp3'); flashText('Friday');">Friday</div>
-        <div class="weekday" onclick="playSound('saturday.mp3'); flashText('Saturday');">Saturday</div>
-        <div class="weekday" onclick="playSound('sunday.mp3'); flashText('Sunday');">Sunday</div>
-    </div>
-
-    <!-- Display Image Section -->
-    <div id="imageContainer" style="margin-top: 20px;">
-        <img id="displayImage" class="image" src="" alt="Animated Image">
+        <div class="month" onclick="flashText('January')">
+            <img src="https://via.placeholder.com/100?text=Jan" alt="January" class="image">
+            <div class="month-text">January</div>
+        </div>
+        <div class="month" onclick="flashText('February')">
+            <img src="https://via.placeholder.com/100?text=Feb" alt="February" class="image">
+            <div class="month-text">February</div>
+        </div>
+        <div class="month" onclick="flashText('March')">
+            <img src="https://via.placeholder.com/100?text=Mar" alt="March" class="image">
+            <div class="month-text">March</div>
+        </div>
+        <div class="month" onclick="flashText('April')">
+            <img src="https://via.placeholder.com/100?text=Apr" alt="April" class="image">
+            <div class="month-text">April</div>
+        </div>
+        <div class="month" onclick="flashText('May')">
+            <img src="https://via.placeholder.com/100?text=May" alt="May" class="image">
+            <div class="month-text">May</div>
+        </div>
+        <div class="month" onclick="flashText('June')">
+            <img src="https://via.placeholder.com/100?text=Jun" alt="June" class="image">
+            <div class="month-text">June</div>
+        </div>
+        <div class="month" onclick="flashText('July')">
+            <img src="https://via.placeholder.com/100?text=Jul" alt="July" class="image">
+            <div class="month-text">July</div>
+        </div>
+        <div class="month" onclick="flashText('August')">
+            <img src="https://via.placeholder.com/100?text=Aug" alt="August" class="image">
+            <div class="month-text">August</div>
+        </div>
+        <div class="month" onclick="flashText('September')">
+            <img src="https://via.placeholder.com/100?text=Sep" alt="September" class="image">
+            <div class="month-text">September</div>
+        </div>
+        <div class="month" onclick="flashText('October')">
+            <img src="https://via.placeholder.com/100?text=Oct" alt="October" class="image">
+            <div class="month-text">October</div>
+        </div>
+        <div class="month" onclick="flashText('November')">
+            <img src="https://via.placeholder.com/100?text=Nov" alt="November" class="image">
+            <div class="month-text">November</div>
+        </div>
+        <div class="month" onclick="flashText('December')">
+            <img src="https://via.placeholder.com/100?text=Dec" alt="December" class="image">
+            <div class="month-text">December</div>
+        </div>
     </div>
 
     <!-- Flashing Text at the Bottom -->
     <div id="flashingTextContainer" class="flashing-text"></div>
 
     <script>
-        // Function to play sound (ensure audio plays only after it's loaded)
-        function playSound(fileName) {
-            const audio = new Audio(fileName);
-            audio.load();  // Load the audio to ensure it plays correctly
-            audio.play();
-        }
-
-        // Function to play month sound and flash the name one letter at a time
-        function playMonthSound(month, soundFile) {
-            const audio = new Audio(soundFile);
-            audio.load();  // Load the audio to ensure it plays correctly
-            audio.play();
-        }
-
-        // Function to make the text flash with different colors
-        function flashText(text) {
+        // Function to flash text with different colors
+        function flashText(month) {
             const flashContainer = document.getElementById('flashingTextContainer');
             flashContainer.innerHTML = ''; // Clear any previous text
 
@@ -175,7 +197,7 @@
 
             // Create a span to hold the text
             const textSpan = document.createElement('span');
-            textSpan.textContent = text;
+            textSpan.textContent = month;
 
             // Add a random color class to the text
             const randomColorClass = colorClasses[Math.floor(Math.random() * colorClasses.length)];
