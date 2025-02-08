@@ -22,8 +22,9 @@
     <a href="page2.html">Week Days</a>
     <a href="page3.html">Table</a>
 </nav>
-    <style>
-            body {
+        <style>
+        /* General Styles */
+        body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
             text-align: center;
@@ -136,7 +137,7 @@
         <div class="month" onclick="playMonthSound('october', 'sound/october.mp3');">October</div>
         <div class="month" onclick="playMonthSound('november', 'sound/november.mp3');">November</div>
         <div class="month" onclick="playMonthSound('december', 'sound/december.mp3');">December</div>
-        </div>
+    </div>
 
     <!-- Display Image Section -->
     <div id="imageContainer" style="margin-top: 20px;">
@@ -153,21 +154,38 @@
     </div>
 
     <script>
-        // Function to play sound
-        function playSound(fileName) {
-            const audio = new Audio(fileName);
-            audio.play();
-        }
         // Function to play month sound and flash the name one letter at a time
         function playMonthSound(month, soundFile) {
             const audio = new Audio(soundFile);
             audio.play();
             flashMonthName(month);
+            celebrate(month); // Trigger celebration for certain months
         }
-           
+
+        // Function to flash the month name one letter at a time
+        function flashMonthName(month) {
+            const flashingTextContainer = document.getElementById('celebrationText');
+            flashingTextContainer.innerHTML = ''; // Clear previous text
+
+            const monthElement = document.createElement('span');
+            monthElement.classList.add('flashing-text');
+            const monthName = month.charAt(0).toUpperCase() + month.slice(1); // Capitalize first letter
+
+            let letterIndex = 0;
+            const interval = setInterval(() => {
+                if (letterIndex < monthName.length) {
+                    monthElement.textContent += monthName.charAt(letterIndex);
+                    letterIndex++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 300); // Flash one letter every 300ms
+
+            flashingTextContainer.appendChild(monthElement);
+
             // Remove the text after it finishes flashing
             setTimeout(() => {
-                document.body.removeChild(container);
+                flashingTextContainer.innerHTML = ''; // Clear the text after flashing
             }, monthName.length * 300 + 1000); // Allow time for all letters to show
         }
 
@@ -183,7 +201,7 @@
             }, 1000);
 
             // Display a reward for specific months or days
-            if (monthOrDay === 'January' || monthOrDay === 'Monday') {
+            if (monthOrDay === 'January') {
                 rewardText.innerText = "Great Job!";
                 rewardImage.src = "/images/star.gif"; // Add a fun star image for reward
                 document.querySelector('.reward').style.display = "inline-block";
