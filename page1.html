@@ -164,26 +164,7 @@
             audio.play();
             flashMonthName(month);
         }
-
-        // Function to flash the month name one letter at a time
-        function flashMonthName(month) {
-            const monthElement = document.createElement('span');
-            monthElement.classList.add('flashing-text');
-            const monthName = month.charAt(0).toUpperCase() + month.slice(1); // Capitalize first letter
-            let letterIndex = 0;
-            const interval = setInterval(() => {
-                if (letterIndex < monthName.length) {
-                    monthElement.textContent += monthName.charAt(letterIndex);
-                    letterIndex++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 300); // Flash one letter every 300ms
-
-            const container = document.createElement('div');
-            container.appendChild(monthElement);
-            document.body.appendChild(container);
-            
+           
             // Remove the text after it finishes flashing
             setTimeout(() => {
                 document.body.removeChild(container);
