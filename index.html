@@ -46,13 +46,13 @@
             background-color: #ffec8b;
         }
         .month img {
-            width: 125px;
+            width: 80px;
             height: 80px;
             margin-bottom: 10px;
             border-radius: 10px;
         }
         .month-text {
-            font-size: 15px;
+            font-size: 18px;
             font-weight: bold;
             color: #008080;
         }
@@ -81,7 +81,7 @@
             font-size: 24px;
             font-weight: bold;
             color: #32CD32;
-            margin-top: 18px; /* Adjusted from 20px to 10px */
+            margin-top: 10px; /* Adjusted from 20px to 10px */
             opacity: 0;
             transition: opacity 1s ease-in-out;
             position: absolute;
@@ -121,15 +121,15 @@
 
     <!-- Reward Image (Hidden by default) -->
     <div class="reward" id="rewardContainer">
-        <img src="/images/star.gif" alt="Prize">
+        <img src="https://via.placeholder.com/150?text=Prize" alt="Prize">
     </div>
 
     <div class="flashing-text" id="flashingText"></div>
 
     <!-- Months Section -->
     <div class="container">
-        <div class="month" onclick="flashText('January', '/images/january.mp3')">
-            <img src="/images/january.jpg" alt="January">
+        <div class="month" onclick="flashText('January', 'sound/january.mp3')">
+            <img src="https://via.placeholder.com/80?text=Jan" alt="January">
             <div class="month-text">January</div>
         </div>
         <div class="month" onclick="flashText('February', 'sound/february.mp3')">
