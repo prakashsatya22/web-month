@@ -148,9 +148,31 @@
             }
         }
 
+        /* Back Button Style */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #ff4500;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
+
+<!-- Back Button -->
+<button class="back-button" onclick="goBack()">Back</button>
 
 <h1>Learn Month and Weekdays</h1>
 
@@ -266,8 +288,13 @@
 
     // Initially show the month names by default
     showSection('months');
+
+    // Back button function
+    function goBack() {
+        // Return to the initial section (months)
+        showSection('months');
+    }
 </script>
 
 </body>
 </html>
-
