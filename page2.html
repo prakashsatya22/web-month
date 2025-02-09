@@ -218,18 +218,18 @@
 <div id="months" class="section">
     <h2>Month Names</h2>
     <div class="names">
-        <div onclick="playSound('January', this)">January</div>
-        <div onclick="playSound('February', this)">February</div>
-        <div onclick="playSound('March', this)">March</div>
-        <div onclick="playSound('April', this)">April</div>
-        <div onclick="playSound('May', this)">May</div>
-        <div onclick="playSound('June', this)">June</div>
-        <div onclick="playSound('July', this)">July</div>
-        <div onclick="playSound('August', this)">August</div>
-        <div onclick="playSound('September', this)">September</div>
-        <div onclick="playSound('October', this)">October</div>
-        <div onclick="playSound('November', this)">November</div>
-        <div onclick="playSound('December', this)">December</div>
+        <div onclick="changeStyle('January', this)">January</div>
+        <div onclick="changeStyle('February', this)">February</div>
+        <div onclick="changeStyle('March', this)">March</div>
+        <div onclick="changeStyle('April', this)">April</div>
+        <div onclick="changeStyle('May', this)">May</div>
+        <div onclick="changeStyle('June', this)">June</div>
+        <div onclick="changeStyle('July', this)">July</div>
+        <div onclick="changeStyle('August', this)">August</div>
+        <div onclick="changeStyle('September', this)">September</div>
+        <div onclick="changeStyle('October', this)">October</div>
+        <div onclick="changeStyle('November', this)">November</div>
+        <div onclick="changeStyle('December', this)">December</div>
     </div>
 </div>
 
@@ -237,13 +237,13 @@
 <div id="weekdays" class="section">
     <h2>Week Days</h2>
     <div class="names">
-        <div onclick="playSound('Sunday', this)" class="week">Sunday</div>
-        <div onclick="playSound('Monday', this)" class="week">Monday</div>
-        <div onclick="playSound('Tuesday', this)" class="week">Tuesday</div>
-        <div onclick="playSound('Wednesday', this)" class="week">Wednesday</div>
-        <div onclick="playSound('Thursday', this)" class="week">Thursday</div>
-        <div onclick="playSound('Friday', this)" class="week">Friday</div>
-        <div onclick="playSound('Saturday', this)" class="week">Saturday</div>
+        <div onclick="changeStyle('Sunday', this)" class="week">Sunday</div>
+        <div onclick="changeStyle('Monday', this)" class="week">Monday</div>
+        <div onclick="changeStyle('Tuesday', this)" class="week">Tuesday</div>
+        <div onclick="changeStyle('Wednesday', this)" class="week">Wednesday</div>
+        <div onclick="changeStyle('Thursday', this)" class="week">Thursday</div>
+        <div onclick="changeStyle('Friday', this)" class="week">Friday</div>
+        <div onclick="changeStyle('Saturday', this)" class="week">Saturday</div>
     </div>
 </div>
 
@@ -262,6 +262,34 @@
 </div>
 
 <script>
+    // Array of random fonts
+    const fonts = ['"Comic Sans MS"', '"Arial"', '"Times New Roman"', '"Courier New"', '"Georgia"', '"Verdana"'];
+    
+    // Array of random colors
+    const colors = ['#ff6347', '#ff4500', '#32CD32', '#8A2BE2', '#FF1493', '#FFD700', '#00BFFF'];
+
+    // Function to change font and color randomly
+    function changeStyle(name, element) {
+        // Get a random font and color from the arrays
+        const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+
+        // Apply the random font and color to the clicked element
+        element.style.fontFamily = randomFont;
+        element.style.color = randomColor;
+
+        // Play sound for the clicked month/week
+        const audioElement = document.getElementById(name + '-sound');
+        if (audioElement) {
+            audioElement.play();
+        }
+
+        // Change the color of the clicked month name and background
+        const allNames = document.querySelectorAll('.names div');
+        allNames.forEach(name => name.classList.remove('active')); // Remove active class from all
+        element.classList.add('active'); // Add active class to the clicked name
+    }
+
     // Function to toggle the display of the Month Names section
     function toggleMonthNames() {
         const monthSection = document.getElementById('months');
@@ -279,19 +307,6 @@
         document.getElementById(section).style.display = 'block';
     }
 
-    // Function to play the sound associated with the month or week
-    function playSound(name, element) {
-        const audioElement = document.getElementById(name + '-sound');
-        if (audioElement) {
-            audioElement.play();
-        }
-        
-        // Change the color of the clicked month name and background
-        const allNames = document.querySelectorAll('.names div');
-        allNames.forEach(name => name.classList.remove('active')); // Remove active class from all
-        element.classList.add('active'); // Add active class to the clicked name
-    }
-
     // Back button function (redirect to another page)
     function goBack() {
         window.location.href = 'anotherpage.html';  // Redirect to another page
@@ -300,5 +315,3 @@
 
 </body>
 </html>
-
-
