@@ -165,6 +165,22 @@
             font-size: 24px;
             text-align: center;
         }
+
+        /* Content buttons for months and weeks */
+        .content-buttons button {
+            margin: 10px;
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .content-buttons button:hover {
+            background-color: #ff4500;
+        }
     </style>
 </head>
 <body>
@@ -187,31 +203,35 @@
 <!-- Hidden Month Names Content (visible after clicking 'Show Months') -->
 <div id="monthContent">
     <h3>Select a Month</h3>
-    <button onclick="updateCircle('January')">January</button>
-    <button onclick="updateCircle('February')">February</button>
-    <button onclick="updateCircle('March')">March</button>
-    <button onclick="updateCircle('April')">April</button>
-    <button onclick="updateCircle('May')">May</button>
-    <button onclick="updateCircle('June')">June</button>
-    <button onclick="updateCircle('July')">July</button>
-    <button onclick="updateCircle('August')">August</button>
-    <button onclick="updateCircle('September')">September</button>
-    <button onclick="updateCircle('October')">October</button>
-    <button onclick="updateCircle('November')">November</button>
-    <button onclick="updateCircle('December')">December</button>
+    <div class="content-buttons">
+        <button onclick="updateCircle('January')">January</button>
+        <button onclick="updateCircle('February')">February</button>
+        <button onclick="updateCircle('March')">March</button>
+        <button onclick="updateCircle('April')">April</button>
+        <button onclick="updateCircle('May')">May</button>
+        <button onclick="updateCircle('June')">June</button>
+        <button onclick="updateCircle('July')">July</button>
+        <button onclick="updateCircle('August')">August</button>
+        <button onclick="updateCircle('September')">September</button>
+        <button onclick="updateCircle('October')">October</button>
+        <button onclick="updateCircle('November')">November</button>
+        <button onclick="updateCircle('December')">December</button>
+    </div>
 </div>
 
 <!-- Hidden Week Numbers Content (visible after clicking 'Show Week Numbers') -->
 <div id="weekContent">
     <h3>Select a Week Number</h3>
     <p>Week numbers range from 1 to 52. Please select a week from below.</p>
-    <button onclick="selectWeek(1)">Week 1</button>
-    <button onclick="selectWeek(2)">Week 2</button>
-    <button onclick="selectWeek(3)">Week 3</button>
-    <button onclick="selectWeek(4)">Week 4</button>
-    <button onclick="selectWeek(5)">Week 5</button>
-    <button onclick="selectWeek(6)">Week 6</button>
-    <!-- You can add more buttons for weeks as needed -->
+    <div class="content-buttons">
+        <button onclick="selectWeek(1)">Week 1</button>
+        <button onclick="selectWeek(2)">Week 2</button>
+        <button onclick="selectWeek(3)">Week 3</button>
+        <button onclick="selectWeek(4)">Week 4</button>
+        <button onclick="selectWeek(5)">Week 5</button>
+        <button onclick="selectWeek(6)">Week 6</button>
+        <!-- You can add more buttons for weeks as needed -->
+    </div>
 </div>
 
 <script>
@@ -255,6 +275,7 @@
     // Function to select a week number
     function selectWeek(week) {
         alert("You selected Week " + week);
+        document.getElementById("weekContent").style.display = 'none';  // Hide week numbers content after selection
     }
 
     // Back button function (redirect to another page)
@@ -265,6 +286,7 @@
 
 </body>
 </html>
+
 
 
 
