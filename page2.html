@@ -66,7 +66,7 @@
             transform: translateY(-50%);  /* Center the circle perfectly */
             width: 200px;
             height: 200px;
-            background-color: #ff6347; /* Circle background */
+            background-color: #ff6347; /* Initial Circle color */
             border-radius: 50%;  /* Make it a circle */
             display: flex;
             flex-direction: column;
@@ -78,6 +78,7 @@
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
             padding: 20px;
             animation: bounceIn 1s ease-in-out;  /* Animation for the circle */
+            transition: background-color 1s ease-in-out; /* Smooth transition for color change */
         }
 
         /* Month Name Styling */
@@ -273,6 +274,13 @@
         // Update the circle with the selected month and corresponding number of days
         document.getElementById("monthName").textContent = month;
         document.getElementById("daysCount").textContent = monthDays[month];
+
+        // Play sound for the selected month
+        const monthSound = new Audio(`sounds/${month.toLowerCase()}.mp3`);
+        monthSound.play();
+
+        // Change the circle color frequently
+        changeCircleColor();
     }
 
     // Function to update the circle with the selected day
@@ -280,6 +288,20 @@
         // Update the circle with the selected day
         document.getElementById("monthName").textContent = day;
         document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
+
+        // Play sound for the selected day
+        const daySound = new Audio(`sounds/${day.toLowerCase()}.mp3`);
+        daySound.play();
+
+        // Change the circle color frequently
+        changeCircleColor();
+    }
+
+    // Function to change the circle's background color randomly
+    function changeCircleColor() {
+        const colors = ['#ff6347', '#ff4500', '#ff1493', '#32cd32', '#1e90ff', '#f0e68c', '#8a2be2', '#ff7f50'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.getElementById('monthCircle').style.backgroundColor = randomColor;
     }
 
     // Back button function (redirect to another page)
@@ -290,5 +312,3 @@
 
 </body>
 </html>
-
-
