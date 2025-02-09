@@ -179,7 +179,7 @@
 
 <!-- Button Container -->
 <div class="button-container">
-    <button onclick="showSection('months')">Month Names</button>
+    <button onclick="toggleMonthNames()">Month Names</button>
     <button onclick="showSection('weekdays')">Week Days</button>
 </div>
 
@@ -269,14 +269,25 @@
 </div>
 
 <script>
-    // Function to show the selected section (months or weekdays)
+    // Function to toggle the display of the Month Names section
+    function toggleMonthNames() {
+        const monthSection = document.getElementById('months');
+        // If the section is hidden, show it, otherwise hide it
+        if (monthSection.style.display === 'none' || monthSection.style.display === '') {
+            monthSection.style.display = 'block';
+        } else {
+            monthSection.style.display = 'none';
+        }
+    }
+
+    // Function to show the selected section (weekdays)
     function showSection(section) {
         // Hide both sections first
-        document.getElementById('months').classList.remove('active-section');
-        document.getElementById('weekdays').classList.remove('active-section');
+        document.getElementById('months').style.display = 'none';
+        document.getElementById('weekdays').style.display = 'none';
         
         // Show the selected section
-        document.getElementById(section).classList.add('active-section');
+        document.getElementById(section).style.display = 'block';
     }
 
     // Function to play the sound associated with the month or week
@@ -287,17 +298,13 @@
         }
     }
 
-    // Initially hide the month names and week days section
-    document.getElementById('months').style.display = 'none';
-    document.getElementById('weekdays').style.display = 'none';
-
     // Back button function
     function goBack() {
-        // Return to the initial section (months)
-        showSection('months');
+        // Go back to the initial state (hide both sections)
+        document.getElementById('months').style.display = 'none';
+        document.getElementById('weekdays').style.display = 'none';
     }
 </script>
 
 </body>
 </html>
-
