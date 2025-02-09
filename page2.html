@@ -84,26 +84,51 @@
             display: block;
         }
 
-        .month-names, .week-days {
+        .month-names {
             font-size: 24px;
             margin-top: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 15px;
         }
 
-        .month-names div, .week-days div {
+        .month-names div {
             margin: 10px 0;
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #ff6347, #ff4500);
+            color: white;
+            font-weight: bold;
+            font-size: 26px;
+            border-radius: 15px;
             cursor: pointer;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 8px;
-            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
         }
 
-        .month-names div:hover, .week-days div:hover {
-            background-color: #ff6347;
+        .month-names div:hover {
+            background: linear-gradient(135deg, #ff4500, #ff6347);
             transform: scale(1.1);
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .month-names div:active {
+            transform: scale(1);
+        }
+
+        /* Animation for the month names */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .month-names div {
+            animation: bounce 1s infinite ease-in-out;
         }
 
         /* Style for images on both sides of the page */
@@ -128,7 +153,6 @@
         .image-container-left img, .image-container-right img {
             width: 100%;
             height: 100%;
-            animation: move 1s infinite alternate;
         }
 
         @keyframes move-left {
@@ -168,6 +192,7 @@
             background-color: #ff4500;
             transform: scale(1.1);
         }
+
     </style>
 </head>
 <body>
@@ -187,42 +212,18 @@
 <div id="months" class="section">
     <h2>Month Names</h2>
     <div class="month-names">
-        <div onclick="playSound('January')" class="month">
-            January
-        </div>
-        <div onclick="playSound('February')" class="month">
-            February
-        </div>
-        <div onclick="playSound('March')" class="month">
-            March
-        </div>
-        <div onclick="playSound('April')" class="month">
-            April
-        </div>
-        <div onclick="playSound('May')" class="month">
-            May
-        </div>
-        <div onclick="playSound('June')" class="month">
-            June
-        </div>
-        <div onclick="playSound('July')" class="month">
-            July
-        </div>
-        <div onclick="playSound('August')" class="month">
-            August
-        </div>
-        <div onclick="playSound('September')" class="month">
-            September
-        </div>
-        <div onclick="playSound('October')" class="month">
-            October
-        </div>
-        <div onclick="playSound('November')" class="month">
-            November
-        </div>
-        <div onclick="playSound('December')" class="month">
-            December
-        </div>
+        <div onclick="playSound('January')">January</div>
+        <div onclick="playSound('February')">February</div>
+        <div onclick="playSound('March')">March</div>
+        <div onclick="playSound('April')">April</div>
+        <div onclick="playSound('May')">May</div>
+        <div onclick="playSound('June')">June</div>
+        <div onclick="playSound('July')">July</div>
+        <div onclick="playSound('August')">August</div>
+        <div onclick="playSound('September')">September</div>
+        <div onclick="playSound('October')">October</div>
+        <div onclick="playSound('November')">November</div>
+        <div onclick="playSound('December')">December</div>
     </div>
 </div>
 
@@ -230,39 +231,25 @@
 <div id="weekdays" class="section">
     <h2>Week Days</h2>
     <div class="week-days">
-        <div onclick="playSound('Sunday')" class="week">
-            Sunday
-        </div>
-        <div onclick="playSound('Monday')" class="week">
-            Monday
-        </div>
-        <div onclick="playSound('Tuesday')" class="week">
-            Tuesday
-        </div>
-        <div onclick="playSound('Wednesday')" class="week">
-            Wednesday
-        </div>
-        <div onclick="playSound('Thursday')" class="week">
-            Thursday
-        </div>
-        <div onclick="playSound('Friday')" class="week">
-            Friday
-        </div>
-        <div onclick="playSound('Saturday')" class="week">
-            Saturday
-        </div>
+        <div onclick="playSound('Sunday')" class="week">Sunday</div>
+        <div onclick="playSound('Monday')" class="week">Monday</div>
+        <div onclick="playSound('Tuesday')" class="week">Tuesday</div>
+        <div onclick="playSound('Wednesday')" class="week">Wednesday</div>
+        <div onclick="playSound('Thursday')" class="week">Thursday</div>
+        <div onclick="playSound('Friday')" class="week">Friday</div>
+        <div onclick="playSound('Saturday')" class="week">Saturday</div>
     </div>
 </div>
 
 <!-- Sounds -->
-<audio id="January-sound" src="/sounds/january.mp3"></audio>
-<audio id="February-sound" src="/sounds/february.mp3"></audio>
-<audio id="March-sound" src="/sounds/march.mp3"></audio>
+<audio id="January-sound" src="path-to-your-sounds/january.mp3"></audio>
+<audio id="February-sound" src="path-to-your-sounds/february.mp3"></audio>
+<audio id="March-sound" src="path-to-your-sounds/march.mp3"></audio>
 <!-- Add the other months and weekdays sound files similarly -->
 
 <!-- Left and Right Images -->
 <div class="image-container-left">
-    <img src="/images/fish-l" alt="Animation 1">
+    <img src="https://via.placeholder.com/100/ff6347" alt="Animation 1">
 </div>
 <div class="image-container-right">
     <img src="https://via.placeholder.com/100/ff6347" alt="Animation 2">
@@ -272,7 +259,6 @@
     // Function to toggle the display of the Month Names section
     function toggleMonthNames() {
         const monthSection = document.getElementById('months');
-        // If the section is hidden, show it, otherwise hide it
         if (monthSection.style.display === 'none' || monthSection.style.display === '') {
             monthSection.style.display = 'block';
         } else {
@@ -282,11 +268,8 @@
 
     // Function to show the selected section (weekdays)
     function showSection(section) {
-        // Hide both sections first
         document.getElementById('months').style.display = 'none';
         document.getElementById('weekdays').style.display = 'none';
-        
-        // Show the selected section
         document.getElementById(section).style.display = 'block';
     }
 
@@ -300,11 +283,9 @@
 
     // Back button function (redirect to another page)
     function goBack() {
-        // Replace 'anotherpage.html' with the actual URL you want to redirect to
-        window.location.href = 'page1.html';  // Redirect to another page
+        window.location.href = 'anotherpage.html';  // Redirect to another page
     }
 </script>
 
 </body>
 </html>
-
