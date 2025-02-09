@@ -22,3 +22,351 @@
     <a href="page2.html">Week Days</a>
     <a href="page3.html">Table</a>
 </nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Math Tables from 1 to 10</title>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #ff6347;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .table-container {
+            position: relative;
+            background-color: #F4BB44;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        @keyframes flashEffect {
+            0% {
+                opacity: 1;
+                width: 10px;
+            }
+            50% {
+                opacity: 1;
+                width: 30px;
+            }
+            100% {
+                opacity: 0;
+                width: 10px;
+            }
+        }
+
+        .number-button {
+            font-size: 20px;
+            padding: 15px;
+            margin: 10px;
+            background: #ff6347;
+            color: white;
+            border: yes;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .number-button:hover {
+            background-color: #ff4500;
+            transform: scale(1.1);
+        }
+
+        .multiplication-table {
+            margin-top: 20px;
+        }
+
+        .table-row {
+            font-size: 24px;
+            font-weight: bold;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.5s ease;
+        }
+
+        .table-row:hover {
+            background-color: #ffeb3b;
+            transform: scale(1.05);
+        }
+
+        /* Zoom-out effect when clicked */
+        .table-row.zoom-out {
+            animation: zoomOut 0.6s ease-in-out forwards;
+        }
+
+        @keyframes zoomOut {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.8);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .table-row.active {
+            animation: pulse 0.6s ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+         /* Styling for the images on the left and right */
+        .image-side {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-70%);
+            width: 200px;
+            height: 150px;
+            border-radius: 80%;            
+        }
+
+        .image-left {
+            left: -250px;
+        }
+
+        .image-right {
+            right: -250px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+
+<h1>Learn Math Tables from 1 to 10</h1>
+<div class="table-container">
+    <!-- Image on the left side -->
+    <img src="/images/fish-l.gif" alt="Left Image" class="image-side image-left">
+    <img src="/images/fish-l.gif" alt="Left Image" class="image-side image-left">
+    <img src="/images/fish-l.gif" alt="Left Image" class="image-side image-left">
+<div class="table-container">
+    <p>Select a number to see its multiplication table:</p>
+    
+    <!-- Number buttons -->
+    <div>
+        <button class="number-button" onclick="showTable(1)">1</button>
+        <button class="number-button" onclick="showTable(2)">2</button>
+        <button class="number-button" onclick="showTable(3)">3</button>
+        <button class="number-button" onclick="showTable(4)">4</button>
+        <button class="number-button" onclick="showTable(5)">5</button>
+        <button class="number-button" onclick="showTable(6)">6</button>
+        <button class="number-button" onclick="showTable(7)">7</button>
+        <button class="number-button" onclick="showTable(8)">8</button>
+        <button class="number-button" onclick="showTable(9)">9</button>
+        <button class="number-button" onclick="showTable(10)">10</button>
+    </div>
+
+    <!-- The multiplication table will be displayed here -->
+    <div id="multiplication-table" class="multiplication-table"></div>
+</div>
+<!-- Image on the right side -->
+    <img src="/images/fish-r.gif" alt="Right Image" class="image-side image-right">
+    <img src="/images/fish-r.gif" alt="Right Image" class="image-side image-right">
+    <img src="/images/fish-r.gif" alt="Right Image" class="image-side image-right">
+<!-- Sound files for each line in the table -->
+<audio id="sound1-1" src="/images/sound1-1.mp3"></audio>
+<audio id="sound1-2" src="/images/sound1-2.mp3"></audio>
+<audio id="sound1-3" src="/images/sound1-3.mp3"></audio>
+<audio id="sound1-4" src="/images/sound1-4.mp3"></audio>
+<audio id="sound1-5" src="/images/sound1-5.mp3"></audio>
+<audio id="sound1-6" src="/images/sound1-6.mp3"></audio>
+<audio id="sound1-7" src="/images/sound1-7.mp3"></audio>
+<audio id="sound1-8" src="/images/sound1-8.mp3"></audio>
+<audio id="sound1-9" src="/images/sound1-9.mp3"></audio>
+<audio id="sound1-10" src="/images/sound1-10.mp3"></audio>
+<!-- Repeat the same for other multiplication tables -->
+<audio id="sound2-1" src="/images/sound2-1.mp3"></audio>
+<audio id="sound2-2" src="/images/sound2-2.mp3"></audio>
+<audio id="sound2-3" src="/images/sound2-3.mp3"></audio>
+<audio id="sound2-4" src="/images/sound2-4.mp3"></audio>
+<audio id="sound2-5" src="/images/sound2-5.mp3"></audio>
+<audio id="sound2-6" src="/images/sound2-6.mp3"></audio>
+<audio id="sound2-7" src="/images/sound2-7.mp3"></audio>
+<audio id="sound2-8" src="/images/sound2-8.mp3"></audio>
+<audio id="sound2-9" src="/images/sound2-9.mp3"></audio>
+<audio id="sound2-10" src="/images/sound2-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+<audio id="sound3-1" src="/images/sound3-1.mp3"></audio>
+<audio id="sound3-2" src="/images/sound3-2.mp3"></audio>
+<audio id="sound3-3" src="/images/sound3-3.mp3"></audio>
+<audio id="sound3-4" src="/images/sound3-4.mp3"></audio>
+<audio id="sound3-5" src="/images/sound3-5.mp3"></audio>
+<audio id="sound3-6" src="/images/sound3-6.mp3"></audio>
+<audio id="sound3-7" src="/images/sound3-7.mp3"></audio>
+<audio id="sound3-8" src="/images/sound3-8.mp3"></audio>
+<audio id="sound3-9" src="/images/sound3-9.mp3"></audio>
+<audio id="sound3-10" src="/images/sound3-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+<audio id="sound4-1" src="/images/sound4-1.mp3"></audio>
+<audio id="sound4-2" src="/images/sound4-2.mp3"></audio>
+<audio id="sound4-3" src="/images/sound4-3.mp3"></audio>
+<audio id="sound4-4" src="/images/sound4-4.mp3"></audio>
+<audio id="sound4-5" src="/images/sound4-5.mp3"></audio>
+<audio id="sound4-6" src="/images/sound4-6.mp3"></audio>
+<audio id="sound4-7" src="/images/sound4-7.mp3"></audio>
+<audio id="sound4-8" src="/images/sound4-8.mp3"></audio>
+<audio id="sound4-9" src="/images/sound4-9.mp3"></audio>
+<audio id="sound4-10" src="/images/sound4-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+<audio id="sound5-1" src="/images/sound5-1.mp3"></audio>
+<audio id="sound5-2" src="/images/sound5-2.mp3"></audio>
+<audio id="sound5-3" src="/images/sound5-3.mp3"></audio>
+<audio id="sound5-4" src="/images/sound5-4.mp3"></audio>
+<audio id="sound5-5" src="/images/sound5-5.mp3"></audio>
+<audio id="sound5-6" src="/images/sound5-6.mp3"></audio>
+<audio id="sound5-7" src="/images/sound5-7.mp3"></audio>
+<audio id="sound5-8" src="/images/sound5-8.mp3"></audio>
+<audio id="sound5-9" src="/images/sound5-9.mp3"></audio>
+<audio id="sound5-10" src="/images/sound5-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+<audio id="sound6-1" src="/images/sound6-1.mp3"></audio>
+<audio id="sound6-2" src="/images/sound6-2.mp3"></audio>
+<audio id="sound6-3" src="/images/sound6-3.mp3"></audio>
+<audio id="sound6-4" src="/images/sound6-4.mp3"></audio>
+<audio id="sound6-5" src="/images/sound6-5.mp3"></audio>
+<audio id="sound6-6" src="/images/sound6-6.mp3"></audio>
+<audio id="sound6-7" src="/images/sound6-7.mp3"></audio>
+<audio id="sound6-8" src="/images/sound6-8.mp3"></audio>
+<audio id="sound6-9" src="/images/sound6-9.mp3"></audio>
+<audio id="sound6-10" src="/images/sound6-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+<audio id="sound7-1" src="/images/sound7-1.mp3"></audio>
+<audio id="sound7-2" src="/images/sound7-2.mp3"></audio>
+<audio id="sound7-3" src="/images/sound7-3.mp3"></audio>
+<audio id="sound7-4" src="/images/sound7-4.mp3"></audio>
+<audio id="sound7-5" src="/images/sound7-5.mp3"></audio>
+<audio id="sound7-6" src="/images/sound7-6.mp3"></audio>
+<audio id="sound7-7" src="/images/sound7-7.mp3"></audio>
+<audio id="sound7-8" src="/images/sound7-8.mp3"></audio>
+<audio id="sound7-9" src="/images/sound7-9.mp3"></audio>
+<audio id="sound7-10" src="/images/sound7-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+<audio id="sound8-1" src="/images/sound8-1.mp3"></audio>
+<audio id="sound8-2" src="/images/sound8-2.mp3"></audio>
+<audio id="sound8-3" src="/images/sound8-3.mp3"></audio>
+<audio id="sound8-4" src="/images/sound8-4.mp3"></audio>
+<audio id="sound8-5" src="/images/sound8-5.mp3"></audio>
+<audio id="sound8-6" src="/images/sound8-6.mp3"></audio>
+<audio id="sound8-7" src="/images/sound8-7.mp3"></audio>
+<audio id="sound8-8" src="/images/sound8-8.mp3"></audio>
+<audio id="sound8-9" src="/images/sound8-9.mp3"></audio>
+<audio id="sound8-10" src="/images/sound8-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+<audio id="sound9-1" src="/images/sound9-1.mp3"></audio>
+<audio id="sound9-2" src="/images/sound9-2.mp3"></audio>
+<audio id="sound9-3" src="/images/sound9-3.mp3"></audio>
+<audio id="sound9-4" src="/images/sound9-4.mp3"></audio>
+<audio id="sound9-5" src="/images/sound9-5.mp3"></audio>
+<audio id="sound9-6" src="/images/sound9-6.mp3"></audio>
+<audio id="sound9-7" src="/images/sound9-7.mp3"></audio>
+<audio id="sound9-8" src="/images/sound9-8.mp3"></audio>
+<audio id="sound9-9" src="/images/sound9-9.mp3"></audio>
+<audio id="sound9-10" src="/images/sound9-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+<audio id="sound10-1" src="/images/sound10-1.mp3"></audio>
+<audio id="sound10-2" src="/images/sound10-2.mp3"></audio>
+<audio id="sound10-3" src="/images/sound10-3.mp3"></audio>
+<audio id="sound10-4" src="/images/sound10-4.mp3"></audio>
+<audio id="sound10-5" src="/images/sound10-5.mp3"></audio>
+<audio id="sound10-6" src="/images/sound10-6.mp3"></audio>
+<audio id="sound10-7" src="/images/sound10-7.mp3"></audio>
+<audio id="sound10-8" src="/images/sound10-8.mp3"></audio>
+<audio id="sound10-9" src="/images/sound10-9.mp3"></audio>
+<audio id="sound10-10" src="/images/sound10-10.mp3"></audio>
+<!-- Add sounds for the rest of the table -->
+
+<script>
+    // Function to play a specific sound
+    function playSound(soundId) {
+        var sound = document.getElementById(soundId);
+        sound.play();
+    }
+
+    // Function to generate the multiplication table and play sounds sequentially
+    function showTable(number) {
+        let table = "<h2>Multiplication Table for " + number + "</h2>";
+        let tableRows = "";
+        
+    // Loop through numbers 1 to 10 and create table rows
+    for (let i = 1; i <= 10; i++) {
+        let result = number * i;
+            tableRows += `<div class="table-row" id="row${number}-${i}" onclick="playAndChangeColor(${number}, ${i})">` + 
+                          number + " x " + i + " = " + result + "</div>";
+        }
+        
+    // Display the table rows in the multiplication-table div
+     document.getElementById("multiplication-table").innerHTML = table + tableRows;
+    }
+
+    // Function to change the row color, play sound, and animate the row when clicked
+    function playAndChangeColor(number, row) {
+    // Play the specific sound for this row in the selected table
+    playSound("sound" + number + "-" + row);
+
+        let rowElement = document.getElementById("row" + number + "-" + row);
+
+    // Add a new background color
+    let colors = ["#ffeb3b", "#ff5722", "#4caf50", "#ff9800", "#8bc34a", "#259b24", "#8bc34a", "#ffeb3b", "#ffc107", "#ff9800", "#e51c23", "#3f51b5", "#5677fc", "#03a9f4", "#9e9e9e", "#ff5722", "#ab47bc", "#31f491"];
+        let randomColor = colors[Math.floor(Math.random() * colors.length)];
+        rowElement.style.backgroundColor = randomColor;
+
+    // Add the zoom-out effect
+    rowElement.classList.add("zoom-out");
+
+    // Add animation class for the row
+        rowElement.classList.add("active");
+
+    // Flash animation on both sides of the table
+        document.getElementById("left-flash").style.animation = "flashEffect 0.5s ease-in-out forwards";
+        document.getElementById("right-flash").style.animation = "flashEffect 0.5s ease-in-out forwards";
+
+    // Reset color and animation after 1 second
+    setTimeout(() => {
+            rowElement.style.backgroundColor = "";
+            rowElement.classList.remove("active", "zoom-out");
+
+    // Reset the flash animation
+            document.getElementById("left-flash").style.animation = "";
+            document.getElementById("right-flash").style.animation = "";
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
