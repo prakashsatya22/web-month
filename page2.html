@@ -28,264 +28,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Month and Week Table with Sound</title>
+    <title>Learn Months and Weekdays</title>
     <style>
-        /* General reset and background */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(45deg, #6b3f91, #8e44ad);
+        /* Basic reset */
+        * {
             margin: 0;
-            color: white;
-            overflow: hidden;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            color: #333;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #ff6347;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
         .container {
-            text-align: center;
-            width: 80%;
-            max-width: 900px;
-        }
-
-        /* Button group */
-        .btn-group {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            margin-bottom: 30px;
+            gap: 15px;
         }
 
-        .btn {
-            padding: 15px 30px;
-            margin: 10px;
-            background-color: #f39c12;
-            color: white;
-            font-size: 18px;
-            border: none;
-            border-radius: 8px;
+        .item {
+            background-color: #F4BB44;
+            padding: 20px;
+            width: 120px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s, background-color 0.3s;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: #e67e22;
+        .item:hover {
+            background-color: #ff4500;
             transform: scale(1.1);
         }
 
-        /* Table styling */
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            display: none;
-            animation: fadeIn 0.8s ease;
-            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
+        .item.active {
+            animation: pulse 0.6s ease-in-out;
         }
 
-        table th, table td {
-            padding: 15px;
-            text-align: center;
-            font-size: 18px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        table th {
-            background-color: #3498db;
-            color: white;
-            font-size: 20px;
-        }
-
-        table td {
-            background-color: #f4f4f4;
-            color: #333;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        table td:hover {
-            background-color: #f39c12;
-            transform: scale(1.05);
-        }
-
-        /* Animation for fading in and sliding text */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideText {
+        @keyframes pulse {
             0% {
-                transform: translateX(-100%);
-                opacity: 0;
+                transform: scale(1);
             }
             50% {
-                opacity: 1;
-                transform: translateX(0);
+                transform: scale(1.1);
             }
             100% {
-                transform: translateX(100%);
-                opacity: 0;
+                transform: scale(1);
             }
         }
 
-        /* Apply sliding text effect */
-        .slide-text {
-            display: inline-block;
-            font-size: 30px;
-            color: #f39c12;
-            animation: slideText 5s ease-in-out infinite;
+        .image-side {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-70%);
+            width: 200px;
+            height: 150px;
+            border-radius: 80%;
         }
 
-        /* Responsive design */
-        @media (max-width: 600px) {
-            .btn {
-                font-size: 16px;
-                padding: 12px 25px;
-            }
-
-            table th, table td {
-                font-size: 16px;
-                padding: 12px;
-            }
+        .image-left {
+            left: -250px;
         }
+
+        .image-right {
+            right: -250px;
+        }
+
     </style>
 </head>
 <body>
 
+<h1>Learn Months and Weekdays</h1>
 <div class="container">
-    <div class="btn-group">
-        <button class="btn" onclick="showTable('month')">Month Names</button>
-        <button class="btn" onclick="showTable('week')">Week Days</button>
+    <!-- Month Names -->
+    <div id="months" class="container">
+        <div class="item" onclick="highlightItem(this)">January</div>
+        <div class="item" onclick="highlightItem(this)">February</div>
+        <div class="item" onclick="highlightItem(this)">March</div>
+        <div class="item" onclick="highlightItem(this)">April</div>
+        <div class="item" onclick="highlightItem(this)">May</div>
+        <div class="item" onclick="highlightItem(this)">June</div>
+        <div class="item" onclick="highlightItem(this)">July</div>
+        <div class="item" onclick="highlightItem(this)">August</div>
+        <div class="item" onclick="highlightItem(this)">September</div>
+        <div class="item" onclick="highlightItem(this)">October</div>
+        <div class="item" onclick="highlightItem(this)">November</div>
+        <div class="item" onclick="highlightItem(this)">December</div>
     </div>
-
-    <!-- Dynamic Content (with animated text) -->
-    <div id="dynamicContent" class="slide-text"></div> <!-- Placeholder for dynamic content -->
-
-    <!-- Month Table -->
-    <table class="month-table">
-        <thead>
-            <tr>
-                <th>Month Name</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr onclick="updateTableContent('January')">
-                <td>January</td>
-            </tr>
-            <tr onclick="updateTableContent('February')">
-                <td>February</td>
-            </tr>
-            <tr onclick="updateTableContent('March')">
-                <td>March</td>
-            </tr>
-            <tr onclick="updateTableContent('April')">
-                <td>April</td>
-            </tr>
-            <tr onclick="updateTableContent('May')">
-                <td>May</td>
-            </tr>
-            <tr onclick="updateTableContent('June')">
-                <td>June</td>
-            </tr>
-            <tr onclick="updateTableContent('July')">
-                <td>July</td>
-            </tr>
-            <tr onclick="updateTableContent('August')">
-                <td>August</td>
-            </tr>
-            <tr onclick="updateTableContent('September')">
-                <td>September</td>
-            </tr>
-            <tr onclick="updateTableContent('October')">
-                <td>October</td>
-            </tr>
-            <tr onclick="updateTableContent('November')">
-                <td>November</td>
-            </tr>
-            <tr onclick="updateTableContent('December')">
-                <td>December</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <!-- Week Days Table -->
-    <table class="week-table">
-        <thead>
-            <tr>
-                <th>Week Day</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr onclick="updateTableContent('Monday')">
-                <td>Monday</td>
-            </tr>
-            <tr onclick="updateTableContent('Tuesday')">
-                <td>Tuesday</td>
-            </tr>
-            <tr onclick="updateTableContent('Wednesday')">
-                <td>Wednesday</td>
-            </tr>
-            <tr onclick="updateTableContent('Thursday')">
-                <td>Thursday</td>
-            </tr>
-            <tr onclick="updateTableContent('Friday')">
-                <td>Friday</td>
-            </tr>
-            <tr onclick="updateTableContent('Saturday')">
-                <td>Saturday</td>
-            </tr>
-            <tr onclick="updateTableContent('Sunday')">
-                <td>Sunday</td>
-            </tr>
-        </tbody>
-    </table>
+    
+    <!-- Week Days -->
+    <div id="weekdays" class="container">
+        <div class="item" onclick="highlightItem(this)">Sunday</div>
+        <div class="item" onclick="highlightItem(this)">Monday</div>
+        <div class="item" onclick="highlightItem(this)">Tuesday</div>
+        <div class="item" onclick="highlightItem(this)">Wednesday</div>
+        <div class="item" onclick="highlightItem(this)">Thursday</div>
+        <div class="item" onclick="highlightItem(this)">Friday</div>
+        <div class="item" onclick="highlightItem(this)">Saturday</div>
+    </div>
 </div>
 
 <script>
-    // Function to show the relevant table (month or week)
-    function showTable(type) {
-        // Hide both tables initially
-        document.querySelector('.month-table').style.display = 'none';
-        document.querySelector('.week-table').style.display = 'none';
+    // Function to add 'active' class and animate the clicked item
+    function highlightItem(element) {
+        // Remove 'active' class from all elements
+        let allItems = document.querySelectorAll('.item');
+        allItems.forEach(item => item.classList.remove('active'));
 
-        // Show the relevant table
-        if (type === 'month') {
-            document.querySelector('.month-table').style.display = 'table';
-        } else if (type === 'week') {
-            document.querySelector('.week-table').style.display = 'table';
-        }
-    }
+        // Add 'active' class to clicked element
+        element.classList.add('active');
+        
+        // Change background color randomly
+        let colors = ["#ffeb3b", "#ff5722", "#4caf50", "#ff9800", "#8bc34a", "#259b24", "#8bc34a"];
+        let randomColor = colors[Math.floor(Math.random() * colors.length)];
+        element.style.backgroundColor = randomColor;
 
-    // Function to update dynamic content with animation
-    function updateTableContent(name) {
-        // Update the dynamic content placeholder with animated text
-        const dynamicContent = document.getElementById("dynamicContent");
-        dynamicContent.innerHTML = `<h2 class="slide-text">${name}</h2>`;
-
-        // Optionally, play a sound (e.g., for the month or week)
-        playSound(name.toLowerCase());
-    }
-
-    // Function to play sound (same as before)
-    const soundFiles = {
-        january: 'sounds/january.mp3',
-        february: 'sounds/february.mp3',
-        monday: 'sounds/monday.mp3',
-        // Add other sound files here...
-    };
-
-    function playSound(name) {
-        const audio = new Audio(soundFiles[name]);
-        audio.play();
+        // Remove background color after 1 second
+        setTimeout(() => {
+            element.style.backgroundColor = "";
+        }, 1000);
     }
 </script>
 
