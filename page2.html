@@ -85,10 +85,45 @@
         .month-names, .week-days {
             font-size: 24px;
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .month-names div, .week-days div {
             margin: 10px 0;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .month-names div:hover, .week-days div:hover {
+            background-color: #ff6347;
+            transform: scale(1.1);
+        }
+
+        /* Style for images beside names */
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .image-container img {
+            width: 50px;
+            height: 50px;
+            animation: move 1s infinite alternate;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
@@ -106,18 +141,90 @@
 <div id="months" class="section">
     <h2>Month Names</h2>
     <div class="month-names">
-        <div>January</div>
-        <div>February</div>
-        <div>March</div>
-        <div>April</div>
-        <div>May</div>
-        <div>June</div>
-        <div>July</div>
-        <div>August</div>
-        <div>September</div>
-        <div>October</div>
-        <div>November</div>
-        <div>December</div>
+        <div onclick="playSound('January')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            January
+        </div>
+        <div onclick="playSound('February')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            February
+        </div>
+        <div onclick="playSound('March')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            March
+        </div>
+        <div onclick="playSound('April')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            April
+        </div>
+        <div onclick="playSound('May')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            May
+        </div>
+        <div onclick="playSound('June')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            June
+        </div>
+        <div onclick="playSound('July')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            July
+        </div>
+        <div onclick="playSound('August')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            August
+        </div>
+        <div onclick="playSound('September')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            September
+        </div>
+        <div onclick="playSound('October')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            October
+        </div>
+        <div onclick="playSound('November')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            November
+        </div>
+        <div onclick="playSound('December')" class="month">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            December
+        </div>
     </div>
 </div>
 
@@ -125,15 +232,63 @@
 <div id="weekdays" class="section">
     <h2>Week Days</h2>
     <div class="week-days">
-        <div>Sunday</div>
-        <div>Monday</div>
-        <div>Tuesday</div>
-        <div>Wednesday</div>
-        <div>Thursday</div>
-        <div>Friday</div>
-        <div>Saturday</div>
+        <div onclick="playSound('Sunday')" class="week">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            Sunday
+        </div>
+        <div onclick="playSound('Monday')" class="week">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            Monday
+        </div>
+        <div onclick="playSound('Tuesday')" class="week">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            Tuesday
+        </div>
+        <div onclick="playSound('Wednesday')" class="week">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            Wednesday
+        </div>
+        <div onclick="playSound('Thursday')" class="week">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            Thursday
+        </div>
+        <div onclick="playSound('Friday')" class="week">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            Friday
+        </div>
+        <div onclick="playSound('Saturday')" class="week">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 1">
+                <img src="https://via.placeholder.com/50/ff6347" alt="Animation 2">
+            </div>
+            Saturday
+        </div>
     </div>
 </div>
+
+<!-- Sounds -->
+<audio id="January-sound" src="path-to-your-sounds/january.mp3"></audio>
+<audio id="February-sound" src="path-to-your-sounds/february.mp3"></audio>
+<audio id="March-sound" src="path-to-your-sounds/march.mp3"></audio>
+<!-- Add the other months and weekdays sound files similarly -->
 
 <script>
     // Function to show the selected section (months or weekdays)
@@ -146,12 +301,17 @@
         document.getElementById(section).classList.add('active-section');
     }
 
+    // Function to play the sound associated with the month or week
+    function playSound(name) {
+        const audioElement = document.getElementById(name + '-sound');
+        if (audioElement) {
+            audioElement.play();
+        }
+    }
+
     // Initially show the month names by default
     showSection('months');
 </script>
 
 </body>
 </html>
-
-
-
