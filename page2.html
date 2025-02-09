@@ -167,6 +167,13 @@
         }
 
         /* Content buttons for months and weeks */
+        .content-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
         .content-buttons button {
             margin: 10px;
             font-size: 20px;
@@ -197,7 +204,7 @@
 <!-- Button Container for Month & Week Names -->
 <div class="button-container">
     <button onclick="showMonths()">Show Months</button>
-    <button onclick="showWeeks()">Show Week Numbers</button>
+    <button onclick="showWeekDays()">Show Week Days</button>
 </div>
 
 <!-- Hidden Month Names Content (visible after clicking 'Show Months') -->
@@ -219,18 +226,18 @@
     </div>
 </div>
 
-<!-- Hidden Week Numbers Content (visible after clicking 'Show Week Numbers') -->
+<!-- Hidden Week Days Content (visible after clicking 'Show Week Days') -->
 <div id="weekContent">
-    <h3>Select a Week Number</h3>
-    <p>Week numbers range from 1 to 52. Please select a week from below.</p>
+    <h3>Select a Day of the Week</h3>
+    <p>Click on any day below to see it in the circle.</p>
     <div class="content-buttons">
-        <button onclick="selectWeek(1)">Week 1</button>
-        <button onclick="selectWeek(2)">Week 2</button>
-        <button onclick="selectWeek(3)">Week 3</button>
-        <button onclick="selectWeek(4)">Week 4</button>
-        <button onclick="selectWeek(5)">Week 5</button>
-        <button onclick="selectWeek(6)">Week 6</button>
-        <!-- You can add more buttons for weeks as needed -->
+        <button onclick="updateDay('Sunday')">Sunday</button>
+        <button onclick="updateDay('Monday')">Monday</button>
+        <button onclick="updateDay('Tuesday')">Tuesday</button>
+        <button onclick="updateDay('Wednesday')">Wednesday</button>
+        <button onclick="updateDay('Thursday')">Thursday</button>
+        <button onclick="updateDay('Friday')">Friday</button>
+        <button onclick="updateDay('Saturday')">Saturday</button>
     </div>
 </div>
 
@@ -238,11 +245,11 @@
     // Function to show Month buttons
     function showMonths() {
         document.getElementById("monthContent").style.display = 'block';
-        document.getElementById("weekContent").style.display = 'none';  // Hide week numbers content
+        document.getElementById("weekContent").style.display = 'none';  // Hide week content
     }
 
-    // Function to show Week buttons
-    function showWeeks() {
+    // Function to show Week Days buttons
+    function showWeekDays() {
         document.getElementById("weekContent").style.display = 'block';
         document.getElementById("monthContent").style.display = 'none';  // Hide month content
     }
@@ -272,10 +279,14 @@
         document.getElementById("monthContent").style.display = 'none';
     }
 
-    // Function to select a week number
-    function selectWeek(week) {
-        alert("You selected Week " + week);
-        document.getElementById("weekContent").style.display = 'none';  // Hide week numbers content after selection
+    // Function to update the circle with the selected day
+    function updateDay(day) {
+        // Update the circle with the selected day
+        document.getElementById("monthName").textContent = day;
+        document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
+        
+        // Hide week content after selection
+        document.getElementById("weekContent").style.display = 'none';
     }
 
     // Back button function (redirect to another page)
@@ -286,8 +297,3 @@
 
 </body>
 </html>
-
-
-
-
-
