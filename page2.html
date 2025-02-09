@@ -84,7 +84,7 @@
             display: block;
         }
 
-        .month-names {
+        .names {
             font-size: 24px;
             margin-top: 20px;
             display: flex;
@@ -93,7 +93,7 @@
             gap: 15px;
         }
 
-        .month-names div {
+        .names div {
             margin: 10px 0;
             padding: 20px 30px;
             background: linear-gradient(135deg, #ff6347, #ff4500);
@@ -107,23 +107,23 @@
             transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
         }
 
-        .month-names div:hover {
+        .names div:hover {
             background: linear-gradient(135deg, #ff4500, #ff6347);
             transform: scale(1.1);
             box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
         }
 
-        .month-names div:active {
+        .names div:active {
             transform: scale(1);
         }
 
-        /* Active class for the clicked month */
+        /* Active class for the clicked month or week */
         .active {
             background-color: #32CD32; /* Green when active */
             color: white; /* Text color */
         }
 
-        /* Animation for the month names */
+        /* Animation for the names (months and weekdays) */
         @keyframes bounce {
             0%, 100% {
                 transform: translateY(0);
@@ -133,7 +133,7 @@
             }
         }
 
-        .month-names div {
+        .names div {
             animation: bounce 1s infinite ease-in-out;
         }
 
@@ -217,7 +217,7 @@
 <!-- Month Names Section (Initially hidden) -->
 <div id="months" class="section">
     <h2>Month Names</h2>
-    <div class="month-names">
+    <div class="names">
         <div onclick="playSound('January', this)">January</div>
         <div onclick="playSound('February', this)">February</div>
         <div onclick="playSound('March', this)">March</div>
@@ -236,14 +236,14 @@
 <!-- Week Days Section (Initially hidden) -->
 <div id="weekdays" class="section">
     <h2>Week Days</h2>
-    <div class="week-days">
-        <div onclick="playSound('Sunday')" class="week">Sunday</div>
-        <div onclick="playSound('Monday')" class="week">Monday</div>
-        <div onclick="playSound('Tuesday')" class="week">Tuesday</div>
-        <div onclick="playSound('Wednesday')" class="week">Wednesday</div>
-        <div onclick="playSound('Thursday')" class="week">Thursday</div>
-        <div onclick="playSound('Friday')" class="week">Friday</div>
-        <div onclick="playSound('Saturday')" class="week">Saturday</div>
+    <div class="names">
+        <div onclick="playSound('Sunday', this)" class="week">Sunday</div>
+        <div onclick="playSound('Monday', this)" class="week">Monday</div>
+        <div onclick="playSound('Tuesday', this)" class="week">Tuesday</div>
+        <div onclick="playSound('Wednesday', this)" class="week">Wednesday</div>
+        <div onclick="playSound('Thursday', this)" class="week">Thursday</div>
+        <div onclick="playSound('Friday', this)" class="week">Friday</div>
+        <div onclick="playSound('Saturday', this)" class="week">Saturday</div>
     </div>
 </div>
 
@@ -287,9 +287,9 @@
         }
         
         // Change the color of the clicked month name and background
-        const allMonthNames = document.querySelectorAll('.month-names div');
-        allMonthNames.forEach(month => month.classList.remove('active')); // Remove active class from all
-        element.classList.add('active'); // Add active class to the clicked month
+        const allNames = document.querySelectorAll('.names div');
+        allNames.forEach(name => name.classList.remove('active')); // Remove active class from all
+        element.classList.add('active'); // Add active class to the clicked name
     }
 
     // Back button function (redirect to another page)
@@ -300,4 +300,5 @@
 
 </body>
 </html>
+
 
