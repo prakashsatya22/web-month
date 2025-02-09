@@ -117,6 +117,12 @@
             transform: scale(1);
         }
 
+        /* Active class for the clicked month */
+        .active {
+            background-color: #32CD32; /* Green when active */
+            color: white; /* Text color */
+        }
+
         /* Animation for the month names */
         @keyframes bounce {
             0%, 100% {
@@ -212,18 +218,18 @@
 <div id="months" class="section">
     <h2>Month Names</h2>
     <div class="month-names">
-        <div onclick="playSound('January')">January</div>
-        <div onclick="playSound('February')">February</div>
-        <div onclick="playSound('March')">March</div>
-        <div onclick="playSound('April')">April</div>
-        <div onclick="playSound('May')">May</div>
-        <div onclick="playSound('June')">June</div>
-        <div onclick="playSound('July')">July</div>
-        <div onclick="playSound('August')">August</div>
-        <div onclick="playSound('September')">September</div>
-        <div onclick="playSound('October')">October</div>
-        <div onclick="playSound('November')">November</div>
-        <div onclick="playSound('December')">December</div>
+        <div onclick="playSound('January', this)">January</div>
+        <div onclick="playSound('February', this)">February</div>
+        <div onclick="playSound('March', this)">March</div>
+        <div onclick="playSound('April', this)">April</div>
+        <div onclick="playSound('May', this)">May</div>
+        <div onclick="playSound('June', this)">June</div>
+        <div onclick="playSound('July', this)">July</div>
+        <div onclick="playSound('August', this)">August</div>
+        <div onclick="playSound('September', this)">September</div>
+        <div onclick="playSound('October', this)">October</div>
+        <div onclick="playSound('November', this)">November</div>
+        <div onclick="playSound('December', this)">December</div>
     </div>
 </div>
 
@@ -274,11 +280,16 @@
     }
 
     // Function to play the sound associated with the month or week
-    function playSound(name) {
+    function playSound(name, element) {
         const audioElement = document.getElementById(name + '-sound');
         if (audioElement) {
             audioElement.play();
         }
+        
+        // Change the color of the clicked month name and background
+        const allMonthNames = document.querySelectorAll('.month-names div');
+        allMonthNames.forEach(month => month.classList.remove('active')); // Remove active class from all
+        element.classList.add('active'); // Add active class to the clicked month
     }
 
     // Back button function (redirect to another page)
@@ -289,3 +300,4 @@
 
 </body>
 </html>
+
