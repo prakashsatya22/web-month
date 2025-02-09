@@ -245,7 +245,7 @@ function updateDay(day) {
     document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
 
     // Play sound for the selected day
-    const daySound = new Audio(`/sound/${day.toLowerCase()}.mp3`);  // Ensure backticks are used here for template literals
+    const daySound = new Audio('/soun/${day.toLowerCase()}.mp3');  // Ensure backticks are used here for template literals
     daySound.play();
 
     // Change the circle color frequently
