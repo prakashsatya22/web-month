@@ -29,7 +29,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Month and Weekdays</title>
+    <title>Circle Display Month and Days</title>
     <style>
         /* Basic reset */
         * {
@@ -39,7 +39,7 @@
         }
 
         body {
-            font-family: 'Cursive', sans-serif; /* Default font set to cursive */
+            font-family: 'Cursive', sans-serif;
             background: linear-gradient(45deg, #00c6ff, #0072ff);
             color: white;
             text-align: center;
@@ -58,13 +58,64 @@
             letter-spacing: 3px;
         }
 
-        /* Button container with some animation */
+        /* Circle container for month and days */
+        .circle {
+            position: fixed;
+            right: 30px;  /* Distance from the right edge */
+            top: 50%;  /* Vertically center the circle */
+            transform: translateY(-50%);  /* Center the circle perfectly */
+            width: 200px;
+            height: 200px;
+            background-color: #ff6347; /* Circle background */
+            border-radius: 50%;  /* Make it a circle */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            font-family: 'Dancing Script', cursive; /* Cursive font */
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            animation: bounceIn 1s ease-in-out;  /* Animation for the circle */
+        }
+
+        /* Month Name Styling */
+        .circle h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Days Count Styling */
+        .circle p {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+        /* Bounce-in Animation */
+        @keyframes bounceIn {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            60% {
+                transform: translateY(30px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Button container styling */
         .button-container {
             margin: 20px;
             display: flex;
             justify-content: center;
             gap: 20px;
-            animation: fadeIn 1s ease-in-out;
         }
 
         .button-container button {
@@ -76,7 +127,7 @@
             border-radius: 12px;
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-            font-family: 'Dancing Script', cursive; /* Cursive font for buttons */
+            font-family: 'Dancing Script', cursive;
         }
 
         .button-container button:hover {
@@ -88,256 +139,57 @@
         .button-container button:active {
             transform: scale(1);
         }
-
-        /* Month and Week section styling */
-        .section {
-            display: none;
-            margin-top: 40px;
-        }
-
-        .active-section {
-            display: block;
-        }
-
-        .names {
-            font-size: 24px;
-            margin-top: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .names div {
-            padding: 20px 30px;
-            background: linear-gradient(135deg, #ff6347, #ff4500);
-            color: white;
-            font-weight: bold;
-            font-size: 26px;
-            border-radius: 15px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-            font-family: cursive; /* Cursive font */
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .names div:hover {
-            background: linear-gradient(135deg, #ff4500, #ff6347);
-            transform: scale(1.1);
-            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .names div:active {
-            transform: scale(1);
-        }
-
-        /* Animation for the names (months and weekdays) */
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .names div {
-            animation: bounce 1s infinite ease-in-out;
-        }
-
-        /* Back Button Style */
-        .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: #ff6347;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            font-family: 'Dancing Script', cursive;
-        }
-
-        .back-button:hover {
-            background-color: #ff4500;
-            transform: scale(1.1);
-        }
-
-        .back-button:active {
-            transform: scale(1);
-        }
-
-        /* Left and Right Image Containers */
-        .image-container-left, .image-container-right {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 100px;
-            height: 100px;
-        }
-
-        .image-container-left {
-            left: -120px;
-            animation: move-left 1s infinite alternate;
-        }
-
-        .image-container-right {
-            right: -120px;
-            animation: move-right 1s infinite alternate;
-        }
-
-        .image-container-left img, .image-container-right img {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Animations for image movements */
-        @keyframes move-left {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(-15px);
-            }
-        }
-
-        @keyframes move-right {
-            0% {
-                transform: translateY(0);
-            }
-            100% {
-                transform: translateY(15px);
-            }
-        }
-
-        /* Fade-in Animation */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
     </style>
 </head>
 <body>
 
-<!-- Back Button -->
-<button class="back-button" onclick="goBack()">Back</button>
-
-<h1>Learn Month and Weekdays</h1>
+<!-- Circle for Month and Days -->
+<div class="circle" id="monthCircle">
+    <h2 id="monthName">January</h2>
+    <p id="daysCount">31</p>
+</div>
 
 <!-- Button Container -->
 <div class="button-container">
-    <button onclick="toggleMonthNames()">Month Names</button>
-    <button onclick="showSection('weekdays')">Week Days</button>
-</div>
-
-<!-- Month Names Section (Initially hidden) -->
-<div id="months" class="section">
-    <h2>Month Names</h2>
-    <div class="names">
-        <div onclick="changeStyle('January', this)">January</div>
-        <div onclick="changeStyle('February', this)">February</div>
-        <div onclick="changeStyle('March', this)">March</div>
-        <div onclick="changeStyle('April', this)">April</div>
-        <div onclick="changeStyle('May', this)">May</div>
-        <div onclick="changeStyle('June', this)">June</div>
-        <div onclick="changeStyle('July', this)">July</div>
-        <div onclick="changeStyle('August', this)">August</div>
-        <div onclick="changeStyle('September', this)">September</div>
-        <div onclick="changeStyle('October', this)">October</div>
-        <div onclick="changeStyle('November', this)">November</div>
-        <div onclick="changeStyle('December', this)">December</div>
-    </div>
-</div>
-
-<!-- Week Days Section (Initially hidden) -->
-<div id="weekdays" class="section">
-    <h2>Week Days</h2>
-    <div class="names">
-        <div onclick="changeStyle('Sunday', this)" class="week">Sunday</div>
-        <div onclick="changeStyle('Monday', this)" class="week">Monday</div>
-        <div onclick="changeStyle('Tuesday', this)" class="week">Tuesday</div>
-        <div onclick="changeStyle('Wednesday', this)" class="week">Wednesday</div>
-        <div onclick="changeStyle('Thursday', this)" class="week">Thursday</div>
-        <div onclick="changeStyle('Friday', this)" class="week">Friday</div>
-        <div onclick="changeStyle('Saturday', this)" class="week">Saturday</div>
-    </div>
-</div>
-
-<!-- Sounds (Replace with actual sound file paths) -->
-<audio id="January-sound" src="path-to-your-sounds/january.mp3"></audio>
-<audio id="February-sound" src="path-to-your-sounds/february.mp3"></audio>
-<audio id="March-sound" src="path-to-your-sounds/march.mp3"></audio>
-<!-- Add the other months and weekdays sound files similarly -->
-
-<!-- Left and Right Images -->
-<div class="image-container-left">
-    <img src="https://via.placeholder.com/100/ff6347" alt="Animation 1">
-</div>
-<div class="image-container-right">
-    <img src="https://via.placeholder.com/100/ff6347" alt="Animation 2">
+    <button onclick="updateCircle('January')">January</button>
+    <button onclick="updateCircle('February')">February</button>
+    <button onclick="updateCircle('March')">March</button>
+    <button onclick="updateCircle('April')">April</button>
+    <button onclick="updateCircle('May')">May</button>
+    <button onclick="updateCircle('June')">June</button>
+    <button onclick="updateCircle('July')">July</button>
+    <button onclick="updateCircle('August')">August</button>
+    <button onclick="updateCircle('September')">September</button>
+    <button onclick="updateCircle('October')">October</button>
+    <button onclick="updateCircle('November')">November</button>
+    <button onclick="updateCircle('December')">December</button>
 </div>
 
 <script>
-    // Array of random cursive fonts
-    const fonts = ['"Comic Sans MS"', '"Brush Script MT"', '"Dancing Script"', '"Pacifico"', '"Great Vibes"', '"Sacramento"'];
+    // Function to update the circle with month and days
+    function updateCircle(month) {
+        const monthDays = {
+            "January": 31,
+            "February": 28,
+            "March": 31,
+            "April": 30,
+            "May": 31,
+            "June": 30,
+            "July": 31,
+            "August": 31,
+            "September": 30,
+            "October": 31,
+            "November": 30,
+            "December": 31
+        };
 
-    // Array of random colors
-    const colors = ['#ff6347', '#ff4500', '#32CD32', '#8A2BE2', '#FF1493', '#FFD700', '#00BFFF'];
-
-    // Function to change font and color randomly
-    function changeStyle(name, element) {
-        // Get a random font and color from the arrays
-        const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-        // Apply the random font and color to the clicked element
-        element.style.fontFamily = randomFont;
-        element.style.color = randomColor;
-
-        // Play sound for the clicked month/week
-        const audioElement = document.getElementById(name + '-sound');
-        if (audioElement) {
-            audioElement.play();
-        }
-
-        // Change the color of the clicked month name and background
-        const allNames = document.querySelectorAll('.names div');
-        allNames.forEach(name => name.classList.remove('active')); // Remove active class from all
-        element.classList.add('active'); // Add active class to the clicked name
-    }
-
-    // Function to toggle the display of the Month Names section
-    function toggleMonthNames() {
-        const monthSection = document.getElementById('months');
-        if (monthSection.style.display === 'none' || monthSection.style.display === '') {
-            monthSection.style.display = 'block';
-        } else {
-            monthSection.style.display = 'none';
-        }
-    }
-
-    // Function to show the selected section (weekdays)
-    function showSection(section) {
-        document.getElementById('months').style.display = 'none';
-        document.getElementById('weekdays').style.display = 'none';
-        document.getElementById(section).style.display = 'block';
-    }
-
-    // Back button function (redirect to another page)
-    function goBack() {
-        window.location.href = 'anotherpage.html';  // Redirect to another page
+        // Update the circle with the selected month and corresponding number of days
+        document.getElementById("monthName").textContent = month;
+        document.getElementById("daysCount").textContent = monthDays[month];
     }
 </script>
 
 </body>
 </html>
+
 
