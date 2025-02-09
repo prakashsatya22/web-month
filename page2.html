@@ -74,7 +74,7 @@
             align-items: center;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
             font-family: 'Dancing Script', cursive; /* Cursive font */
-            color: random;
+            color: red; green; blue; pink; yellow;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
             padding: 20px;
             animation: bounceIn 1s ease-in-out;  /* Animation for the circle */
@@ -290,7 +290,7 @@
         document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
 
         // Play sound for the selected day
-        const daySound = new Audio(`sounds/${day.toLowerCase()}.mp3`);
+        const daySound = new Audio('sound/${day.toLowerCase()}.mp3');
         daySound.play();
 
         // Change the circle color frequently
@@ -306,7 +306,7 @@
 
     // Back button function (redirect to another page)
     function goBack() {
-        window.location.href = 'anotherPage.html';  // Change this to the page you want to redirect to
+        window.location.href = 'page1.html';  // Change this to the page you want to redirect to
     }
 </script>
 
