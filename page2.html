@@ -22,74 +22,115 @@
     <a href="page2.html">Week Days</a>
     <a href="page3.html">Table</a>
 </nav>
-<!DOCTYPE html>
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Month and Week Table with Sound</title>
     <style>
+        /* General reset and background */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f2f2f2;
+            background: linear-gradient(45deg, #6b3f91, #8e44ad);
             margin: 0;
+            color: white;
         }
+
         .container {
             text-align: center;
+            width: 80%;
+            max-width: 900px;
         }
+
+        /* Button group */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #f39c12;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+            transform: scale(1.1);
+        }
+
+        /* Table styling */
         table {
             width: 100%;
             margin-top: 20px;
             border-collapse: collapse;
             display: none;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.8s ease;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
         }
-        table td, table th {
-            padding: 10px;
+
+        table th, table td {
+            padding: 15px;
             text-align: center;
-            border: 1px solid #ddd;
             font-size: 18px;
+            border-bottom: 1px solid #ddd;
         }
+
         table th {
-            background-color: #4CAF50;
+            background-color: #3498db;
             color: white;
+            font-size: 20px;
         }
-        table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .month-table td, .week-table td {
-            background-color: #f9f9f9;
+
+        table td {
+            background-color: #f4f4f4;
+            color: #333;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
-        .month-table td:hover, .week-table td:hover {
-            background-color: #d4edda;
+
+        table td:hover {
+            background-color: #f39c12;
+            transform: scale(1.05);
         }
-        .btn-group {
-            margin-bottom: 20px;
-        }
-        .btn {
-            padding: 10px;
-            margin: 5px;
-            background-color: #4CAF50;
-            color: white;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
+
+        /* Gradient animation */
         @keyframes fadeIn {
             from {
                 opacity: 0;
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .btn {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+
+            table th, table td {
+                font-size: 16px;
+                padding: 12px;
             }
         }
     </style>
@@ -183,7 +224,7 @@
 </div>
 
 <script>
-    // Mapping of months and weekdays to their sound files
+    // Sound files for each month and week day
     const soundFiles = {
         january: 'sounds/january.mp3',
         february: 'sounds/february.mp3',
@@ -206,12 +247,13 @@
         sunday: 'sounds/sunday.mp3'
     };
 
-    // Function to show table based on the type (month or week)
+    // Show the selected table (month or week)
     function showTable(type) {
         // Hide both tables initially
         document.querySelector('.month-table').style.display = 'none';
         document.querySelector('.week-table').style.display = 'none';
 
+        // Show the relevant table
         if (type === 'month') {
             document.querySelector('.month-table').style.display = 'table';
         } else if (type === 'week') {
@@ -219,7 +261,7 @@
         }
     }
 
-    // Function to play sound for the clicked month or week day
+    // Play sound for the clicked month or week day
     function playSound(name) {
         const audio = new Audio(soundFiles[name]);
         audio.play();
@@ -228,3 +270,4 @@
 
 </body>
 </html>
+
