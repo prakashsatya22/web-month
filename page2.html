@@ -233,34 +233,10 @@
         document.getElementById("monthContent").style.display = 'none';  // Hide month content
     }
 
-    // Function to update the circle with the selected month and number of days
-    function updateCircle(month) {
-        const monthDays = {
-            "January": 31,
-            "February": 28,
-            "March": 31,
-            "April": 30,
-            "May": 31,
-            "June": 30,
-            "July": 31,
-            "August": 31,
-            "September": 30,
-            "October": 31,
-            "November": 30,
-            "December": 31
-        };
-
+ 
         // Update the circle with the selected month and corresponding number of days
         document.getElementById("monthName").textContent = month;
         document.getElementById("daysCount").textContent = monthDays[month];
-
-        // Play sound for the selected month
-        const monthSound = new Audio("sound/${month.toLowerCase()}.mp3");
-        monthSound.play();
-
-        // Change the circle color frequently
-        changeCircleColor();
-    }
 
     // Function to update the circle with the selected day
     function updateDay(day) {
@@ -268,11 +244,11 @@
         document.getElementById("monthName").textContent = day;
         document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
 
-        // Play sound for the selected day
-        const daySound = new Audio('/sound/${day.toLowerCase()}.mp3');
+    // Play sound for the selected day
+    const daySound = new Audio('/sound/${day.toLowerCase()}.mp3');
         daySound.play();
 
-        // Change the circle color frequently
+    // Change the circle color frequently
         changeCircleColor();
     }
 
