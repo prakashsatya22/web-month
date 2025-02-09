@@ -30,7 +30,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Month and Week Table with Sound</title>
     <style>
-        /* Your existing CSS here */
+        /* General reset and background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #6b3f91, #8e44ad);
+            margin: 0;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        /* Button group */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #f39c12;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #e67e22;
+            transform: scale(1.1);
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            display: none;
+            animation: fadeIn 0.8s ease;
+            box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #3498db;
+            color: white;
+            font-size: 20px;
+        }
+
+        table td {
+            background-color: #f4f4f4;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        table td:hover {
+            background-color: #f39c12;
+            transform: scale(1.05);
+        }
+
+        /* Animation for fading in and sliding text */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideText {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Apply sliding text effect */
+        .slide-text {
+            display: inline-block;
+            font-size: 30px;
+            color: #f39c12;
+            animation: slideText 5s ease-in-out infinite;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .btn {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+
+            table th, table td {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -41,8 +167,8 @@
         <button class="btn" onclick="showTable('week')">Week Days</button>
     </div>
 
-    <!-- Dynamic Content -->
-    <div id="dynamicContent"></div> <!-- Placeholder for dynamic content -->
+    <!-- Dynamic Content (with animated text) -->
+    <div id="dynamicContent" class="slide-text"></div> <!-- Placeholder for dynamic content -->
 
     <!-- Month Table -->
     <table class="month-table">
@@ -58,7 +184,36 @@
             <tr onclick="updateTableContent('February')">
                 <td>February</td>
             </tr>
-            <!-- More months here -->
+            <tr onclick="updateTableContent('March')">
+                <td>March</td>
+            </tr>
+            <tr onclick="updateTableContent('April')">
+                <td>April</td>
+            </tr>
+            <tr onclick="updateTableContent('May')">
+                <td>May</td>
+            </tr>
+            <tr onclick="updateTableContent('June')">
+                <td>June</td>
+            </tr>
+            <tr onclick="updateTableContent('July')">
+                <td>July</td>
+            </tr>
+            <tr onclick="updateTableContent('August')">
+                <td>August</td>
+            </tr>
+            <tr onclick="updateTableContent('September')">
+                <td>September</td>
+            </tr>
+            <tr onclick="updateTableContent('October')">
+                <td>October</td>
+            </tr>
+            <tr onclick="updateTableContent('November')">
+                <td>November</td>
+            </tr>
+            <tr onclick="updateTableContent('December')">
+                <td>December</td>
+            </tr>
         </tbody>
     </table>
 
@@ -73,7 +228,24 @@
             <tr onclick="updateTableContent('Monday')">
                 <td>Monday</td>
             </tr>
-            <!-- More weekdays here -->
+            <tr onclick="updateTableContent('Tuesday')">
+                <td>Tuesday</td>
+            </tr>
+            <tr onclick="updateTableContent('Wednesday')">
+                <td>Wednesday</td>
+            </tr>
+            <tr onclick="updateTableContent('Thursday')">
+                <td>Thursday</td>
+            </tr>
+            <tr onclick="updateTableContent('Friday')">
+                <td>Friday</td>
+            </tr>
+            <tr onclick="updateTableContent('Saturday')">
+                <td>Saturday</td>
+            </tr>
+            <tr onclick="updateTableContent('Sunday')">
+                <td>Sunday</td>
+            </tr>
         </tbody>
     </table>
 </div>
@@ -93,12 +265,12 @@
         }
     }
 
-    // Function to update dynamic content
+    // Function to update dynamic content with animation
     function updateTableContent(name) {
-        // Update the dynamic content placeholder
+        // Update the dynamic content placeholder with animated text
         const dynamicContent = document.getElementById("dynamicContent");
-        dynamicContent.innerHTML = `<h2>${name}</h2>`;
-        
+        dynamicContent.innerHTML = `<h2 class="slide-text">${name}</h2>`;
+
         // Optionally, play a sound (e.g., for the month or week)
         playSound(name.toLowerCase());
     }
@@ -119,4 +291,5 @@
 
 </body>
 </html>
+
 
