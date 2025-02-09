@@ -160,7 +160,6 @@
 
         /* Month and Week Content Styling */
         #monthContent, #weekContent {
-            display: none;
             margin-top: 50px;
             font-size: 24px;
             text-align: center;
@@ -169,8 +168,8 @@
         /* Content buttons for months and weeks */
         .content-buttons {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             gap: 15px;
         }
 
@@ -207,7 +206,7 @@
     <button onclick="showWeekDays()">Show Week Days</button>
 </div>
 
-<!-- Hidden Month Names Content (visible after clicking 'Show Months') -->
+<!-- Visible Month Names Content -->
 <div id="monthContent">
     <h3>Select a Month</h3>
     <div class="content-buttons">
@@ -226,7 +225,7 @@
     </div>
 </div>
 
-<!-- Hidden Week Days Content (visible after clicking 'Show Week Days') -->
+<!-- Visible Week Days Content -->
 <div id="weekContent">
     <h3>Select a Day of the Week</h3>
     <p>Click on any day below to see it in the circle.</p>
@@ -242,16 +241,16 @@
 </div>
 
 <script>
-    // Function to show Month buttons
+    // Function to show Month buttons (it remains visible)
     function showMonths() {
         document.getElementById("monthContent").style.display = 'block';
-        document.getElementById("weekContent").style.display = 'none';  // Hide week content
+        document.getElementById("weekContent").style.display = 'block';  // Show both content
     }
 
-    // Function to show Week Days buttons
+    // Function to show Week Days buttons (it remains visible)
     function showWeekDays() {
         document.getElementById("weekContent").style.display = 'block';
-        document.getElementById("monthContent").style.display = 'none';  // Hide month content
+        document.getElementById("monthContent").style.display = 'block';  // Show both content
     }
 
     // Function to update the circle with the selected month and number of days
@@ -274,9 +273,6 @@
         // Update the circle with the selected month and corresponding number of days
         document.getElementById("monthName").textContent = month;
         document.getElementById("daysCount").textContent = monthDays[month];
-        
-        // Hide month content after selection
-        document.getElementById("monthContent").style.display = 'none';
     }
 
     // Function to update the circle with the selected day
@@ -284,16 +280,14 @@
         // Update the circle with the selected day
         document.getElementById("monthName").textContent = day;
         document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
-        
-        // Hide week content after selection
-        document.getElementById("weekContent").style.display = 'none';
     }
 
     // Back button function (redirect to another page)
     function goBack() {
-        window.location.href = 'anotherPage.html';  // Change this to the page you want to redirect to
+        window.location.href = 'page1.html';  // Change this to the page you want to redirect to
     }
 </script>
 
 </body>
 </html>
+
