@@ -226,7 +226,7 @@
 </div>
 
 <!-- Visible Week Days Content -->
-<div id="weekContent">
+<div id="weekContent" style="display: none;">
     <h3>Select a Day of the Week</h3>
     <p>Click on any day below to see it in the circle.</p>
     <div class="content-buttons">
@@ -244,13 +244,13 @@
     // Function to show Month buttons (it remains visible)
     function showMonths() {
         document.getElementById("monthContent").style.display = 'block';
-        document.getElementById("weekContent").style.display = 'block';  // Show both content
+        document.getElementById("weekContent").style.display = 'none';  // Hide week content
     }
 
     // Function to show Week Days buttons (it remains visible)
     function showWeekDays() {
-        document.getElementById("weekContent").style.display = 'block';
-        document.getElementById("monthContent").style.display = 'block';  // Show both content
+        document.getElementById("weekContent").style.display = 'block';  // Show week content
+        document.getElementById("monthContent").style.display = 'none';  // Hide month content
     }
 
     // Function to update the circle with the selected month and number of days
@@ -284,10 +284,11 @@
 
     // Back button function (redirect to another page)
     function goBack() {
-        window.location.href = 'page1.html';  // Change this to the page you want to redirect to
+        window.location.href = 'anotherPage.html';  // Change this to the page you want to redirect to
     }
 </script>
 
 </body>
 </html>
+
 
