@@ -39,45 +39,60 @@
         }
 
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif; /* Default font set to cursive */
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            color: #333;
+            font-family: 'Cursive', sans-serif; /* Default font set to cursive */
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            color: white;
             text-align: center;
             padding: 20px;
             position: relative;
+            height: 100vh;
+            overflow: hidden;
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 48px;
+            font-weight: bold;
             color: #ff6347;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
         }
 
+        /* Button container with some animation */
         .button-container {
             margin: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: fadeIn 1s ease-in-out;
         }
 
         .button-container button {
-            font-size: 18px;
-            padding: 10px 20px;
-            margin: 10px;
+            font-size: 20px;
+            padding: 15px 30px;
             background-color: #ff6347;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.3s;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            font-family: 'Dancing Script', cursive; /* Cursive font for buttons */
         }
 
         .button-container button:hover {
             background-color: #ff4500;
             transform: scale(1.1);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
         }
 
+        .button-container button:active {
+            transform: scale(1);
+        }
+
+        /* Month and Week section styling */
         .section {
             display: none;
-            margin-top: 20px;
+            margin-top: 40px;
         }
 
         .active-section {
@@ -88,13 +103,13 @@
             font-size: 24px;
             margin-top: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            animation: fadeIn 1s ease-in-out;
         }
 
         .names div {
-            margin: 10px 0;
             padding: 20px 30px;
             background: linear-gradient(135deg, #ff6347, #ff4500);
             color: white;
@@ -102,10 +117,10 @@
             font-size: 26px;
             border-radius: 15px;
             cursor: pointer;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
             text-transform: uppercase;
             transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-            font-family: cursive; /* Cursive font for the names */
+            font-family: cursive; /* Cursive font */
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .names div:hover {
@@ -116,12 +131,6 @@
 
         .names div:active {
             transform: scale(1);
-        }
-
-        /* Active class for the clicked month or week */
-        .active {
-            background-color: #32CD32; /* Green when active */
-            color: white; /* Text color */
         }
 
         /* Animation for the names (months and weekdays) */
@@ -138,7 +147,32 @@
             animation: bounce 1s infinite ease-in-out;
         }
 
-        /* Style for images on both sides of the page */
+        /* Back Button Style */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6347;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .back-button:hover {
+            background-color: #ff4500;
+            transform: scale(1.1);
+        }
+
+        .back-button:active {
+            transform: scale(1);
+        }
+
+        /* Left and Right Image Containers */
         .image-container-left, .image-container-right {
             position: absolute;
             top: 50%;
@@ -148,12 +182,12 @@
         }
 
         .image-container-left {
-            left: 0;
+            left: -120px;
             animation: move-left 1s infinite alternate;
         }
 
         .image-container-right {
-            right: 0;
+            right: -120px;
             animation: move-right 1s infinite alternate;
         }
 
@@ -162,12 +196,13 @@
             height: 100%;
         }
 
+        /* Animations for image movements */
         @keyframes move-left {
             0% {
                 transform: translateY(0);
             }
             100% {
-                transform: translateY(-10px);
+                transform: translateY(-15px);
             }
         }
 
@@ -176,30 +211,19 @@
                 transform: translateY(0);
             }
             100% {
-                transform: translateY(10px);
+                transform: translateY(15px);
             }
         }
 
-        /* Back Button Style */
-        .back-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: #ff6347;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+        /* Fade-in Animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
-
-        .back-button:hover {
-            background-color: #ff4500;
-            transform: scale(1.1);
-        }
-
     </style>
 </head>
 <body>
@@ -248,7 +272,7 @@
     </div>
 </div>
 
-<!-- Sounds -->
+<!-- Sounds (Replace with actual sound file paths) -->
 <audio id="January-sound" src="path-to-your-sounds/january.mp3"></audio>
 <audio id="February-sound" src="path-to-your-sounds/february.mp3"></audio>
 <audio id="March-sound" src="path-to-your-sounds/march.mp3"></audio>
@@ -263,7 +287,7 @@
 </div>
 
 <script>
-    // Array of random cursive fonts (keeping them cursive-like)
+    // Array of random cursive fonts
     const fonts = ['"Comic Sans MS"', '"Brush Script MT"', '"Dancing Script"', '"Pacifico"', '"Great Vibes"', '"Sacramento"'];
 
     // Array of random colors
@@ -316,3 +340,4 @@
 
 </body>
 </html>
+
