@@ -4,82 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Months and Weekdays</title>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page 2</title>
-    <link rel="stylesheet" href="style.css">  <!-- Use the same stylesheet -->
-</head>
-<body>
-
-</header>
-
-<nav>
-    <a href="index.html">Home</a>
-    <a href="page1.html">Month Name</a>
-    <a href="page2.html">Week Days</a>
-    <a href="page3.html">Table</a>
-</nav>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Month Names</title>
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f8ff;
-            text-align: center;
+        /* Basic reset */
+        * {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-        }
-        h1 {
-            color: #ff6347;
-            font-size: 4rem;
-            margin-top: 50px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 2s ease-in-out;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 50px;
-            opacity: 0;
-            animation: slideIn 1s forwards;
-        }
-        .month {
-            width: 150px;
-            height: 150px;
-            background-color: #ffebcd;
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            font-size: 20px;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s, filter 0.3s;
-            animation: bounceIn 1s ease-out;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
         }
 
-        /* Rainbow text animation */
-        .month {
-            animation: rainbowText 3s linear infinite;
+        body {
+            font-family: 'Cursive', sans-serif;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            color: yellow;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
         }
-       /* Back button */
+
+        h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: #da47ff;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+            letter-spacing: 3px;
+        }
+
+        /* Circle container for month and days */
+        .circle {
+            position: fixed;
+            right: 30px;  /* Distance from the right edge */
+            top: 40%;  /* Vertically center the circle */
+            transform: translateY(-50%);  /* Center the circle perfectly */
+            width: 200px;
+            height: 200px;
+            background-color: #ff6347; /* Initial Circle color */
+            border-radius: 50%;  /* Make it a circle */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+            font-family: 'Dancing Script', cursive; /* Cursive font */
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            animation: bounceIn 1s ease-in-out;  /* Animation for the circle */
+            transition: background-color 1s ease-in-out; /* Smooth transition for color change */
+        }
+
+        /* Month Name Styling */
+        .circle h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Days Count Styling */
+        .circle p {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 0;
+        }
+
+        /* Bounce-in Animation */
+        @keyframes bounceIn {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            60% {
+                transform: translateY(30px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        /* Week Day Buttons Styling */
+        .button-container {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .button-container button {
+            font-size: 20px;
+            padding: 15px 30px;
+            background-color: blue;
+            color: pink;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .button-container button:hover {
+            background-color: #259b24;
+            transform: scale(1.1);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container button:active {
+            transform: scale(1);
+        }
+
+        /* Back button */
         .back-button {
             position: absolute;
             top: 20px;
@@ -96,91 +132,100 @@
         .back-button:hover {
             background-color: yellow;
         }
-        @keyframes rainbowText {
-            0% { color: #ff0000; } /* Red */
-            14% { color: #ff7f00; } /* Orange */
-            28% { color: #ffff00; } /* Yellow */
-            42% { color: #00ff00; } /* Green */
-            57% { color: #0000ff; } /* Blue */
-            71% { color: #4b0082; } /* Indigo */
-            85% { color: #9400d3; } /* Violet */
-            100% { color: #ff0000; } /* Red */
+
+        /* Week Content Styling */
+        #weekContent {
+            margin-top: 50px;
+            font-size: 34px;
+            text-align: center;
         }
 
-        /* Hover Effects: Glow, Scale, and Text Color Change */
-        .month:hover {
-            transform: scale(1.2);
-            background-color: rgba(255, 255, 255, 0.5);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-            filter: brightness(1.2);
-            animation: pulse 1s infinite;
+        /* Content buttons for weekdays */
+        .content-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
 
-        /* Active/Click Effects: Pop and Rotate */
-        .month:active {
-            transform: scale(0.95) rotate(10deg);
-            animation: pop 0.3s ease-in-out;
+        .content-buttons button {
+            margin: 10px;
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
         }
 
-        /* Pulse Animation for Hover */
-        @keyframes pulse {
-            0% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
-            50% { box-shadow: 0 0 40px rgba(255, 255, 255, 1); }
-            100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); }
-        }
-
-        /* Pop Animation for Button Click */
-        @keyframes pop {
-            0% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1.1) rotate(10deg); }
-        }
-
-        /* Bounce In Animation */
-        @keyframes bounceIn {
-            0% { transform: translateY(30px); opacity: 0; }
-            60% { transform: translateY(-10px); opacity: 1; }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Slide-in Animation for Container */
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-100%); }
-            to { opacity: 1; transform: translateX(0); }
+        .content-buttons button:hover {
+            background-color: #ff4500;
         }
     </style>
 </head>
 <body>
 
-    <h1>Learn Month Names for Kids</h1>
+<!-- Back Button -->
+<button class="back-button" onclick="goBack()">Back</button>
 
-    <!-- Months Section -->
-    <div class="container">
-        <div class="month" onclick="playMonthSound('January', 'sound/january.mp3');">January</div>
-        <div class="month" onclick="playMonthSound('February', 'sound/february.mp3');">February</div>
-        <div class="month" onclick="playMonthSound('March', 'sound/march.mp3');">March</div>
-        <div class="month" onclick="playMonthSound('April', 'sound/april.mp3');">April</div>
-        <div class="month" onclick="playMonthSound('May', 'sound/may.mp3');">May</div>
-        <div class="month" onclick="playMonthSound('June', 'sound/june.mp3');">June</div>
-        <div class="month" onclick="playMonthSound('July', 'sound/july.mp3');">July</div>
-        <div class="month" onclick="playMonthSound('August', 'sound/august.mp3');">August</div>
-        <div class="month" onclick="playMonthSound('September', 'sound/september.mp3');">September</div>
-        <div class="month" onclick="playMonthSound('October', 'sound/october.mp3');">October</div>
-        <div class="month" onclick="playMonthSound('November', 'sound/november.mp3');">November</div>
-        <div class="month" onclick="playMonthSound('December', 'sound/december.mp3');">December</div>
+<!-- Circle for Month and Days -->
+<div class="circle" id="monthCircle">
+    <h2 id="monthName">January</h2>
+    <p id="daysCount">31</p>
+</div>
+
+<!-- Button Container for Week Names -->
+<div class="button-container">
+    <button onclick="showWeekDays()">Show Week Days</button>
+</div>
+
+<!-- Visible Week Days Content -->
+<div id="weekContent" style="display: none;">
+    <h3>Select a Day of the Week</h3>
+    <div class="content-buttons">
+        <button onclick="updateDay('Sunday')">Sunday</button>
+        <button onclick="updateDay('Monday')">Monday</button>
+        <button onclick="updateDay('Tuesday')">Tuesday</button>
+        <button onclick="updateDay('Wednesday')">Wednesday</button>
+        <button onclick="updateDay('Thursday')">Thursday</button>
+        <button onclick="updateDay('Friday')">Friday</button>
+        <button onclick="updateDay('Saturday')">Saturday</button>
     </div>
+</div>
 
-    <script>
-        // Function to play the month sound
-        function playMonthSound(month, soundFile) {
-            const audio = new Audio(soundFile);
-            audio.play();
-        }
-       // Back button function (redirect to another page)
-       function goBack() {
-            window.location.href = 'index.html';  // Change this to the page you want to redirect to
+<script>
+    // Function to show Week Days buttons
+    function showWeekDays() {
+        document.getElementById("weekContent").style.display = 'block';  // Show week content
     }
-    </script>
+
+    // Function to update the circle with the selected day
+    function updateDay(day) {
+        // Update the circle with the selected day
+        document.getElementById("monthName").textContent = day;
+        document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
+
+        // Play sound for the selected day
+        const daySound = new Audio(`/sound/${day.toLowerCase()}.mp3`);
+        daySound.play();
+
+        // Change the circle color frequently
+        changeCircleColor();
+    }
+
+    // Function to change the circle's background color randomly
+    function changeCircleColor() {
+        const colors = ['#ff6347', '#ff4500', '#ff1493', '#32cd32', '#1e90ff', '#f0e68c', '#8a2be2', '#ff7f50'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        document.getElementById('monthCircle').style.backgroundColor = randomColor;
+    }
+
+    // Back button function (redirect to another page)
+    function goBack() {
+        window.location.href = 'page1.html';  // Change this to the page you want to redirect to
+    }
+</script>
 
 </body>
 </html>
-
