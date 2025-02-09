@@ -23,6 +23,7 @@
     <a href="page2.html">Week Days</a>
     <a href="page3.html">Table</a>
 </nav>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -172,7 +173,7 @@
 <body>
 
 <!-- Back Button -->
-<button class="back-button" onclick="page1.html"Back</button>
+<button class="back-button" onclick="goBack()">Back</button>
 
 <h1>Learn Month and Weekdays</h1>
 
@@ -182,7 +183,7 @@
     <button onclick="showSection('weekdays')">Week Days</button>
 </div>
 
-<!-- Month Names Section -->
+<!-- Month Names Section (Initially hidden) -->
 <div id="months" class="section">
     <h2>Month Names</h2>
     <div class="month-names">
@@ -225,7 +226,7 @@
     </div>
 </div>
 
-<!-- Week Days Section -->
+<!-- Week Days Section (Initially hidden) -->
 <div id="weekdays" class="section">
     <h2>Week Days</h2>
     <div class="week-days">
@@ -254,9 +255,9 @@
 </div>
 
 <!-- Sounds -->
-<audio id="January-sound" src="sounds/january.mp3"></audio>
-<audio id="February-sound" src="sounds/february.mp3"></audio>
-<audio id="March-sound" src="sounds/march.mp3"></audio>
+<audio id="January-sound" src="path-to-your-sounds/january.mp3"></audio>
+<audio id="February-sound" src="path-to-your-sounds/february.mp3"></audio>
+<audio id="March-sound" src="path-to-your-sounds/march.mp3"></audio>
 <!-- Add the other months and weekdays sound files similarly -->
 
 <!-- Left and Right Images -->
@@ -286,8 +287,9 @@
         }
     }
 
-    // Initially show the month names by default
-    showSection('months');
+    // Initially hide the month names and week days section
+    document.getElementById('months').style.display = 'none';
+    document.getElementById('weekdays').style.display = 'none';
 
     // Back button function
     function goBack() {
@@ -298,3 +300,4 @@
 
 </body>
 </html>
+
