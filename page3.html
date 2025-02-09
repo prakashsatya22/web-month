@@ -118,6 +118,23 @@
         .table-row.zoom-out {
             animation: zoomOut 0.6s ease-in-out forwards;
         }
+        /* Back button */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: yellow;
+        }
 
         @keyframes zoomOut {
             0% {
@@ -365,6 +382,11 @@
             document.getElementById("left-flash").style.animation = "";
             document.getElementById("right-flash").style.animation = "";
         }, 1000);
+    }
+    
+    // Back button function (redirect to another page)
+    function goBack() {
+        window.location.href = 'page2.html';  // Change this to the page you want to redirect to
     }
 </script>
 
