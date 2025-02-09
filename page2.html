@@ -29,7 +29,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circle Display Month and Days</title>
+    <title>Interactive Month & Week Display</title>
     <style>
         /* Basic reset */
         * {
@@ -110,7 +110,7 @@
             }
         }
 
-        /* Button container styling */
+        /* Month & Week Name Button Styling */
         .button-container {
             margin: 20px;
             display: flex;
@@ -139,9 +139,38 @@
         .button-container button:active {
             transform: scale(1);
         }
+
+        /* Back button */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #ff4500;
+        }
+
+        /* Month and Week Content Styling */
+        #monthContent {
+            display: none;
+            margin-top: 50px;
+            font-size: 24px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
+
+<!-- Back Button -->
+<button class="back-button" onclick="goBack()">Back</button>
 
 <!-- Circle for Month and Days -->
 <div class="circle" id="monthCircle">
@@ -149,7 +178,7 @@
     <p id="daysCount">31</p>
 </div>
 
-<!-- Button Container -->
+<!-- Month and Week Name Buttons -->
 <div class="button-container">
     <button onclick="updateCircle('January')">January</button>
     <button onclick="updateCircle('February')">February</button>
@@ -165,8 +194,15 @@
     <button onclick="updateCircle('December')">December</button>
 </div>
 
+<!-- Hidden Month Content (visible after button click) -->
+<div id="monthContent">
+    <h3>Selected Month and Week Information</h3>
+    <p>Month: <span id="selectedMonth"></span></p>
+    <p>Week Numbers: <span id="weekNumbers"></span></p>
+</div>
+
 <script>
-    // Function to update the circle with month and days
+    // Function to update the circle with the selected month and number of days
     function updateCircle(month) {
         const monthDays = {
             "January": 31,
@@ -186,10 +222,42 @@
         // Update the circle with the selected month and corresponding number of days
         document.getElementById("monthName").textContent = month;
         document.getElementById("daysCount").textContent = monthDays[month];
+
+        // Update the hidden content for month and weeks info
+        document.getElementById("selectedMonth").textContent = month;
+        document.getElementById("weekNumbers").textContent = getWeekNumbers(month);
+
+        // Show month content after selection
+        document.getElementById("monthContent").style.display = 'block';
+    }
+
+    // Function to get week numbers based on month
+    function getWeekNumbers(month) {
+        const weekNumbers = {
+            "January": "1-4",
+            "February": "5-8",
+            "March": "9-12",
+            "April": "13-16",
+            "May": "17-20",
+            "June": "21-24",
+            "July": "25-28",
+            "August": "29-32",
+            "September": "33-36",
+            "October": "37-40",
+            "November": "41-44",
+            "December": "45-48"
+        };
+        return weekNumbers[month] || "Unknown";
+    }
+
+    // Back button function (redirect to another page)
+    function goBack() {
+        window.location.href = 'anotherPage.html';  // Change this to the page you want to redirect to
     }
 </script>
 
 </body>
 </html>
+
 
 
