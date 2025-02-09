@@ -28,7 +28,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Months and Weekdays</title>
+    <title>Learn Month and Weekdays</title>
     <style>
         /* Basic reset */
         * {
@@ -52,119 +52,106 @@
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
 
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
+        .button-container {
+            margin: 20px;
         }
 
-        .item {
-            background-color: #F4BB44;
-            padding: 20px;
-            width: 120px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            transition: transform 0.2s, background-color 0.3s;
+        .button-container button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            border-radius: 10px;
             cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
         }
 
-        .item:hover {
+        .button-container button:hover {
             background-color: #ff4500;
             transform: scale(1.1);
         }
 
-        .item.active {
-            animation: pulse 0.6s ease-in-out;
+        .section {
+            display: none;
+            margin-top: 20px;
         }
 
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
+        .active-section {
+            display: block;
         }
 
-        .image-side {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-70%);
-            width: 200px;
-            height: 150px;
-            border-radius: 80%;
+        .month-names, .week-days {
+            font-size: 24px;
+            margin-top: 20px;
         }
 
-        .image-left {
-            left: -250px;
+        .month-names div, .week-days div {
+            margin: 10px 0;
         }
-
-        .image-right {
-            right: -250px;
-        }
-
     </style>
 </head>
 <body>
 
-<h1>Learn Months and Weekdays</h1>
-<div class="container">
-    <!-- Month Names -->
-    <div id="months" class="container">
-        <div class="item" onclick="highlightItem(this)">January</div>
-        <div class="item" onclick="highlightItem(this)">February</div>
-        <div class="item" onclick="highlightItem(this)">March</div>
-        <div class="item" onclick="highlightItem(this)">April</div>
-        <div class="item" onclick="highlightItem(this)">May</div>
-        <div class="item" onclick="highlightItem(this)">June</div>
-        <div class="item" onclick="highlightItem(this)">July</div>
-        <div class="item" onclick="highlightItem(this)">August</div>
-        <div class="item" onclick="highlightItem(this)">September</div>
-        <div class="item" onclick="highlightItem(this)">October</div>
-        <div class="item" onclick="highlightItem(this)">November</div>
-        <div class="item" onclick="highlightItem(this)">December</div>
+<h1>Learn Month and Weekdays</h1>
+
+<!-- Button Container -->
+<div class="button-container">
+    <button onclick="showSection('months')">Month Names</button>
+    <button onclick="showSection('weekdays')">Week Days</button>
+</div>
+
+<!-- Month Names Section -->
+<div id="months" class="section">
+    <h2>Month Names</h2>
+    <div class="month-names">
+        <div>January</div>
+        <div>February</div>
+        <div>March</div>
+        <div>April</div>
+        <div>May</div>
+        <div>June</div>
+        <div>July</div>
+        <div>August</div>
+        <div>September</div>
+        <div>October</div>
+        <div>November</div>
+        <div>December</div>
     </div>
-    
-    <!-- Week Days -->
-    <div id="weekdays" class="container">
-        <div class="item" onclick="highlightItem(this)">Sunday</div>
-        <div class="item" onclick="highlightItem(this)">Monday</div>
-        <div class="item" onclick="highlightItem(this)">Tuesday</div>
-        <div class="item" onclick="highlightItem(this)">Wednesday</div>
-        <div class="item" onclick="highlightItem(this)">Thursday</div>
-        <div class="item" onclick="highlightItem(this)">Friday</div>
-        <div class="item" onclick="highlightItem(this)">Saturday</div>
+</div>
+
+<!-- Week Days Section -->
+<div id="weekdays" class="section">
+    <h2>Week Days</h2>
+    <div class="week-days">
+        <div>Sunday</div>
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+        <div>Thursday</div>
+        <div>Friday</div>
+        <div>Saturday</div>
     </div>
 </div>
 
 <script>
-    // Function to add 'active' class and animate the clicked item
-    function highlightItem(element) {
-        // Remove 'active' class from all elements
-        let allItems = document.querySelectorAll('.item');
-        allItems.forEach(item => item.classList.remove('active'));
-
-        // Add 'active' class to clicked element
-        element.classList.add('active');
+    // Function to show the selected section (months or weekdays)
+    function showSection(section) {
+        // Hide both sections first
+        document.getElementById('months').classList.remove('active-section');
+        document.getElementById('weekdays').classList.remove('active-section');
         
-        // Change background color randomly
-        let colors = ["#ffeb3b", "#ff5722", "#4caf50", "#ff9800", "#8bc34a", "#259b24", "#8bc34a"];
-        let randomColor = colors[Math.floor(Math.random() * colors.length)];
-        element.style.backgroundColor = randomColor;
-
-        // Remove background color after 1 second
-        setTimeout(() => {
-            element.style.backgroundColor = "";
-        }, 1000);
+        // Show the selected section
+        document.getElementById(section).classList.add('active-section');
     }
+
+    // Initially show the month names by default
+    showSection('months');
 </script>
 
 </body>
 </html>
+
 
 
