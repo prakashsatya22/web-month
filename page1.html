@@ -79,7 +79,23 @@
         .month {
             animation: rainbowText 3s linear infinite;
         }
+       /* Back button */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #ff6347;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
 
+        .back-button:hover {
+            background-color: yellow;
+        }
         @keyframes rainbowText {
             0% { color: #ff0000; } /* Red */
             14% { color: #ff7f00; } /* Orange */
@@ -159,6 +175,10 @@
             const audio = new Audio(soundFile);
             audio.play();
         }
+       // Back button function (redirect to another page)
+       function goBack() {
+            window.location.href = 'index.html';  // Change this to the page you want to redirect to
+    }
     </script>
 
 </body>
