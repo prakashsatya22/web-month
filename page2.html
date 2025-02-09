@@ -29,7 +29,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Month & Week Display</title>
+    <title>Learn Months and Weekdays</title>
     <style>
         /* Basic reset */
         * {
@@ -74,7 +74,7 @@
             align-items: center;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
             font-family: 'Dancing Script', cursive; /* Cursive font */
-            color: red; green; blue; pink; yellow;
+            color: white;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
             padding: 20px;
             animation: bounceIn 1s ease-in-out;  /* Animation for the circle */
@@ -111,7 +111,7 @@
             }
         }
 
-        /* Month & Week Name Button Styling */
+        /* Week Day Buttons Styling */
         .button-container {
             margin: 20px;
             display: flex;
@@ -123,7 +123,7 @@
             font-size: 20px;
             padding: 15px 30px;
             background-color: blue;
-            color: Pink;
+            color: pink;
             border: none;
             border-radius: 12px;
             cursor: pointer;
@@ -132,8 +132,7 @@
         }
 
         .button-container button:hover {
-            background-color: #259b24,#8bc34a,#ffeb3b,#ffc107,#ff9800,#e51c23,#3f51b5,#5677fc,#03a9f4,#9e9e9e,#ff5722,#ab47bc,#31f491
-
+            background-color: #259b24;
             transform: scale(1.1);
             box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
         }
@@ -160,14 +159,14 @@
             background-color: yellow;
         }
 
-        /* Month and Week Content Styling */
-        #monthContent, #weekContent {
+        /* Week Content Styling */
+        #weekContent {
             margin-top: 50px;
             font-size: 34px;
             text-align: center;
         }
 
-        /* Content buttons for months and weeks */
+        /* Content buttons for weekdays */
         .content-buttons {
             display: flex;
             flex-direction: column;
@@ -202,10 +201,11 @@
     <p id="daysCount">31</p>
 </div>
 
-<!-- Button Container for Month & Week Names -->
+<!-- Button Container for Week Names -->
 <div class="button-container">
     <button onclick="showWeekDays()">Show Week Days</button>
 </div>
+
 <!-- Visible Week Days Content -->
 <div id="weekContent" style="display: none;">
     <h3>Select a Day of the Week</h3>
@@ -221,37 +221,24 @@
 </div>
 
 <script>
-    // Function to show Month buttons (it remains visible)
-    function showMonths() {
-        document.getElementById("monthContent").style.display = 'block';
-        document.getElementById("weekContent").style.display = 'none';  // Hide week content
-    }
-
-    // Function to show Week Days buttons (it remains visible)
+    // Function to show Week Days buttons
     function showWeekDays() {
         document.getElementById("weekContent").style.display = 'block';  // Show week content
-        document.getElementById("monthContent").style.display = 'none';  // Hide month content
     }
 
- 
-        // Update the circle with the selected month and corresponding number of days
-        document.getElementById("monthName").textContent = month;
-        document.getElementById("daysCount").textContent = monthDays[month];
-
-     // Function to update the circle with the selected day
+    // Function to update the circle with the selected day
     function updateDay(day) {
-    // Update the circle with the selected day
-    document.getElementById("monthName").textContent = day;
-    document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
+        // Update the circle with the selected day
+        document.getElementById("monthName").textContent = day;
+        document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
 
-    // Play sound for the selected day
-    const daySound = new Audio('/sound/${day.toLowerCase()}.mp3');  // Ensure backticks are used here for template literals
-    daySound.play();
+        // Play sound for the selected day
+        const daySound = new Audio(`/sound/${day.toLowerCase()}.mp3`);
+        daySound.play();
 
-    // Change the circle color frequently
-    changeCircleColor();
-}
-
+        // Change the circle color frequently
+        changeCircleColor();
+    }
 
     // Function to change the circle's background color randomly
     function changeCircleColor() {
