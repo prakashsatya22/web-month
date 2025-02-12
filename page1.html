@@ -130,6 +130,15 @@
             transition: background-color 0.3s;
         }
 
+        /* Position the Back button behind the Previous button */
+        .back-button {
+            z-index: 1; /* Lower z-index, will be placed behind */
+        }
+
+        .previous-button {
+            z-index: 2; /* Higher z-index, placed in front of the Back button */
+        }
+
         .back-button:hover,
         .previous-button:hover {
             background-color: yellow;
@@ -168,10 +177,10 @@
 </head>
 <body>
 
-<!-- Back Button -->
+<!-- Back Button (Behind) -->
 <button class="back-button" onclick="goBack()">Back</button>
 
-<!-- Previous Button -->
+<!-- Previous Button (In front of Back Button) -->
 <button class="previous-button" onclick="showPreviousDay()">Previous</button>
 
 <!-- Circle for Month and Days -->
