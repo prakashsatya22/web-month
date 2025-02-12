@@ -3,71 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Months and Weekdays</title>
+    <title>Learn Addition</title>
     <style>
-        /* Basic reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            font-family: 'Cursive', sans-serif;
-            background: linear-gradient(45deg, #00c6ff, #0072ff);
-            color: yellow;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
             text-align: center;
             padding: 20px;
-            position: relative;
             height: 100vh;
-            overflow: hidden;
-        }
-
-        h1 {
-            font-size: 48px;
-            font-weight: bold;
-            color: #da47ff;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
-            letter-spacing: 3px;
-        }
-
-        /* Circle container for month and days */
-        .circle {
-            position: fixed;
-            right: 30px;  /* Distance from the right edge */
-            top: 40%;  /* Vertically center the circle */
-            transform: translateY(-50%);  /* Center the circle perfectly */
-            width: 200px;
-            height: 200px;
-            background-color: #ff6347; /* Initial Circle color */
-            border-radius: 50%;  /* Make it a circle */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-            font-family: 'Dancing Script', cursive; /* Cursive font */
-            color: white;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
-            padding: 20px;
-            animation: bounceIn 1s ease-in-out;  /* Animation for the circle */
-            transition: background-color 1s ease-in-out; /* Smooth transition for color change */
         }
 
-        /* Month Name Styling */
-        .circle h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        /* Days Count Styling */
-        .circle p {
-            font-size: 36px;
-            font-weight: bold;
-            margin-top: 0;
+        h1 {
+            font-size: 48px;
+            color: #ff6347;
+            margin-bottom: 20px;
+            animation: bounceIn 1s ease-in-out;
         }
 
         /* Bounce-in Animation */
@@ -85,172 +40,137 @@
             }
         }
 
-        /* Week Day Buttons Styling */
-        .button-container {
+        /* Input and Button Styling */
+        .input-container {
             margin: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+            font-size: 24px;
+            color: #ff6347;
         }
 
-        .button-container button {
-            font-size: 20px;
-            padding: 15px 30px;
-            background-color: blue;
-            color: pink;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-            font-family: 'Dancing Script', cursive;
+        .input-container input {
+            padding: 10px;
+            font-size: 24px;
+            width: 80px;
+            margin-right: 10px;
+            border: 2px solid #ff6347;
+            border-radius: 8px;
+            text-align: center;
+            outline: none;
         }
 
-        .button-container button:hover {
-            background-color: #259b24;
-            transform: scale(1.1);
-            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .button-container button:active {
-            transform: scale(1);
-        }
-
-        /* Back and Previous buttons */
-        .back-button,
-        .previous-button {
-            position: absolute;
-            top: 20px;
-            left: 20px;
+        .input-container button {
+            padding: 12px 25px;
+            font-size: 24px;
             background-color: #ff6347;
             color: white;
-            padding: 10px 20px;
+            border: none;
             border-radius: 8px;
             cursor: pointer;
-            font-size: 18px;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
-        /* Position the Back button behind the Previous button */
-        .back-button {
-            z-index: 1; /* Lower z-index, will be placed behind */
+        .input-container button:hover {
+            background-color: #ff4500;
         }
 
-        .previous-button {
-            z-index: 2; /* Higher z-index, placed in front of the Back button */
+        /* Animation for showing the answer */
+        .result {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #32cd32;
+            animation: fadeIn 1s ease-in-out;
         }
 
-        .back-button:hover,
-        .previous-button:hover {
-            background-color: yellow;
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
-        /* Week Content Styling */
-        #weekContent {
-            margin-top: 50px;
-            font-size: 34px;
-            text-align: center;
-        }
-
-        /* Content buttons for weekdays */
-        .content-buttons {
+        /* Playful Number Buttons */
+        .number-buttons {
+            margin-top: 30px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 15px;
         }
 
-        .content-buttons button {
-            margin: 10px;
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #ff6347;
+        .number-buttons button {
+            padding: 20px;
+            font-size: 28px;
+            background-color: #32cd32;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 50%;
             cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        .content-buttons button:hover {
-            background-color: #ff4500;
+        .number-buttons button:hover {
+            background-color: #ff6347;
+            transform: scale(1.1);
         }
+
     </style>
 </head>
 <body>
 
-<!-- Back Button (Behind) -->
-<button class="back-button" onclick="goBack()">Back</button>
+<h1>Learn Addition!</h1>
 
-<!-- Previous Button (In front of Back Button) -->
-<button class="previous-button" onclick="showPreviousDay()">Previous</button>
-
-<!-- Circle for Month and Days -->
-<div class="circle" id="monthCircle">
-    <h2 id="monthName">January</h2>
-    <p id="daysCount">31</p>
+<div class="input-container">
+    <input type="number" id="number1" placeholder="Enter num" />
+    <span>+</span>
+    <input type="number" id="number2" placeholder="Enter num" />
+    <button onclick="calculateAddition()">Add!</button>
 </div>
 
-<!-- Button Container for Week Names -->
-<div class="button-container">
-    <button onclick="showWeekDays()">Show Week Days</button>
-</div>
+<!-- Result Section -->
+<div id="result" class="result"></div>
 
-<!-- Visible Week Days Content -->
-<div id="weekContent" style="display: none;">
-    <h3>Select a Day of the Week</h3>
-    <div class="content-buttons">
-        <button onclick="updateDay('Sunday')">Sunday</button>
-        <button onclick="updateDay('Monday')">Monday</button>
-        <button onclick="updateDay('Tuesday')">Tuesday</button>
-        <button onclick="updateDay('Wednesday')">Wednesday</button>
-        <button onclick="updateDay('Thursday')">Thursday</button>
-        <button onclick="updateDay('Friday')">Friday</button>
-        <button onclick="updateDay('Saturday')">Saturday</button>
-    </div>
+<!-- Number Buttons for easy clicking -->
+<div class="number-buttons">
+    <button onclick="addToInput(1)">1</button>
+    <button onclick="addToInput(2)">2</button>
+    <button onclick="addToInput(3)">3</button>
+    <button onclick="addToInput(4)">4</button>
+    <button onclick="addToInput(5)">5</button>
+    <button onclick="addToInput(6)">6</button>
+    <button onclick="addToInput(7)">7</button>
+    <button onclick="addToInput(8)">8</button>
+    <button onclick="addToInput(9)">9</button>
+    <button onclick="addToInput(0)">0</button>
 </div>
 
 <script>
-    let previousDay = '';  // Variable to store the previous day
-
-    // Function to show Week Days buttons
-    function showWeekDays() {
-        document.getElementById("weekContent").style.display = 'block';  // Show week content
-    }
-
-    // Function to update the circle with the selected day
-    function updateDay(day) {
-        previousDay = document.getElementById("monthName").textContent; // Store the current day before updating
-        document.getElementById("monthName").textContent = day;
-        document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
-
-        // Play sound for the selected day
-        const daySound = new Audio(`/sound/${day.toLowerCase()}.mp3`);
-        daySound.play();
-
-        // Change the circle color frequently
-        changeCircleColor();
-    }
-
-    // Function to change the circle's background color randomly
-    function changeCircleColor() {
-        const colors = ['#ff6347', '#ff4500', '#ff1493', '#32cd32', '#1e90ff', '#f0e68c', '#8a2be2', '#ff7f50'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        document.getElementById('monthCircle').style.backgroundColor = randomColor;
-    }
-
-    // Function to go back to the previous day
-    function showPreviousDay() {
-        if (previousDay) {
-            document.getElementById("monthName").textContent = previousDay;
-            document.getElementById("daysCount").textContent = '';  // Clear the days count
-            previousDay = ''; // Reset previous day after showing it
-        } else {
-            alert("No previous day to show!");
+    // Function to calculate addition
+    function calculateAddition() {
+        const num1 = parseInt(document.getElementById('number1').value);
+        const num2 = parseInt(document.getElementById('number2').value);
+        
+        if (isNaN(num1) || isNaN(num2)) {
+            alert('Please enter valid numbers!');
+            return;
         }
+        
+        const sum = num1 + num2;
+        
+        // Display the result with animation
+        const resultDiv = document.getElementById('result');
+        resultDiv.textContent = `The result is: ${sum}`;
     }
 
-    // Back button function (redirect to another page)
-    function goBack() {
-        window.location.href = 'page1.html';  // Change this to the page you want to redirect to
+    // Function to add numbers to input fields by clicking number buttons
+    function addToInput(number) {
+        const activeInput = document.activeElement;
+        
+        if (activeInput.tagName === 'INPUT') {
+            activeInput.value += number;
+        }
     }
 </script>
 
