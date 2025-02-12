@@ -133,42 +133,31 @@
         document.getElementById('result').textContent = '';
         document.getElementById('ballContainer').innerHTML = '';
 
-        // Display balls for the first number
-        displayBalls(number1);
-        // Display balls for the second number
-        displayBalls(number2);
+        // Display balls for the first number (first row)
+        displayBalls(number1, 'row1');
+        // Display balls for the second number (second row)
+        displayBalls(number2, 'row2');
     }
 
     // Function to display balls in two rows
-    function displayBalls(num) {
+    function displayBalls(num, rowClass) {
         const ballContainer = document.getElementById('ballContainer');
-        const half = Math.ceil(num / 2); // Divide the number of balls into two rows
 
-        // Create two rows of balls
-        const row1 = document.createElement('div');
-        row1.classList.add('ball-row');
-        const row2 = document.createElement('div');
-        row2.classList.add('ball-row');
+        // Create a new row
+        const row = document.createElement('div');
+        row.classList.add('ball-row');
+        row.classList.add(rowClass); // Add row class for differentiation
 
-        // Create balls for the first row
-        for (let i = 0; i < half; i++) {
+        // Create balls for the row
+        for (let i = 0; i < num; i++) {
             const ball = document.createElement('div');
             ball.classList.add('ball');
             ball.style.backgroundColor = getRandomColor();
-            row1.appendChild(ball);
+            row.appendChild(ball);
         }
 
-        // Create balls for the second row
-        for (let i = 0; i < (num - half); i++) {
-            const ball = document.createElement('div');
-            ball.classList.add('ball');
-            ball.style.backgroundColor = getRandomColor();
-            row2.appendChild(ball);
-        }
-
-        // Append the rows to the container
-        ballContainer.appendChild(row1);
-        ballContainer.appendChild(row2);
+        // Append the row to the container
+        ballContainer.appendChild(row);
     }
 
     // Function to get a random color
