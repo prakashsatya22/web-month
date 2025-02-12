@@ -18,12 +18,18 @@
             margin-bottom: 20px;
         }
 
-        /* Ball container */
+        /* Ball container with two rows */
         .ball-container {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
             margin-top: 20px;
+        }
+
+        .ball-row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
         }
 
         .ball {
@@ -128,22 +134,41 @@
         document.getElementById('ballContainer').innerHTML = '';
 
         // Display balls for the first number
-        displayBalls(number1, 'number1');
+        displayBalls(number1);
         // Display balls for the second number
-        displayBalls(number2, 'number2');
+        displayBalls(number2);
     }
 
-    // Function to display balls based on the number
-    function displayBalls(num, ballType) {
+    // Function to display balls in two rows
+    function displayBalls(num) {
         const ballContainer = document.getElementById('ballContainer');
-        
-        for (let i = 0; i < num; i++) {
+        const half = Math.ceil(num / 2); // Divide the number of balls into two rows
+
+        // Create two rows of balls
+        const row1 = document.createElement('div');
+        row1.classList.add('ball-row');
+        const row2 = document.createElement('div');
+        row2.classList.add('ball-row');
+
+        // Create balls for the first row
+        for (let i = 0; i < half; i++) {
             const ball = document.createElement('div');
             ball.classList.add('ball');
-            // Random color for each ball
             ball.style.backgroundColor = getRandomColor();
-            ballContainer.appendChild(ball);
+            row1.appendChild(ball);
         }
+
+        // Create balls for the second row
+        for (let i = 0; i < (num - half); i++) {
+            const ball = document.createElement('div');
+            ball.classList.add('ball');
+            ball.style.backgroundColor = getRandomColor();
+            row2.appendChild(ball);
+        }
+
+        // Append the rows to the container
+        ballContainer.appendChild(row1);
+        ballContainer.appendChild(row2);
     }
 
     // Function to get a random color
