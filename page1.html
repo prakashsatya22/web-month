@@ -116,7 +116,8 @@
         }
 
         /* Back button */
-        .back-button {
+        .back-button,
+        .previous-button {
             position: absolute;
             top: 20px;
             left: 20px;
@@ -129,7 +130,8 @@
             transition: background-color 0.3s;
         }
 
-        .back-button:hover {
+        .back-button:hover,
+        .previous-button:hover {
             background-color: yellow;
         }
 
@@ -169,6 +171,9 @@
 <!-- Back Button -->
 <button class="back-button" onclick="goBack()">Back</button>
 
+<!-- Previous Button -->
+<button class="previous-button" onclick="showPreviousDay()">Previous</button>
+
 <!-- Circle for Month and Days -->
 <div class="circle" id="monthCircle">
     <h2 id="monthName">January</h2>
@@ -195,6 +200,8 @@
 </div>
 
 <script>
+    let previousDay = '';  // Variable to store the previous day
+
     // Function to show Week Days buttons
     function showWeekDays() {
         document.getElementById("weekContent").style.display = 'block';  // Show week content
@@ -202,7 +209,7 @@
 
     // Function to update the circle with the selected day
     function updateDay(day) {
-        // Update the circle with the selected day
+        previousDay = document.getElementById("monthName").textContent; // Store the current day before updating
         document.getElementById("monthName").textContent = day;
         document.getElementById("daysCount").textContent = "";  // Clear the days count when showing a day name
 
@@ -219,6 +226,17 @@
         const colors = ['#ff6347', '#ff4500', '#ff1493', '#32cd32', '#1e90ff', '#f0e68c', '#8a2be2', '#ff7f50'];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         document.getElementById('monthCircle').style.backgroundColor = randomColor;
+    }
+
+    // Function to go back to the previous day
+    function showPreviousDay() {
+        if (previousDay) {
+            document.getElementById("monthName").textContent = previousDay;
+            document.getElementById("daysCount").textContent = '';  // Clear the days count
+            previousDay = ''; // Reset previous day after showing it
+        } else {
+            alert("No previous day to show!");
+        }
     }
 
     // Back button function (redirect to another page)
