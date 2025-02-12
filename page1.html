@@ -3,59 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Addition</title>
+    <title>Learn Addition with Balls</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
-            color: #333;
             text-align: center;
             padding: 20px;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         h1 {
-            font-size: 48px;
+            font-size: 36px;
             color: #ff6347;
             margin-bottom: 20px;
-            animation: bounceIn 1s ease-in-out;
         }
 
-        /* Bounce-in Animation */
-        @keyframes bounceIn {
-            0% {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            60% {
-                transform: translateY(30px);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(0);
-            }
+        /* Ball container */
+        .ball-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 20px;
         }
 
-        /* Input and Button Styling */
+        .ball {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 5px;
+            background-color: #ff6347;
+            transition: background-color 0.5s ease;
+        }
+
         .input-container {
-            margin: 20px;
-            font-size: 24px;
-            color: #ff6347;
+            margin-top: 20px;
         }
 
         .input-container input {
             padding: 10px;
             font-size: 24px;
-            width: 80px;
+            width: 100px;
+            text-align: center;
             margin-right: 10px;
             border: 2px solid #ff6347;
             border-radius: 8px;
-            text-align: center;
-            outline: none;
         }
 
         .input-container button {
@@ -73,105 +64,110 @@
             background-color: #ff4500;
         }
 
-        /* Animation for showing the answer */
+        /* Result section */
         .result {
-            font-size: 36px;
-            font-weight: bold;
-            margin-top: 20px;
-            color: #32cd32;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-
-        /* Playful Number Buttons */
-        .number-buttons {
-            margin-top: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .number-buttons button {
-            padding: 20px;
             font-size: 28px;
+            margin-top: 20px;
+            color: green;
+        }
+
+        /* Next button */
+        .next-button {
+            padding: 12px 25px;
+            font-size: 24px;
             background-color: #32cd32;
             color: white;
             border: none;
-            border-radius: 50%;
+            border-radius: 8px;
+            margin-top: 20px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        .number-buttons button:hover {
-            background-color: #ff6347;
-            transform: scale(1.1);
+        .next-button:hover {
+            background-color: #228b22;
         }
-
     </style>
 </head>
 <body>
 
-<h1>Learn Addition!</h1>
+<h1>Learn Addition with Balls</h1>
 
+<!-- Table for displaying random addition sums -->
+<p>What is <span id="number1"></span> + <span id="number2"></span>?</p>
+
+<!-- Input and check button -->
 <div class="input-container">
-    <input type="number" id="number1" placeholder="Enter num" />
-    <span>+</span>
-    <input type="number" id="number2" placeholder="Enter num" />
-    <button onclick="calculateAddition()">Add!</button>
+    <input type="number" id="sumInput" placeholder="Enter sum" />
+    <button onclick="checkAnswer()">Check Answer</button>
 </div>
 
-<!-- Result Section -->
-<div id="result" class="result"></div>
+<!-- Ball container to display balls -->
+<div class="ball-container" id="ballContainer"></div>
 
-<!-- Number Buttons for easy clicking -->
-<div class="number-buttons">
-    <button onclick="addToInput(1)">1</button>
-    <button onclick="addToInput(2)">2</button>
-    <button onclick="addToInput(3)">3</button>
-    <button onclick="addToInput(4)">4</button>
-    <button onclick="addToInput(5)">5</button>
-    <button onclick="addToInput(6)">6</button>
-    <button onclick="addToInput(7)">7</button>
-    <button onclick="addToInput(8)">8</button>
-    <button onclick="addToInput(9)">9</button>
-    <button onclick="addToInput(0)">0</button>
-</div>
+<!-- Result section -->
+<div class="result" id="result"></div>
+
+<!-- Next button -->
+<button class="next-button" onclick="generateRandomSum()">Next</button>
 
 <script>
-    // Function to calculate addition
-    function calculateAddition() {
-        const num1 = parseInt(document.getElementById('number1').value);
-        const num2 = parseInt(document.getElementById('number2').value);
-        
-        if (isNaN(num1) || isNaN(num2)) {
-            alert('Please enter valid numbers!');
-            return;
-        }
-        
-        const sum = num1 + num2;
-        
-        // Display the result with animation
-        const resultDiv = document.getElementById('result');
-        resultDiv.textContent = `The result is: ${sum}`;
+    let number1, number2;
+
+    // Function to generate a random sum
+    function generateRandomSum() {
+        // Generate two random numbers for addition
+        number1 = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
+        number2 = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
+
+        // Update the displayed numbers
+        document.getElementById('number1').textContent = number1;
+        document.getElementById('number2').textContent = number2;
+
+        // Clear previous results and balls
+        document.getElementById('result').textContent = '';
+        document.getElementById('ballContainer').innerHTML = '';
+
+        // Display balls for the first number
+        displayBalls(number1, 'number1');
+        // Display balls for the second number
+        displayBalls(number2, 'number2');
     }
 
-    // Function to add numbers to input fields by clicking number buttons
-    function addToInput(number) {
-        const activeInput = document.activeElement;
+    // Function to display balls based on the number
+    function displayBalls(num, ballType) {
+        const ballContainer = document.getElementById('ballContainer');
         
-        if (activeInput.tagName === 'INPUT') {
-            activeInput.value += number;
+        for (let i = 0; i < num; i++) {
+            const ball = document.createElement('div');
+            ball.classList.add('ball');
+            // Random color for each ball
+            ball.style.backgroundColor = getRandomColor();
+            ballContainer.appendChild(ball);
         }
     }
+
+    // Function to get a random color
+    function getRandomColor() {
+        const colors = ['#ff6347', '#ff4500', '#32cd32', '#1e90ff', '#ff1493', '#f0e68c'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // Function to check if the user's answer is correct
+    function checkAnswer() {
+        const userAnswer = parseInt(document.getElementById('sumInput').value);
+        const correctAnswer = number1 + number2;
+
+        if (userAnswer === correctAnswer) {
+            document.getElementById('result').textContent = 'Correct! Great Job!';
+            document.getElementById('result').style.color = 'green';
+        } else {
+            document.getElementById('result').textContent = `Oops! Try Again. The correct answer is ${correctAnswer}.`;
+            document.getElementById('result').style.color = 'red';
+        }
+    }
+
+    // Initialize the game with a random sum
+    generateRandomSum();
 </script>
 
 </body>
