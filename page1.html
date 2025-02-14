@@ -106,12 +106,10 @@
             background-color: #228b22;
         }
     </style>
-</head>
-<body>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Moving GIF</title>
+    <title>Random Appearing GIF</title>
     <style>
         body {
             margin: 0;
@@ -121,15 +119,15 @@
 
         #movingGif {
             position: absolute;
-            width: 100px; /* Adjust as needed */
+            width: 100px; /* Adjust size as needed */
             height: auto;
-            transition: transform 1s ease-in-out;
+            display: none; /* Initially hidden */
         }
     </style>
 </head>
 <body>
 
-    <img src="/images/butterfly1.gif" id="movingGif" alt="Moving GIF">
+    <img src="butterfly1.gif" id="movingGif" alt="Moving GIF">
 
     <script>
         function moveGif() {
@@ -140,12 +138,17 @@
             const randomX = Math.random() * maxX;
             const randomY = Math.random() * maxY;
 
-            gif.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            gif.style.left = `${randomX}px`;
+            gif.style.top = `${randomY}px`;
+            gif.style.display = "block"; // Show GIF
+
+            setTimeout(() => {
+                gif.style.display = "none"; // Hide GIF after 1 second
+            }, 1000);
         }
 
-        setInterval(moveGif, 2000); // Move every 2 seconds
+        setInterval(moveGif, 2000); // Moves every 2 seconds
     </script>
-
 <h2>Learn Addition</h2>
 
 <!-- Table for displaying random addition sums -->
