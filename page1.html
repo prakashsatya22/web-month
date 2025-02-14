@@ -10,18 +10,19 @@
             background-color: #f0f8ff;
             text-align: center;
             padding: 20px;
-            background-size: cover; /* Ensures the GIF covers the whole background */
-            background-position: center; /* Centers the background */
-            background-attachment: fixed; /* Keeps the background fixed when scrolling */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            overflow-x: hidden;
         }
 
         h1 {
-            font-size: 36px;
+            font-size: 5vw;
             color: #ff6347;
             margin-bottom: 20px;
         }
 
-        /* Image container with two separate boundaries */
         .image-container {
             display: flex;
             flex-direction: column;
@@ -29,21 +30,25 @@
             margin-top: 20px;
             padding: 20px;
             border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            background-color: rgba(255, 255, 255, 0.8);
+            width: 90%;
+            max-width: 600px;
+            margin: auto;
         }
 
-        /* Each row container with separate boundaries */
         .image-row-container {
             border: 2px solid #ff6347;
             margin-bottom: 10px;
             padding: 10px;
             border-radius: 8px;
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
+            width: 100%;
         }
 
         .image {
-            font-size: 50px;
+            font-size: 8vw;
             margin: 5px;
             transition: transform 0.5s ease;
         }
@@ -54,8 +59,9 @@
 
         .input-container input {
             padding: 10px;
-            font-size: 24px;
-            width: 100px;
+            font-size: 5vw;
+            width: 20vw;
+            max-width: 100px;
             text-align: center;
             margin-right: 10px;
             border: 2px solid #ff6347;
@@ -63,8 +69,8 @@
         }
 
         .input-container button {
-            padding: 12px 25px;
-            font-size: 24px;
+            padding: 10px 20px;
+            font-size: 5vw;
             background-color: #ff6347;
             color: white;
             border: none;
@@ -77,23 +83,20 @@
             background-color: #ff4500;
         }
 
-        /* Result section */
         .result {
-            font-size: 28px;
+            font-size: 6vw;
             margin-top: 20px;
             color: green;
         }
 
-        /* Thumbs icon */
         .thumbs {
-            font-size: 40px;
+            font-size: 8vw;
             margin-left: 10px;
         }
 
-        /* Next button */
         .next-button {
-            padding: 12px 25px;
-            font-size: 24px;
+            padding: 10px 20px;
+            font-size: 5vw;
             background-color: #32cd32;
             color: white;
             border: none;
@@ -105,23 +108,14 @@
         .next-button:hover {
             background-color: #228b22;
         }
-    </style>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Appearing GIF</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            background-color: lightblue;
-        }
 
+        /* Responsive Moving GIF */
         #movingGif {
             position: absolute;
-            width: 100px; /* Adjust size as needed */
+            width: 15vw;
+            max-width: 100px;
             height: auto;
-            display: none; /* Initially hidden */
+            display: none;
         }
     </style>
 </head>
@@ -140,120 +134,94 @@
 
             gif.style.left = `${randomX}px`;
             gif.style.top = `${randomY}px`;
-            gif.style.display = "block"; // Show GIF
+            gif.style.display = "block";
 
             setTimeout(() => {
-                gif.style.display = "none"; // Hide GIF after 2 second
-            }, 3000);
+                gif.style.display = "none";
+            }, 2000);
         }
 
-        setInterval(moveGif, 4000); // Moves every 4 seconds
+        setInterval(moveGif, 4000);
     </script>
-<h2>Learn Addition</h2>
 
-<!-- Table for displaying random addition sums -->
-<h1><span id="number1"></span> + <span id="number2"></span></h1>
+    <h2>Learn Addition</h2>
+    <h1><span id="number1"></span> + <span id="number2"></span></h1>
 
-<!-- Input and check button -->
-<div class="input-container">
-    <input type="number" id="sumInput" placeholder="Enter sum" />
-    <button onclick="checkAnswer()">Check Answer</button>
-</div>
+    <div class="input-container">
+        <input type="number" id="sumInput" placeholder="Enter sum" />
+        <button onclick="checkAnswer()">Check</button>
+    </div>
 
-<!-- Image container to display cartoon images -->
-<div class="image-container" id="imageContainer">
-    <!-- First row container -->
-    <div id="row1Container" class="image-row-container"></div>
-    <!-- Second row container -->
-    <div id="row2Container" class="image-row-container"></div>
-</div>
+    <div class="image-container">
+        <div id="row1Container" class="image-row-container"></div>
+        <div id="row2Container" class="image-row-container"></div>
+    </div>
 
-<!-- Result section -->
-<div class="result" id="result"></div>
+    <div class="result" id="result"></div>
+    <div id="thumbsSection" class="thumbs"></div>
 
-<!-- Thumbs up or thumbs down section -->
-<div id="thumbsSection" class="thumbs"></div>
+    <button class="next-button" onclick="generateRandomSum()">Next</button>
 
-<!-- Next button -->
-<button class="next-button" onclick="generateRandomSum()">Next</button>
+    <script>
+        let number1, number2;
+        const imageSources = ['🍎', '🍌', '🍉', '🍓', '🍒', '🍍', '🍑', '🍊', '🍅', '🐶', '🐱', '🐰', '🐭', '🐮', '🐸'];
 
-<script>
-    let number1, number2;
+        function generateRandomSum() {
+            number1 = Math.floor(Math.random() * 10) + 1;
+            number2 = Math.floor(Math.random() * 10) + 1;
 
-    // Emojis for fruits and animals
-    const imageSources = [
-        '🍎', '🍌', '🍉', '🍓', '🍒', '🍍', '🍑', '🍊', '🍅', '🐶', '🐱', '🐰', '🐭', '🐮', '🐸'
-    ];
+            document.getElementById('number1').textContent = number1;
+            document.getElementById('number2').textContent = number2;
 
-    // Function to generate a random sum
-    function generateRandomSum() {
-        // Generate two random numbers for addition
-        number1 = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
-        number2 = Math.floor(Math.random() * 10) + 1; // Random number between 1 and 10
+            document.getElementById('result').textContent = '';
+            document.getElementById('thumbsSection').innerHTML = '';
+            document.getElementById('row1Container').innerHTML = '';
+            document.getElementById('row2Container').innerHTML = '';
 
-        // Update the displayed numbers
-        document.getElementById('number1').textContent = number1;
-        document.getElementById('number2').textContent = number2;
+            document.getElementById('sumInput').value = '';
 
-        // Clear previous results and images
-        document.getElementById('result').textContent = '';
-        document.getElementById('thumbsSection').innerHTML = '';  // Clear thumbs section
-        document.getElementById('row1Container').innerHTML = ''; // Clear first row
-        document.getElementById('row2Container').innerHTML = ''; // Clear second row
-
-        // Clear the input field
-        document.getElementById('sumInput').value = '';
-
-        // Display emojis for the first number (first row)
-        displayImages(number1, 'row1Container');
-        // Display emojis for the second number (second row)
-        displayImages(number2, 'row2Container');
-    }
-
-    // Function to display emojis in two rows
-    function displayImages(num, rowId) {
-        const rowContainer = document.getElementById(rowId);
-
-        // Create emojis for the row
-        for (let i = 0; i < num; i++) {
-            const emoji = document.createElement('div');
-            emoji.classList.add('image'); // Apply image class for styling
-            emoji.textContent = getRandomImage();  // Get a random emoji
-            rowContainer.appendChild(emoji);
+            displayImages(number1, 'row1Container');
+            displayImages(number2, 'row2Container');
         }
-    }
 
-    // Function to get a random emoji from the sources array
-    function getRandomImage() {
-        const randomIndex = Math.floor(Math.random() * imageSources.length);
-        return imageSources[randomIndex];
-    }
+        function displayImages(num, rowId) {
+            const rowContainer = document.getElementById(rowId);
 
-    // Function to check if the user's answer is correct
-    function checkAnswer() {
-        const userAnswer = parseInt(document.getElementById('sumInput').value);
-        const correctAnswer = number1 + number2;
-
-        // Show thumbs and result message based on the answer
-        const thumbsSection = document.getElementById('thumbsSection');
-        const resultMessage = document.getElementById('result');
-
-        if (userAnswer === correctAnswer) {
-            resultMessage.textContent = 'Correct! Great Job!';
-            resultMessage.style.color = 'green';
-            thumbsSection.innerHTML = '👍';  // Thumbs-up emoji
-            thumbsSection.style.color = 'green';
-        } else {
-            resultMessage.textContent = `Oops! Try Again. The correct answer is ${correctAnswer}.`;
-            resultMessage.style.color = 'red';
-            thumbsSection.innerHTML = '👎';  // Thumbs-down emoji
-            thumbsSection.style.color = 'red';
+            for (let i = 0; i < num; i++) {
+                const emoji = document.createElement('div');
+                emoji.classList.add('image');
+                emoji.textContent = getRandomImage();
+                rowContainer.appendChild(emoji);
+            }
         }
-    }
 
-    // Initialize the game with a random sum
-    generateRandomSum();
-</script>
+        function getRandomImage() {
+            const randomIndex = Math.floor(Math.random() * imageSources.length);
+            return imageSources[randomIndex];
+        }
+
+        function checkAnswer() {
+            const userAnswer = parseInt(document.getElementById('sumInput').value);
+            const correctAnswer = number1 + number2;
+
+            const thumbsSection = document.getElementById('thumbsSection');
+            const resultMessage = document.getElementById('result');
+
+            if (userAnswer === correctAnswer) {
+                resultMessage.textContent = 'Correct! Great Job!';
+                resultMessage.style.color = 'green';
+                thumbsSection.innerHTML = '👍';
+                thumbsSection.style.color = 'green';
+            } else {
+                resultMessage.textContent = `Oops! Try Again. The correct answer is ${correctAnswer}.`;
+                resultMessage.style.color = 'red';
+                thumbsSection.innerHTML = '👎';
+                thumbsSection.style.color = 'red';
+            }
+        }
+
+        generateRandomSum();
+    </script>
 
 </body>
 </html>
