@@ -18,22 +18,21 @@
             margin-bottom: 20px;
         }
 
-        /* Image container with two rows */
+        /* Container for the image rows */
         .image-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
-            border: 2px solid #ff6347;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: #ffffff;
         }
 
-        .image-row {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
+        /* Style for each row's boundary */
+        .image-row-boundary {
+            border: 2px solid #ff6347;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
         }
 
         /* Circle shape for row 1 */
@@ -174,7 +173,11 @@
     function displayImages(num, rowClass, shapeClass) {
         const imageContainer = document.getElementById('imageContainer');
 
-        // Create a new row
+        // Create a new row with its own boundary
+        const rowBoundary = document.createElement('div');
+        rowBoundary.classList.add('image-row-boundary');
+
+        // Create a new row inside the boundary
         const row = document.createElement('div');
         row.classList.add('image-row');
         row.classList.add(rowClass); // Add row class for differentiation
@@ -187,8 +190,9 @@
             row.appendChild(image);
         }
 
-        // Append the row to the container
-        imageContainer.appendChild(row);
+        // Append the row inside its boundary
+        rowBoundary.appendChild(row);
+        imageContainer.appendChild(rowBoundary);
     }
 
     // Function to get a random image from the sources array
