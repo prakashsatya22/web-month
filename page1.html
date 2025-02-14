@@ -24,6 +24,10 @@
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
+            border: 2px solid #ff6347;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
         }
 
         .image-row {
@@ -135,6 +139,12 @@
 
 <script>
     let number1, number2;
+    const imageSources = [
+        'https://via.placeholder.com/50x50.png?text=Cartoon1',
+        'https://via.placeholder.com/50x50.png?text=Cartoon2',
+        'https://via.placeholder.com/50x50.png?text=Cartoon3',
+        'https://via.placeholder.com/50x50.png?text=Cartoon4'
+    ];
 
     // Function to generate a random sum
     function generateRandomSum() {
@@ -173,12 +183,18 @@
         for (let i = 0; i < num; i++) {
             const image = document.createElement('img');
             image.classList.add(shapeClass); // Apply shape class (circle or square)
-            image.src = 'https://via.placeholder.com/50x50.png?text=Cartoon';  // Replace with your cartoon image URL
+            image.src = getRandomImage();  // Get a random image
             row.appendChild(image);
         }
 
         // Append the row to the container
         imageContainer.appendChild(row);
+    }
+
+    // Function to get a random image from the sources array
+    function getRandomImage() {
+        const randomIndex = Math.floor(Math.random() * imageSources.length);
+        return imageSources[randomIndex];
     }
 
     // Function to check if the user's answer is correct
