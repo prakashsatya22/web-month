@@ -21,12 +21,18 @@
         /* Container for the image rows */
         .image-container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             margin-top: 20px;
         }
 
         /* Style for each row's boundary */
+        .image-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 20px;
+        }
+
         .image-row-boundary {
             border: 2px solid #ff6347;
             padding: 10px;
@@ -175,7 +181,12 @@
     function displayEmojis(num, rowClass, shapeClass, emojiArray) {
         const imageContainer = document.getElementById('imageContainer');
 
-        // Create a new row for each emoji
+        // Create a new image row
+        const row = document.createElement('div');
+        row.classList.add('image-row'); // Add class for column layout
+        imageContainer.appendChild(row);
+
+        // Create individual emoji boundaries for each emoji
         for (let i = 0; i < num; i++) {
             const rowBoundary = document.createElement('div');
             rowBoundary.classList.add('image-row-boundary');
@@ -186,8 +197,8 @@
             emoji.textContent = getRandomEmoji(emojiArray);  // Get a random emoji from the array
             rowBoundary.appendChild(emoji);
 
-            // Append the row boundary to the container
-            imageContainer.appendChild(rowBoundary);
+            // Append the boundary to the row
+            row.appendChild(rowBoundary);
         }
     }
 
