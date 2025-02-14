@@ -23,74 +23,22 @@
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            gap: 50px;
         }
 
         /* Style for each row's boundary */
-        .image-row {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-right: 20px;
-        }
-
         .image-row-boundary {
             border: 2px solid #ff6347;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 20px;
+            margin: 5px;
             border-radius: 8px;
             background-color: #ffffff;
             display: inline-block;
-        }
-
-        /* Circle shape for row 1 */
-        .circle {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            transition: transform 0.5s ease;
-            font-size: 30px;
+            font-size: 50px;
+            height: 80px;
+            width: 80px;
             text-align: center;
-            line-height: 50px;
-        }
-
-        /* Square shape for row 2 */
-        .square {
-            width: 50px;
-            height: 50px;
-            margin: 5px;
-            transition: transform 0.5s ease;
-            font-size: 30px;
-            text-align: center;
-            line-height: 50px;
-        }
-
-        .input-container {
-            margin-top: 20px;
-        }
-
-        .input-container input {
-            padding: 10px;
-            font-size: 24px;
-            width: 100px;
-            text-align: center;
-            margin-right: 10px;
-            border: 2px solid #ff6347;
-            border-radius: 8px;
-        }
-
-        .input-container button {
-            padding: 12px 25px;
-            font-size: 24px;
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .input-container button:hover {
-            background-color: #ff4500;
+            line-height: 80px;
         }
 
         /* Result section */
@@ -130,20 +78,17 @@
 <!-- Table for displaying random addition sums -->
 <h1><span id="number1"></span> + <span id="number2"></span></h1>
 
-<!-- Input and check button -->
-<div class="input-container">
-    <input type="number" id="sumInput" placeholder="Enter sum" />
-    <button onclick="checkAnswer()">Check Answer</button>
-</div>
-
-<!-- Image container to display fruit and animal emojis -->
-<div class="image-container" id="imageContainer"></div>
-
 <!-- Result section -->
 <div class="result" id="result"></div>
 
 <!-- Thumbs up or thumbs down section -->
 <div id="thumbsSection" class="thumbs"></div>
+
+<!-- Image container to display fruit and animal emojis -->
+<div class="image-container">
+    <div id="row1" class="image-row-boundary"></div>
+    <div id="row2" class="image-row-boundary"></div>
+</div>
 
 <!-- Next button -->
 <button class="next-button" onclick="generateRandomSum()">Next</button>
@@ -163,71 +108,21 @@
         document.getElementById('number1').textContent = number1;
         document.getElementById('number2').textContent = number2;
 
-        // Clear previous results and images
+        // Clear previous results
         document.getElementById('result').textContent = '';
         document.getElementById('thumbsSection').innerHTML = '';  // Clear thumbs section
-        document.getElementById('imageContainer').innerHTML = '';
 
-        // Clear the input field
-        document.getElementById('sumInput').value = '';
+        // Generate and display a random fruit emoji for row 1
+        document.getElementById('row1').textContent = getRandomEmoji(fruitEmojis);
 
-        // Display fruit emojis for the first number (first row) as circles
-        displayEmojis(number1, 'row1', 'circle', fruitEmojis);
-        // Display animal emojis for the second number (second row) as squares
-        displayEmojis(number2, 'row2', 'square', animalEmojis);
-    }
-
-    // Function to display emojis in two rows with different shapes
-    function displayEmojis(num, rowClass, shapeClass, emojiArray) {
-        const imageContainer = document.getElementById('imageContainer');
-
-        // Create a new image row
-        const row = document.createElement('div');
-        row.classList.add('image-row'); // Add class for column layout
-        imageContainer.appendChild(row);
-
-        // Create individual emoji boundaries for each emoji
-        for (let i = 0; i < num; i++) {
-            const rowBoundary = document.createElement('div');
-            rowBoundary.classList.add('image-row-boundary');
-
-            // Create an emoji element for each individual row
-            const emoji = document.createElement('div');
-            emoji.classList.add(shapeClass); // Apply shape class (circle or square)
-            emoji.textContent = getRandomEmoji(emojiArray);  // Get a random emoji from the array
-            rowBoundary.appendChild(emoji);
-
-            // Append the boundary to the row
-            row.appendChild(rowBoundary);
-        }
+        // Generate and display a random animal emoji for row 2
+        document.getElementById('row2').textContent = getRandomEmoji(animalEmojis);
     }
 
     // Function to get a random emoji from the provided emoji array
     function getRandomEmoji(emojiArray) {
         const randomIndex = Math.floor(Math.random() * emojiArray.length);
         return emojiArray[randomIndex];
-    }
-
-    // Function to check if the user's answer is correct
-    function checkAnswer() {
-        const userAnswer = parseInt(document.getElementById('sumInput').value);
-        const correctAnswer = number1 + number2;
-
-        // Show thumbs and result message based on the answer
-        const thumbsSection = document.getElementById('thumbsSection');
-        const resultMessage = document.getElementById('result');
-
-        if (userAnswer === correctAnswer) {
-            resultMessage.textContent = 'Correct! Great Job!';
-            resultMessage.style.color = 'green';
-            thumbsSection.innerHTML = '👍';  // Thumbs-up emoji
-            thumbsSection.style.color = 'green';
-        } else {
-            resultMessage.textContent = `Oops! Try Again. The correct answer is ${correctAnswer}.`;
-            resultMessage.style.color = 'red';
-            thumbsSection.innerHTML = '👎';  // Thumbs-down emoji
-            thumbsSection.style.color = 'red';
-        }
     }
 
     // Initialize the game with a random sum
