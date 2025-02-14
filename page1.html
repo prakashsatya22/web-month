@@ -109,6 +109,43 @@
     </style>
 </head>
 <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Moving GIF</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: lightblue;
+        }
+
+        #movingGif {
+            position: absolute;
+            width: 100px; /* Adjust as needed */
+            height: auto;
+            transition: transform 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="/images/ball.gif" id="movingGif" alt="Moving GIF">
+
+    <script>
+        function moveGif() {
+            const gif = document.getElementById("movingGif");
+            const maxX = window.innerWidth - gif.clientWidth;
+            const maxY = window.innerHeight - gif.clientHeight;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            gif.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+
+        setInterval(moveGif, 2000); // Move every 2 seconds
+    </script>
 
 <h2>Learn Addition</h2>
 
