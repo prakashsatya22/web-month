@@ -30,9 +30,10 @@
         .image-row-boundary {
             border: 2px solid #ff6347;
             padding: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border-radius: 8px;
             background-color: #ffffff;
+            display: inline-block;
         }
 
         /* Circle shape for row 1 */
@@ -42,6 +43,8 @@
             margin: 5px;
             transition: transform 0.5s ease;
             font-size: 30px;
+            text-align: center;
+            line-height: 50px;
         }
 
         /* Square shape for row 2 */
@@ -51,6 +54,8 @@
             margin: 5px;
             transition: transform 0.5s ease;
             font-size: 30px;
+            text-align: center;
+            line-height: 50px;
         }
 
         .input-container {
@@ -170,26 +175,20 @@
     function displayEmojis(num, rowClass, shapeClass, emojiArray) {
         const imageContainer = document.getElementById('imageContainer');
 
-        // Create a new row with its own boundary
-        const rowBoundary = document.createElement('div');
-        rowBoundary.classList.add('image-row-boundary');
-
-        // Create a new row inside the boundary
-        const row = document.createElement('div');
-        row.classList.add('image-row');
-        row.classList.add(rowClass); // Add row class for differentiation
-
-        // Create emoji elements for the row with the specified shape
+        // Create a new row for each emoji
         for (let i = 0; i < num; i++) {
+            const rowBoundary = document.createElement('div');
+            rowBoundary.classList.add('image-row-boundary');
+
+            // Create an emoji element for each individual row
             const emoji = document.createElement('div');
             emoji.classList.add(shapeClass); // Apply shape class (circle or square)
             emoji.textContent = getRandomEmoji(emojiArray);  // Get a random emoji from the array
-            row.appendChild(emoji);
-        }
+            rowBoundary.appendChild(emoji);
 
-        // Append the row inside its boundary
-        rowBoundary.appendChild(row);
-        imageContainer.appendChild(rowBoundary);
+            // Append the row boundary to the container
+            imageContainer.appendChild(rowBoundary);
+        }
     }
 
     // Function to get a random emoji from the provided emoji array
