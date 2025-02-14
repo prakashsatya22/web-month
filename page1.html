@@ -18,22 +18,25 @@
             margin-bottom: 20px;
         }
 
-        /* Image container with two rows */
+        /* Image container with two separate boundaries */
         .image-container {
             display: flex;
             flex-direction: column;
             align-items: center;
             margin-top: 20px;
-            border: 2px solid #ff6347;
             padding: 20px;
             border-radius: 8px;
             background-color: #ffffff;
         }
 
-        .image-row {
+        /* Each row container with separate boundaries */
+        .image-row-container {
+            border: 2px solid #ff6347;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
             display: flex;
             justify-content: center;
-            margin-bottom: 10px;
         }
 
         .image {
@@ -115,7 +118,12 @@
 </div>
 
 <!-- Image container to display cartoon images -->
-<div class="image-container" id="imageContainer"></div>
+<div class="image-container" id="imageContainer">
+    <!-- First row container -->
+    <div id="row1Container" class="image-row-container"></div>
+    <!-- Second row container -->
+    <div id="row2Container" class="image-row-container"></div>
+</div>
 
 <!-- Result section -->
 <div class="result" id="result"></div>
@@ -147,36 +155,29 @@
         // Clear previous results and images
         document.getElementById('result').textContent = '';
         document.getElementById('thumbsSection').innerHTML = '';  // Clear thumbs section
-        document.getElementById('imageContainer').innerHTML = '';
+        document.getElementById('row1Container').innerHTML = ''; // Clear first row
+        document.getElementById('row2Container').innerHTML = ''; // Clear second row
 
         // Clear the input field
         document.getElementById('sumInput').value = '';
 
         // Display emojis for the first number (first row)
-        displayImages(number1, 'row1');
+        displayImages(number1, 'row1Container');
         // Display emojis for the second number (second row)
-        displayImages(number2, 'row2');
+        displayImages(number2, 'row2Container');
     }
 
     // Function to display emojis in two rows
-    function displayImages(num, rowClass) {
-        const imageContainer = document.getElementById('imageContainer');
-
-        // Create a new row
-        const row = document.createElement('div');
-        row.classList.add('image-row');
-        row.classList.add(rowClass); // Add row class for differentiation
+    function displayImages(num, rowId) {
+        const rowContainer = document.getElementById(rowId);
 
         // Create emojis for the row
         for (let i = 0; i < num; i++) {
             const emoji = document.createElement('div');
             emoji.classList.add('image'); // Apply image class for styling
             emoji.textContent = getRandomImage();  // Get a random emoji
-            row.appendChild(emoji);
+            rowContainer.appendChild(emoji);
         }
-
-        // Append the row to the container
-        imageContainer.appendChild(row);
     }
 
     // Function to get a random emoji from the sources array
