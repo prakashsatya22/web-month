@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Addition with Cartoons</title>
+    <title>Learn Addition with Emojis</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -39,9 +39,9 @@
         .circle {
             width: 50px;
             height: 50px;
-            border-radius: 50%;
             margin: 5px;
             transition: transform 0.5s ease;
+            font-size: 30px;
         }
 
         /* Square shape for row 2 */
@@ -50,6 +50,7 @@
             height: 50px;
             margin: 5px;
             transition: transform 0.5s ease;
+            font-size: 30px;
         }
 
         .input-container {
@@ -124,7 +125,7 @@
     <button onclick="checkAnswer()">Check Answer</button>
 </div>
 
-<!-- Image container to display cartoon images -->
+<!-- Image container to display fruit and animal emojis -->
 <div class="image-container" id="imageContainer"></div>
 
 <!-- Result section -->
@@ -138,12 +139,8 @@
 
 <script>
     let number1, number2;
-    const imageSources = [
-        'https://via.placeholder.com/50x50.png?text=Cartoon1',
-        'https://via.placeholder.com/50x50.png?text=Cartoon2',
-        'https://via.placeholder.com/50x50.png?text=Cartoon3',
-        'https://via.placeholder.com/50x50.png?text=Cartoon4'
-    ];
+    const fruitEmojis = ['🍎', '🍌', '🍓', '🍉', '🍍', '🍊'];
+    const animalEmojis = ['🐶', '🐱', '🐭', '🐰', '🦊', '🦁'];
 
     // Function to generate a random sum
     function generateRandomSum() {
@@ -163,14 +160,14 @@
         // Clear the input field
         document.getElementById('sumInput').value = '';
 
-        // Display cartoon images for the first number (first row) as circles
-        displayImages(number1, 'row1', 'circle');
-        // Display cartoon images for the second number (second row) as squares
-        displayImages(number2, 'row2', 'square');
+        // Display fruit emojis for the first number (first row) as circles
+        displayEmojis(number1, 'row1', 'circle', fruitEmojis);
+        // Display animal emojis for the second number (second row) as squares
+        displayEmojis(number2, 'row2', 'square', animalEmojis);
     }
 
-    // Function to display cartoon images in two rows with different shapes
-    function displayImages(num, rowClass, shapeClass) {
+    // Function to display emojis in two rows with different shapes
+    function displayEmojis(num, rowClass, shapeClass, emojiArray) {
         const imageContainer = document.getElementById('imageContainer');
 
         // Create a new row with its own boundary
@@ -182,12 +179,12 @@
         row.classList.add('image-row');
         row.classList.add(rowClass); // Add row class for differentiation
 
-        // Create cartoon images for the row with the specified shape
+        // Create emoji elements for the row with the specified shape
         for (let i = 0; i < num; i++) {
-            const image = document.createElement('img');
-            image.classList.add(shapeClass); // Apply shape class (circle or square)
-            image.src = getRandomImage();  // Get a random image
-            row.appendChild(image);
+            const emoji = document.createElement('div');
+            emoji.classList.add(shapeClass); // Apply shape class (circle or square)
+            emoji.textContent = getRandomEmoji(emojiArray);  // Get a random emoji from the array
+            row.appendChild(emoji);
         }
 
         // Append the row inside its boundary
@@ -195,10 +192,10 @@
         imageContainer.appendChild(rowBoundary);
     }
 
-    // Function to get a random image from the sources array
-    function getRandomImage() {
-        const randomIndex = Math.floor(Math.random() * imageSources.length);
-        return imageSources[randomIndex];
+    // Function to get a random emoji from the provided emoji array
+    function getRandomEmoji(emojiArray) {
+        const randomIndex = Math.floor(Math.random() * emojiArray.length);
+        return emojiArray[randomIndex];
     }
 
     // Function to check if the user's answer is correct
