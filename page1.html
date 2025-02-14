@@ -85,6 +85,12 @@
             color: green;
         }
 
+        /* Thumbs icon */
+        .thumbs {
+            font-size: 40px;
+            margin-left: 10px;
+        }
+
         /* Next button */
         .next-button {
             padding: 12px 25px;
@@ -121,6 +127,9 @@
 <!-- Result section -->
 <div class="result" id="result"></div>
 
+<!-- Thumbs up or thumbs down section -->
+<div id="thumbsSection" class="thumbs"></div>
+
 <!-- Next button -->
 <button class="next-button" onclick="generateRandomSum()">Next</button>
 
@@ -139,6 +148,7 @@
 
         // Clear previous results and images
         document.getElementById('result').textContent = '';
+        document.getElementById('thumbsSection').innerHTML = '';  // Clear thumbs section
         document.getElementById('imageContainer').innerHTML = '';
 
         // Clear the input field
@@ -163,7 +173,7 @@
         for (let i = 0; i < num; i++) {
             const image = document.createElement('img');
             image.classList.add(shapeClass); // Apply shape class (circle or square)
-            image.src = '/images/github3.jpg';  // Replace with your cartoon image URL
+            image.src = 'https://via.placeholder.com/50x50.png?text=Cartoon';  // Replace with your cartoon image URL
             row.appendChild(image);
         }
 
@@ -176,12 +186,20 @@
         const userAnswer = parseInt(document.getElementById('sumInput').value);
         const correctAnswer = number1 + number2;
 
+        // Show thumbs and result message based on the answer
+        const thumbsSection = document.getElementById('thumbsSection');
+        const resultMessage = document.getElementById('result');
+
         if (userAnswer === correctAnswer) {
-            document.getElementById('result').textContent = 'Correct! Great Job!';
-            document.getElementById('result').style.color = 'green';
+            resultMessage.textContent = 'Correct! Great Job!';
+            resultMessage.style.color = 'green';
+            thumbsSection.innerHTML = '👍';  // Thumbs-up emoji
+            thumbsSection.style.color = 'green';
         } else {
-            document.getElementById('result').textContent = `Oops! Try Again. The correct answer is ${correctAnswer}.`;
-            document.getElementById('result').style.color = 'red';
+            resultMessage.textContent = `Oops! Try Again. The correct answer is ${correctAnswer}.`;
+            resultMessage.style.color = 'red';
+            thumbsSection.innerHTML = '👎';  // Thumbs-down emoji
+            thumbsSection.style.color = 'red';
         }
     }
 
