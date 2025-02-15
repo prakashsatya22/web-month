@@ -3,37 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Learning Game</title>
+    <title>Learn Addition with Emojis</title>
     <style>
-        /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
             text-align: center;
-            margin: 0;
             padding: 20px;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         h1 {
-            font-size: 4vw;
+            font-size: 2em;
             color: #ff6347;
             margin-bottom: 20px;
         }
 
         .container {
-            max-width: 90%;
-            width: 600px;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.9);
+            width: 90%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .image-row {
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .image-row-container {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -41,66 +50,56 @@
             padding: 10px;
             border-radius: 8px;
             margin-bottom: 10px;
+            width: 100%;
         }
 
-        .emoji {
-            font-size: 6vw;
+        .image {
+            font-size: 2em;
             margin: 5px;
         }
 
         .input-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
             margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .input-container input {
-            font-size: 4vw;
-            width: 20vw;
-            max-width: 100px;
+            padding: 10px;
+            font-size: 1.2em;
+            width: 80px;
             text-align: center;
             border: 2px solid #ff6347;
             border-radius: 8px;
-            padding: 10px;
             margin-bottom: 10px;
         }
 
-        .input-container button {
-            font-size: 4vw;
+        .input-container button, .next-button {
             padding: 10px 20px;
+            font-size: 1.2em;
             background-color: #ff6347;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        .input-container button:hover {
+        .input-container button:hover, .next-button:hover {
             background-color: #ff4500;
         }
 
         .result {
-            font-size: 5vw;
+            font-size: 1.5em;
             margin-top: 20px;
-            color: green;
         }
 
         .thumbs {
-            font-size: 6vw;
-            margin-top: 10px;
+            font-size: 2em;
         }
 
         .next-button {
-            font-size: 4vw;
-            padding: 10px 20px;
             background-color: #32cd32;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
             margin-top: 20px;
         }
 
@@ -108,107 +107,87 @@
             background-color: #228b22;
         }
 
-        /* Responsive Moving GIF */
-        #movingGif {
-            position: absolute;
-            width: 12vw;
-            max-width: 100px;
-            height: auto;
-            display: none;
-        }
-
-        /* Mobile-Friendly Styles */
-        @media (max-width: 768px) {
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
             h1 {
-                font-size: 6vw;
+                font-size: 1.5em;
             }
-
-            .emoji {
-                font-size: 10vw;
+            .image {
+                font-size: 1.8em;
             }
-
-            .input-container input, .input-container button {
-                font-size: 5vw;
+            .input-container input {
+                width: 70px;
+                font-size: 1em;
             }
-
-            .result, .thumbs {
-                font-size: 6vw;
+            .input-container button, .next-button {
+                font-size: 1em;
+                padding: 8px 16px;
             }
         }
     </style>
 </head>
 <body>
-
-    <!-- Moving GIF -->
-    <img src="/images/butterfly1.gif" id="movingGif" alt="Moving GIF">
-
-    <script>
-        function moveGif() {
-            const gif = document.getElementById("movingGif");
-            const maxX = window.innerWidth - gif.clientWidth;
-            const maxY = window.innerHeight - gif.clientHeight;
-
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY;
-
-            gif.style.left = `${randomX}px`;
-            gif.style.top = `${randomY}px`;
-            gif.style.display = "block";
-
-            setTimeout(() => {
-                gif.style.display = "none";
-            }, 2000);
-        }
-
-        setInterval(moveGif, 4000);
-    </script>
-
-    <h1>Learn Addition</h1>
-
-    <?php
-        $number1 = rand(1, 10);
-        $number2 = rand(1, 10);
-        $emojiList = ['🍎', '🍌', '🍉', '🍓', '🍒', '🍍', '🍑', '🍊', '🍅', '🐶', '🐱', '🐰', '🐭', '🐮', '🐸'];
-
-        function getRandomEmoji($emojiList) {
-            return $emojiList[array_rand($emojiList)];
-        }
-    ?>
-
     <div class="container">
-        <h1><?php echo $number1; ?> + <?php echo $number2; ?></h1>
-
+        <h1>Learn Addition</h1>
+        <h2><span id="number1"></span> + <span id="number2"></span></h2>
+        
         <div class="input-container">
             <input type="number" id="sumInput" placeholder="Enter sum" />
-            <button onclick="checkAnswer()">Check</button>
+            <button onclick="checkAnswer()">Check Answer</button>
         </div>
-
-        <div class="image-row">
-            <?php for ($i = 0; $i < $number1; $i++) { ?>
-                <div class="emoji"><?php echo getRandomEmoji($emojiList); ?></div>
-            <?php } ?>
+        
+        <div class="image-container">
+            <div id="row1Container" class="image-row-container"></div>
+            <div id="row2Container" class="image-row-container"></div>
         </div>
-
-        <div class="image-row">
-            <?php for ($i = 0; $i < $number2; $i++) { ?>
-                <div class="emoji"><?php echo getRandomEmoji($emojiList); ?></div>
-            <?php } ?>
-        </div>
-
+        
         <div class="result" id="result"></div>
         <div id="thumbsSection" class="thumbs"></div>
-
-        <button class="next-button" onclick="window.location.reload()">Next</button>
+        
+        <button class="next-button" onclick="generateRandomSum()">Next</button>
     </div>
 
     <script>
+        let number1, number2;
+        const imageSources = ['🍎', '🍌', '🍉', '🍓', '🍒', '🍍', '🍑', '🍊', '🍅', '🐶', '🐱', '🐰', '🐭', '🐮', '🐸'];
+
+        function generateRandomSum() {
+            number1 = Math.floor(Math.random() * 10) + 1;
+            number2 = Math.floor(Math.random() * 10) + 1;
+            document.getElementById('number1').textContent = number1;
+            document.getElementById('number2').textContent = number2;
+            document.getElementById('result').textContent = '';
+            document.getElementById('thumbsSection').innerHTML = '';
+            document.getElementById('row1Container').innerHTML = '';
+            document.getElementById('row2Container').innerHTML = '';
+            document.getElementById('sumInput').value = '';
+            displayImages(number1, 'row1Container');
+            displayImages(number2, 'row2Container');
+        }
+
+        function displayImages(num, rowId) {
+            const rowContainer = document.getElementById(rowId);
+            for (let i = 0; i < num; i++) {
+                const emoji = document.createElement('div');
+                emoji.classList.add('image');
+                emoji.textContent = getRandomImage();
+                rowContainer.appendChild(emoji);
+            }
+        }
+
+        function getRandomImage() {
+            return imageSources[Math.floor(Math.random() * imageSources.length)];
+        }
+
         function checkAnswer() {
             const userAnswer = parseInt(document.getElementById('sumInput').value);
-            const correctAnswer = <?php echo $number1 + $number2; ?>;
-
-            const thumbsSection = document.getElementById('thumbsSection');
+            const correctAnswer = number1 + number2;
             const resultMessage = document.getElementById('result');
-
+            const thumbsSection = document.getElementById('thumbsSection');
             if (userAnswer === correctAnswer) {
                 resultMessage.textContent = 'Correct! Great Job!';
                 resultMessage.style.color = 'green';
@@ -219,7 +198,7 @@
                 thumbsSection.innerHTML = '👎';
             }
         }
+        generateRandomSum();
     </script>
-
 </body>
 </html>
