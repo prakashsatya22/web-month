@@ -3,80 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn Addition with Emojis</title>
+    <title>Responsive Learning Game</title>
     <style>
+        /* General Styling */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
             text-align: center;
+            margin: 0;
             padding: 20px;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            margin: 0;
-            overflow-x: hidden;
         }
 
         h1 {
-            font-size: 5vw;
+            font-size: 4vw;
             color: #ff6347;
             margin-bottom: 20px;
         }
 
-        .image-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.8);
-            width: 90%;
-            max-width: 600px;
+        .container {
+            max-width: 90%;
+            width: 600px;
             margin: auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .image-row-container {
+        .image-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
             border: 2px solid #ff6347;
-            margin-bottom: 10px;
             padding: 10px;
             border-radius: 8px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
+            margin-bottom: 10px;
         }
 
-        .image {
-            font-size: 8vw;
+        .emoji {
+            font-size: 6vw;
             margin: 5px;
-            transition: transform 0.5s ease;
         }
 
         .input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
             margin-top: 20px;
         }
 
         .input-container input {
-            padding: 10px;
-            font-size: 5vw;
+            font-size: 4vw;
             width: 20vw;
             max-width: 100px;
             text-align: center;
-            margin-right: 10px;
             border: 2px solid #ff6347;
             border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
         }
 
         .input-container button {
+            font-size: 4vw;
             padding: 10px 20px;
-            font-size: 5vw;
             background-color: #ff6347;
             color: white;
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: 0.3s;
         }
 
         .input-container button:hover {
@@ -84,25 +83,25 @@
         }
 
         .result {
-            font-size: 6vw;
+            font-size: 5vw;
             margin-top: 20px;
             color: green;
         }
 
         .thumbs {
-            font-size: 8vw;
-            margin-left: 10px;
+            font-size: 6vw;
+            margin-top: 10px;
         }
 
         .next-button {
+            font-size: 4vw;
             padding: 10px 20px;
-            font-size: 5vw;
             background-color: #32cd32;
             color: white;
             border: none;
             border-radius: 8px;
-            margin-top: 20px;
             cursor: pointer;
+            margin-top: 20px;
         }
 
         .next-button:hover {
@@ -112,15 +111,35 @@
         /* Responsive Moving GIF */
         #movingGif {
             position: absolute;
-            width: 15vw;
+            width: 12vw;
             max-width: 100px;
             height: auto;
             display: none;
+        }
+
+        /* Mobile-Friendly Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 6vw;
+            }
+
+            .emoji {
+                font-size: 10vw;
+            }
+
+            .input-container input, .input-container button {
+                font-size: 5vw;
+            }
+
+            .result, .thumbs {
+                font-size: 6vw;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Moving GIF -->
     <img src="/images/butterfly1.gif" id="movingGif" alt="Moving GIF">
 
     <script>
@@ -144,65 +163,48 @@
         setInterval(moveGif, 4000);
     </script>
 
-    <h2>Learn Addition</h2>
-    <h1><span id="number1"></span> + <span id="number2"></span></h1>
+    <h1>Learn Addition</h1>
 
-    <div class="input-container">
-        <input type="number" id="sumInput" placeholder="Enter sum" />
-        <button onclick="checkAnswer()">Check</button>
+    <?php
+        $number1 = rand(1, 10);
+        $number2 = rand(1, 10);
+        $emojiList = ['🍎', '🍌', '🍉', '🍓', '🍒', '🍍', '🍑', '🍊', '🍅', '🐶', '🐱', '🐰', '🐭', '🐮', '🐸'];
+
+        function getRandomEmoji($emojiList) {
+            return $emojiList[array_rand($emojiList)];
+        }
+    ?>
+
+    <div class="container">
+        <h1><?php echo $number1; ?> + <?php echo $number2; ?></h1>
+
+        <div class="input-container">
+            <input type="number" id="sumInput" placeholder="Enter sum" />
+            <button onclick="checkAnswer()">Check</button>
+        </div>
+
+        <div class="image-row">
+            <?php for ($i = 0; $i < $number1; $i++) { ?>
+                <div class="emoji"><?php echo getRandomEmoji($emojiList); ?></div>
+            <?php } ?>
+        </div>
+
+        <div class="image-row">
+            <?php for ($i = 0; $i < $number2; $i++) { ?>
+                <div class="emoji"><?php echo getRandomEmoji($emojiList); ?></div>
+            <?php } ?>
+        </div>
+
+        <div class="result" id="result"></div>
+        <div id="thumbsSection" class="thumbs"></div>
+
+        <button class="next-button" onclick="window.location.reload()">Next</button>
     </div>
-
-    <div class="image-container">
-        <div id="row1Container" class="image-row-container"></div>
-        <div id="row2Container" class="image-row-container"></div>
-    </div>
-
-    <div class="result" id="result"></div>
-    <div id="thumbsSection" class="thumbs"></div>
-
-    <button class="next-button" onclick="generateRandomSum()">Next</button>
 
     <script>
-        let number1, number2;
-        const imageSources = ['🍎', '🍌', '🍉', '🍓', '🍒', '🍍', '🍑', '🍊', '🍅', '🐶', '🐱', '🐰', '🐭', '🐮', '🐸'];
-
-        function generateRandomSum() {
-            number1 = Math.floor(Math.random() * 10) + 1;
-            number2 = Math.floor(Math.random() * 10) + 1;
-
-            document.getElementById('number1').textContent = number1;
-            document.getElementById('number2').textContent = number2;
-
-            document.getElementById('result').textContent = '';
-            document.getElementById('thumbsSection').innerHTML = '';
-            document.getElementById('row1Container').innerHTML = '';
-            document.getElementById('row2Container').innerHTML = '';
-
-            document.getElementById('sumInput').value = '';
-
-            displayImages(number1, 'row1Container');
-            displayImages(number2, 'row2Container');
-        }
-
-        function displayImages(num, rowId) {
-            const rowContainer = document.getElementById(rowId);
-
-            for (let i = 0; i < num; i++) {
-                const emoji = document.createElement('div');
-                emoji.classList.add('image');
-                emoji.textContent = getRandomImage();
-                rowContainer.appendChild(emoji);
-            }
-        }
-
-        function getRandomImage() {
-            const randomIndex = Math.floor(Math.random() * imageSources.length);
-            return imageSources[randomIndex];
-        }
-
         function checkAnswer() {
             const userAnswer = parseInt(document.getElementById('sumInput').value);
-            const correctAnswer = number1 + number2;
+            const correctAnswer = <?php echo $number1 + $number2; ?>;
 
             const thumbsSection = document.getElementById('thumbsSection');
             const resultMessage = document.getElementById('result');
@@ -211,16 +213,12 @@
                 resultMessage.textContent = 'Correct! Great Job!';
                 resultMessage.style.color = 'green';
                 thumbsSection.innerHTML = '👍';
-                thumbsSection.style.color = 'green';
             } else {
                 resultMessage.textContent = `Oops! Try Again. The correct answer is ${correctAnswer}.`;
                 resultMessage.style.color = 'red';
                 thumbsSection.innerHTML = '👎';
-                thumbsSection.style.color = 'red';
             }
         }
-
-        generateRandomSum();
     </script>
 
 </body>
