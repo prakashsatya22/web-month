@@ -3,6 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random GIF Flash</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gif-image {
+            position: absolute;
+            width: 150px; /* Adjust as needed */
+            height: auto;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    function flashGif() {
+        // Create an image element
+        let gif = document.createElement("img");
+        gif.src = "/images/butterfly1.gif"; // Change to your GIF URL
+        gif.classList.add("gif-image");
+
+        // Random position
+        let x = Math.random() * (window.innerWidth - 150);
+        let y = Math.random() * (window.innerHeight - 150);
+
+        gif.style.left = `${x}px`;
+        gif.style.top = `${y}px`;
+
+        // Add to body
+        document.body.appendChild(gif);
+        gif.style.display = "block";
+
+        // Remove after 3 seconds
+        setTimeout(() => {
+            gif.remove();
+        }, 3000);
+    }
+
+    // Flash the GIF randomly every 5 to 10 seconds
+    setInterval(flashGif, Math.random() * (10000 - 5000) + 5000);
+</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Addition with Emojis</title>
     <style>
         body {
